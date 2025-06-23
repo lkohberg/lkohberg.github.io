@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -260,51 +260,14 @@
         }
     }
 
-    function toggleEditMode() {
-        // Edit mode disabled
-    }
+  
 
-    // Initialize the page
+  
     reasons = loadReasons();
     generateReasonsGrid();
 
-    // Add some sparkle effects
-    function createSparkle() {
-        const sparkle = document.createElement('div');
-        sparkle.innerHTML = '✨';
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = Math.random() * window.innerWidth + 'px';
-        sparkle.style.top = Math.random() * window.innerHeight + 'px';
-        sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.animation = 'sparkleFloat 3s ease-out forwards';
-        sparkle.style.zIndex = '1';
+   
 
-
-
-        setTimeout(() => {
-            sparkle.remove();
-        }, 3000);
-    }
-
-    // Add sparkle animation CSS
-    const sparkleStyle = document.createElement('style');
-    sparkleStyle.textContent = `
-            @keyframes sparkleFloat {
-                0% {
-                    opacity: 1;
-                    transform: translateY(0) rotate(0deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translateY(-100px) rotate(180deg);
-                }
-            }
-        `;
-    document.head.appendChild(sparkleStyle);
-
-    // Create sparkles periodically
-    setInterval(createSparkle, 2000);
 </script>
 </body>
 </html>
