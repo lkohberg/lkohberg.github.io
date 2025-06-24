@@ -114,7 +114,7 @@
             transition: background 0.33s, transform 0.23s cubic-bezier(.68,.21,.36,1.06);
         }
         .header-shuffle {
-            margin-top: 2rem;
+            margin-top: 1.2rem;
             margin-bottom: 0;
         }
         #shuffleBtn:hover, #shuffleBtn:active,
@@ -540,7 +540,6 @@
             .divider { margin: 1rem 0; }
             .footer { margin-top: 1rem; }
         }
-
         /* Kuschel-Animation */
         .reasons-grid.cuddle {
             gap: 0.5rem !important;
@@ -560,31 +559,6 @@
         @keyframes cuddleFade {
             to {opacity:0; transform:scale(1.15) translateY(20px);}
         }
-
-        /* Herzregen */
-        #heart-rain-container {
-            pointer-events:none;
-            position:fixed;
-            top:0;left:0;width:100vw;height:100vh;z-index:10000;
-            overflow:hidden;
-        }
-        .heart-rain-heart {
-            position: absolute;
-            top: -40px;
-            font-size: 2.1rem;
-            animation: heartRainFall 2.3s cubic-bezier(.57,.11,.84,.62) forwards;
-            user-select: none;
-            pointer-events: none;
-            filter: drop-shadow(0 0 7px #fca5f1bb);
-            left: 0;
-        }
-        @keyframes heartRainFall {
-            0% { opacity: 0; transform: scale(0.8) rotate(0deg);}
-            10% { opacity: 1;}
-            80% { opacity: 1; }
-            100% { top: 90vh; opacity: 0; transform: scale(1.15) rotate(15deg);}
-        }
-
         /* Nachtmodus mit Sonnenuntergangsfarben */
         body.sunset-mode {
             background: linear-gradient(120deg, #fd5e53 0%, #f9cb28 50%, #734b6d 100%) !important;
@@ -618,6 +592,12 @@
         .reason-card.big {
             font-size: 1.6rem;
         }
+
+        /* --- Eigener Kuschel-Gleiteffekt für das "Zurückgleiten" --- */
+        .reason-card.cuddle-leave {
+            transition: transform 0.6s cubic-bezier(.35,.74,.38,1.07);
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
@@ -631,9 +611,9 @@
     </div>
     <hr class="divider">
     <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+    <!-- Angepasster Button-Container, enger & ohne Herzregen -->
+    <div style="display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;margin-top:14px;">
         <button id="cuddleBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ffb6fc,#ffdeae);color:#7F53AC;">Kuschel-Animation 🤗</button>
-        <button id="heartRainBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ff99aa,#fca5f1);color:#fff;">Herzregen 💖</button>
         <button id="sunsetModeBtn" class="header-shuffle" style="background:linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);color:#fff;">Nachtmodus 🌅</button>
     </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
@@ -942,12 +922,13 @@ document.getElementById('shuffleBtn').onclick = function() {
     generateReasonsGrid();
 };
 
-// Kuschel-Animation bleibt dauerhaft bis geändert
+// Kuschel-Animation mit automatischem, sanftem Zurückgleiten
 document.getElementById('cuddleBtn').onclick = function() {
     cuddleActive = true;
-    generateReasonsGrid();
-    // Einmalige Herzchen-Animation
     const grid = document.getElementById('reasonsGrid');
+    generateReasonsGrid();
+
+    // Einmalige Herzchen-Animation
     if (!document.querySelector('.cuddle-heart')) {
         const hearts = [];
         for(let i=0;i<5;i++) {
@@ -958,28 +939,23 @@ document.getElementById('cuddleBtn').onclick = function() {
             grid.appendChild(h);
             hearts.push(h);
         }
-        setTimeout(() => {
-            hearts.forEach(h => h.remove());
-        }, 2000);
+        setTimeout(() => { hearts.forEach(h => h.remove()); }, 2000);
     }
-};
 
-// Herzregen: flüssiger und weniger laggy
-document.getElementById('heartRainBtn').onclick = function() {
-    if(document.getElementById('heart-rain-container')) return;
-    const heartRain = document.createElement('div');
-    heartRain.id = "heart-rain-container";
-    document.body.appendChild(heartRain);
-    for(let i=0;i<28;i++){
-        const h = document.createElement('div');
-        h.className = 'heart-rain-heart';
-        h.innerHTML = "❤️";
-        h.style.left = (3 + Math.random()*94)+"vw";
-        h.style.fontSize = (1.4 + Math.random()*1.3) + "rem";
-        h.style.animationDelay = (Math.random()*1.1)+"s";
-        heartRain.appendChild(h);
-    }
-    setTimeout(()=>heartRain.remove(),2400);
+    // Nach 4 Sekunden automatisch Kuschelmodus beenden mit sanftem Gleiteffekt
+    setTimeout(() => {
+        // Karten leicht skalieren für den Gleiteffekt
+        const cards = grid.querySelectorAll('.reason-card');
+        cards.forEach(card => {
+            card.classList.add('cuddle-leave');
+        });
+
+        // Nach Skalierung Kuschelmodus entfernen und Karten zurücksetzen
+        setTimeout(() => {
+            cuddleActive = false;
+            generateReasonsGrid();
+        }, 600); // Skalierung zurück, dann Grid neu rendern
+    }, 4000); // 4 Sekunden Kuschelzeit
 };
 
 // Nachtmodus mit Sonnenuntergangsfarben + Nummern immer sichtbar
