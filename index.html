@@ -68,6 +68,7 @@
             box-shadow: 0 10px 32px rgba(126, 125, 255, 0.13), 0 2px 8px rgba(0,0,0,0.08);
             border: 1.5px solid rgba(180, 160, 255, 0.16);
             transition: box-shadow 0.35s cubic-bezier(.35,.74,.38,1.07);
+            position: relative;
         }
         .header h1 {
             font-size: 2.6rem;
@@ -77,6 +78,50 @@
             font-weight: bold;
             letter-spacing: 0.02em;
             text-shadow: 0 2px 16px rgba(126,125,255,0.09);
+        }
+        .header-buttons {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 0.3rem;
+            z-index: 10;
+        }
+        .mini-btn {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1.5px solid #d3c1fc;
+            background: rgba(255,255,255,0.72);
+            color: #7F53AC;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 6px rgba(102,126,234,0.06);
+            cursor: pointer;
+            transition: border 0.2s, box-shadow 0.2s, background 0.2s, transform 0.15s;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+        .mini-btn:hover, .mini-btn:focus {
+            border: 1.5px solid #b08cff;
+            background: #f8f3ff;
+            box-shadow: 0 0 0 2px #e0c3fc66, 0 1px 8px rgba(127,83,172,0.09);
+            transform: scale(1.1);
+        }
+        @media (max-width:600px){
+            .header-buttons {
+                top: 11px;
+                right: 7px;
+                gap: 0.18rem;
+            }
+            .mini-btn {
+                width: 1.85rem;
+                height: 1.85rem;
+                font-size: 1.05rem;
+            }
         }
         .header p {
             font-size: 1.2rem;
@@ -95,42 +140,6 @@
             font-style: italic;
             box-shadow: 0 2px 10px rgba(126,125,255,0.07);
             backdrop-filter: blur(10px) saturate(120%);
-        }
-        #shuffleBtn,
-        .header-shuffle {
-            margin: 2.2rem auto 0 auto;
-            display: block;
-            padding: 1.1rem 2.7rem;
-            font-size: 1.17rem;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
-            color: #fff;
-            border: none;
-            border-radius: 2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            box-shadow: 0 3px 20px 0 rgba(102,126,234,0.12);
-            cursor: pointer;
-            outline: none;
-            transition: background 0.33s, transform 0.23s cubic-bezier(.68,.21,.36,1.06);
-        }
-        .header-shuffle {
-            margin-top: 1.2rem;
-            margin-bottom: 0;
-        }
-        #shuffleBtn:hover, #shuffleBtn:active,
-        .header-shuffle:hover, .header-shuffle:active {
-            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
-            color: #fff;
-            transform: scale(1.045);
-            letter-spacing: 1.5px;
-        }
-        #shuffleBtn:active, .header-shuffle:active {
-            animation: rotateShuffle 0.32s cubic-bezier(.68,.21,.36,1.06);
-        }
-        @keyframes rotateShuffle {
-            0% { transform: scale(1) rotate(0deg);}
-            50% { transform: scale(1.1) rotate(14deg);}
-            100% { transform: scale(1) rotate(0deg);}
         }
         .divider {
             border: none;
@@ -313,10 +322,6 @@
                 max-width: 700px;
                 padding: 4rem 3rem 3rem 3rem;
                 font-size: 1.2rem;
-            }
-            #shuffleBtn, .header-shuffle {
-                font-size: 1.35rem;
-                padding: 1.2rem 4rem;
             }
         }
         @keyframes modalPopIn {
@@ -594,7 +599,6 @@
             transition: transform 0.6s cubic-bezier(.35,.74,.38,1.07);
             transform: scale(0.95);
         }
-        /* --- Leuchteffekt für große Karten im Nachtmodus --- */
         body.sunset-mode .reason-card.big .reason-number {
             background: linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);
             -webkit-background-clip: text;
@@ -610,16 +614,16 @@
 <div class="container">
     <div class="header">
         <h1>#50 Gründe warum ich dich liebe</h1>
+        <div class="header-buttons">
+            <button id="cuddleBtn" class="mini-btn" title="Kuschel-Animation 🤗">🤗</button>
+            <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
+            <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
+        </div>
     </div>
     <div class="intro">
        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span>
     </div>
     <hr class="divider">
-    <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
-    <div style="display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;margin-top:14px;">
-        <button id="cuddleBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ffb6fc,#ffdeae);color:#7F53AC;">Kuschel-Animation 🤗</button>
-        <button id="sunsetModeBtn" class="header-shuffle" style="background:linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);color:#fff;">Nachtmodus 🌅</button>
-    </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
 <div class="footer">
@@ -966,7 +970,8 @@ document.getElementById('cuddleBtn').onclick = function() {
 document.getElementById('sunsetModeBtn').onclick = function() {
     sunsetMode = !sunsetMode;
     document.body.classList.toggle('sunset-mode', sunsetMode);
-    document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅";
+    document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "☀️" : "🌅";
+    document.getElementById('sunsetModeBtn').setAttribute('title', sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅");
     // Entfernt "Kuscheln" falls aktiviert, weil der Modus wichtiger ist
     if (sunsetMode && cuddleActive) {
         cuddleActive = false;
