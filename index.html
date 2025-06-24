@@ -19,19 +19,16 @@
             --secondary: #647DEE;
             --heart: #e74c3c;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         html, body {
             height: 100%;
             background: transparent !important;
         }
-
         body {
             font-family: 'Montserrat', 'Georgia', serif;
             background: transparent !important;
@@ -43,7 +40,6 @@
             overflow-x: hidden;
             letter-spacing: 0.01em;
         }
-
         #tsparticles {
             position: fixed;
             z-index: 0;
@@ -54,7 +50,6 @@
             pointer-events: none;
             background: linear-gradient(135deg, var(--main1) 0%, var(--main2) 100%);
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -63,7 +58,6 @@
             position: relative;
             z-index: 1;
         }
-
         .header {
             text-align: center;
             padding: 2.7rem 2rem 2rem 2rem;
@@ -75,7 +69,6 @@
             border: 1.5px solid rgba(180, 160, 255, 0.16);
             transition: box-shadow 0.35s cubic-bezier(.35,.74,.38,1.07);
         }
-
         .header h1 {
             font-size: 2.6rem;
             color: var(--accent);
@@ -85,15 +78,14 @@
             letter-spacing: 0.02em;
             text-shadow: 0 2px 16px rgba(126,125,255,0.09);
         }
-
         .header p {
             font-size: 1.2rem;
             color: #4c4976;
             font-style: italic;
             opacity: 0.72;
         }
-
-        #shuffleBtn {
+        #shuffleBtn,
+        .header-shuffle {
             margin: 2.2rem auto 0 auto;
             display: block;
             padding: 1.1rem 2.7rem;
@@ -109,20 +101,29 @@
             outline: none;
             transition: background 0.33s, transform 0.23s cubic-bezier(.68,.21,.36,1.06);
         }
-        #shuffleBtn:hover, #shuffleBtn:active {
+        .header-shuffle {
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
+        #shuffleBtn:hover, #shuffleBtn:active,
+        .header-shuffle:hover, .header-shuffle:active {
             background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
             color: #fff;
             transform: scale(1.045);
             letter-spacing: 1.5px;
         }
-
+        .divider {
+            border: none;
+            border-top: 2px solid #ece6ff;
+            margin: 2.5rem 0 2rem 0;
+            opacity: 0.6;
+        }
         .reasons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 2rem;
             margin-top: 2.2rem;
         }
-
         @keyframes cardIn {
             0% { transform: scale(0.85) translateY(60px); opacity: 0; }
             80% { transform: scale(1.03) translateY(-10px); opacity: 1;}
@@ -160,7 +161,6 @@
             background: linear-gradient(135deg, var(--main1), var(--main2), var(--main3));
             border-radius: 24px 24px 0 0;
         }
-
         .reason-number {
             font-size: 2.1rem;
             font-weight: bold;
@@ -193,7 +193,6 @@
             border: 2px dashed #ddd;
             background: rgba(255, 255, 255, 0.54);
         }
-
         .footer {
             text-align: center;
             padding: 2.7rem;
@@ -206,8 +205,10 @@
             border-radius: 22px 22px 0 0;
             opacity: 0.92;
             font-family: 'Montserrat', sans-serif;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         .heart, .modal-heart {
             color: var(--heart);
             font-size: 1.55rem;
@@ -221,8 +222,7 @@
             0% { transform: translateY(0) scale(1);}
             100% { transform: translateY(-9px) scale(1.07);}
         }
-
-        /* Modal Styles */
+        /* Modal Styles ... unchanged ... */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -357,7 +357,6 @@
             0%, 100% { background-position: 0% 50%; opacity: 0.24; }
             50% { background-position: 100% 50%; opacity: 0.55; }
         }
-
         .modal-hearts {
             display: flex;
             justify-content: center;
@@ -373,7 +372,6 @@
         .modal-heart:nth-child(3) { animation-delay: 0.4s; }
         .modal-heart:nth-child(4) { animation-delay: 0.6s; }
         .modal-heart:nth-child(5) { animation-delay: 0.8s; }
-
         .modal-nav {
             position: absolute;
             top: 50%;
@@ -409,7 +407,6 @@
             cursor: not-allowed;
             transform: translateY(-50%) scale(0.92);
         }
-
         .modal-content-wrapper {
             position: relative;
             overflow: hidden;
@@ -452,7 +449,6 @@
             0% { transform: translateX(100%) scale(0.93); opacity: 0; }
             100% { transform: translateX(0) scale(1); opacity: 1; }
         }
-
         @media (max-width: 768px) {
             .modal-close {
                 top: 0.3rem;
@@ -486,6 +482,8 @@
             .container { padding: 0.6rem; }
             .header { margin: 0.7rem; padding: 1.1rem 0.7rem;}
             .footer { padding: 1.1rem 0.7rem;}
+            .divider { margin: 1rem 0; }
+            .footer { margin-top: 1rem; }
         }
     </style>
 </head>
@@ -495,12 +493,13 @@
     <div class="header">
         <h1>50 Gründe warum ich dich liebe</h1>
         <p>Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span></p>
+        <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
     </div>
-    <button id="shuffleBtn">Zufällige Reihenfolge</button>
+    <hr class="divider">
     <div class="reasons-grid" id="reasonsGrid"></div>
-    <div class="footer">
-        <p>Mit <span class="heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
-    </div>
+</div>
+<div class="footer">
+    <p>Mit <span class="heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
 </div>
 <!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" tabindex="-1">
