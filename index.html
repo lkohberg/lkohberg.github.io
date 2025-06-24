@@ -50,6 +50,50 @@
             pointer-events: none;
             background: linear-gradient(135deg, var(--main1) 0%, var(--main2) 100%);
         }
+        .floating-buttons {
+            position: fixed;
+            top: 22px;
+            right: 24px;
+            display: flex;
+            gap: 0.3rem;
+            z-index: 100;
+        }
+        .mini-btn {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1.5px solid #d3c1fc;
+            background: rgba(255,255,255,0.72);
+            color: #7F53AC;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 6px rgba(102,126,234,0.06);
+            cursor: pointer;
+            transition: border 0.2s, box-shadow 0.2s, background 0.2s, transform 0.15s;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+        .mini-btn:hover, .mini-btn:focus {
+            border: 1.5px solid #b08cff;
+            background: #f8f3ff;
+            box-shadow: 0 0 0 2px #e0c3fc66, 0 1px 8px rgba(127,83,172,0.09);
+            transform: scale(1.1);
+        }
+        @media (max-width:600px){
+            .floating-buttons {
+                top: 8px;
+                right: 6px;
+                gap: 0.18rem;
+            }
+            .mini-btn {
+                width: 1.85rem;
+                height: 1.85rem;
+                font-size: 1.05rem;
+            }
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -78,50 +122,6 @@
             font-weight: bold;
             letter-spacing: 0.02em;
             text-shadow: 0 2px 16px rgba(126,125,255,0.09);
-        }
-        .header-buttons {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            display: flex;
-            gap: 0.3rem;
-            z-index: 10;
-        }
-        .mini-btn {
-            width: 2.2rem;
-            height: 2.2rem;
-            border-radius: 50%;
-            border: 1.5px solid #d3c1fc;
-            background: rgba(255,255,255,0.72);
-            color: #7F53AC;
-            font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 1px 6px rgba(102,126,234,0.06);
-            cursor: pointer;
-            transition: border 0.2s, box-shadow 0.2s, background 0.2s, transform 0.15s;
-            outline: none;
-            margin: 0;
-            padding: 0;
-        }
-        .mini-btn:hover, .mini-btn:focus {
-            border: 1.5px solid #b08cff;
-            background: #f8f3ff;
-            box-shadow: 0 0 0 2px #e0c3fc66, 0 1px 8px rgba(127,83,172,0.09);
-            transform: scale(1.1);
-        }
-        @media (max-width:600px){
-            .header-buttons {
-                top: 11px;
-                right: 7px;
-                gap: 0.18rem;
-            }
-            .mini-btn {
-                width: 1.85rem;
-                height: 1.85rem;
-                font-size: 1.05rem;
-            }
         }
         .header p {
             font-size: 1.2rem;
@@ -611,14 +611,14 @@
 </head>
 <body>
 <div id="tsparticles"></div>
+<div class="floating-buttons">
+    <button id="cuddleBtn" class="mini-btn" title="Kuschel-Animation 🤗">🤗</button>
+    <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
+    <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
+</div>
 <div class="container">
     <div class="header">
         <h1>#50 Gründe warum ich dich liebe</h1>
-        <div class="header-buttons">
-            <button id="cuddleBtn" class="mini-btn" title="Kuschel-Animation 🤗">🤗</button>
-            <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
-            <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
-        </div>
     </div>
     <div class="intro">
        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span>
