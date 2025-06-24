@@ -19,19 +19,16 @@
             --secondary: #647DEE;
             --heart: #e74c3c;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         html, body {
             height: 100%;
             background: transparent !important;
         }
-
         body {
             font-family: 'Montserrat', 'Georgia', serif;
             background: transparent !important;
@@ -43,7 +40,6 @@
             overflow-x: hidden;
             letter-spacing: 0.01em;
         }
-
         #tsparticles {
             position: fixed;
             z-index: 0;
@@ -54,7 +50,6 @@
             pointer-events: none;
             background: linear-gradient(135deg, var(--main1) 0%, var(--main2) 100%);
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -63,7 +58,6 @@
             position: relative;
             z-index: 1;
         }
-
         .header {
             text-align: center;
             padding: 2.7rem 2rem 2rem 2rem;
@@ -75,7 +69,6 @@
             border: 1.5px solid rgba(180, 160, 255, 0.16);
             transition: box-shadow 0.35s cubic-bezier(.35,.74,.38,1.07);
         }
-
         .header h1 {
             font-size: 2.6rem;
             color: var(--accent);
@@ -85,14 +78,12 @@
             letter-spacing: 0.02em;
             text-shadow: 0 2px 16px rgba(126,125,255,0.09);
         }
-
         .header p {
             font-size: 1.2rem;
             color: #4c4976;
             font-style: italic;
             opacity: 0.72;
         }
-
         #shuffleBtn {
             margin: 2.2rem auto 0 auto;
             display: block;
@@ -115,14 +106,12 @@
             transform: scale(1.045);
             letter-spacing: 1.5px;
         }
-
         .reasons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 2rem;
             margin-top: 2.2rem;
         }
-
         @keyframes cardIn {
             0% { transform: scale(0.85) translateY(60px); opacity: 0; }
             80% { transform: scale(1.03) translateY(-10px); opacity: 1;}
@@ -160,7 +149,6 @@
             background: linear-gradient(135deg, var(--main1), var(--main2), var(--main3));
             border-radius: 24px 24px 0 0;
         }
-
         .reason-number {
             font-size: 2.1rem;
             font-weight: bold;
@@ -193,7 +181,6 @@
             border: 2px dashed #ddd;
             background: rgba(255, 255, 255, 0.54);
         }
-
         .footer {
             text-align: center;
             padding: 2.7rem;
@@ -207,7 +194,6 @@
             opacity: 0.92;
             font-family: 'Montserrat', sans-serif;
         }
-
         .heart, .modal-heart {
             color: var(--heart);
             font-size: 1.55rem;
@@ -221,8 +207,6 @@
             0% { transform: translateY(0) scale(1);}
             100% { transform: translateY(-9px) scale(1.07);}
         }
-
-        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -357,7 +341,6 @@
             0%, 100% { background-position: 0% 50%; opacity: 0.24; }
             50% { background-position: 100% 50%; opacity: 0.55; }
         }
-
         .modal-hearts {
             display: flex;
             justify-content: center;
@@ -373,7 +356,6 @@
         .modal-heart:nth-child(3) { animation-delay: 0.4s; }
         .modal-heart:nth-child(4) { animation-delay: 0.6s; }
         .modal-heart:nth-child(5) { animation-delay: 0.8s; }
-
         .modal-nav {
             position: absolute;
             top: 50%;
@@ -409,7 +391,6 @@
             cursor: not-allowed;
             transform: translateY(-50%) scale(0.92);
         }
-
         .modal-content-wrapper {
             position: relative;
             overflow: hidden;
@@ -422,44 +403,11 @@
             will-change: transform, opacity;
         }
         .modal-content-inner.swiping {
-            transition: none;
+            transition: none !important;
         }
         .modal-content-inner.swipe-animate {
             transition: transform 0.48s cubic-bezier(.22,1,.36,1), opacity 0.32s cubic-bezier(.23,1,.32,1);
         }
-        .modal-content-inner.slide-left {
-            animation: slideOutLeft 0.48s cubic-bezier(.22,1,.36,1);
-        }
-        .modal-content-inner.slide-right {
-            animation: slideOutRight 0.48s cubic-bezier(.22,1,.36,1);
-        }
-        .modal-content-inner.slide-in-left {
-            animation: slideInLeft 0.48s cubic-bezier(.22,1,.36,1);
-        }
-        .modal-content-inner.slide-in-right {
-            animation: slideInRight 0.48s cubic-bezier(.22,1,.36,1);
-        }
-        @keyframes slideOutLeft {
-            0% { transform: translate3d(0,0,0) scale(1); opacity: 1; box-shadow: 0 2px 16px rgba(126,125,255,0.07);}
-            80% { transform: translate3d(-60%,0,0) scale(0.98); opacity: 0.7; }
-            100% { transform: translate3d(-100%,0,0) scale(0.96); opacity: 0.4; }
-        }
-        @keyframes slideOutRight {
-            0% { transform: translate3d(0,0,0) scale(1); opacity: 1; box-shadow: 0 2px 16px rgba(126,125,255,0.07);}
-            80% { transform: translate3d(60%,0,0) scale(0.98); opacity: 0.7; }
-            100% { transform: translate3d(100%,0,0) scale(0.96); opacity: 0.4; }
-        }
-        @keyframes slideInLeft {
-            0% { transform: translate3d(-100%,0,0) scale(0.96); opacity: 0.4; }
-            20% { transform: translate3d(-60%,0,0) scale(0.98); opacity: 0.7;}
-            100% { transform: translate3d(0,0,0) scale(1); opacity: 1; box-shadow: 0 2px 16px rgba(126,125,255,0.13);}
-        }
-        @keyframes slideInRight {
-            0% { transform: translate3d(100%,0,0) scale(0.96); opacity: 0.4; }
-            20% { transform: translate3d(60%,0,0) scale(0.98); opacity: 0.7;}
-            100% { transform: translate3d(0,0,0) scale(1); opacity: 1; box-shadow: 0 2px 16px rgba(126,125,255,0.13);}
-        }
-
         @media (max-width: 768px) {
             .modal-close {
                 top: 0.3rem;
@@ -613,7 +561,8 @@ const modalCounter = document.getElementById('modalCounter');
 const modalPrev = document.getElementById('modalPrev');
 const modalNext = document.getElementById('modalNext');
 const modalContentInner = document.getElementById('modalContentInner');
-let startX = 0, currentX = 0, isDragging = false, hasTouch = 'ontouchstart' in window;
+let startX = 0, lastX = 0, currentX = 0, isDragging = false, dragStartTime = 0;
+let hasTouch = 'ontouchstart' in window;
 function generateReasonsGrid() {
     const grid = document.getElementById('reasonsGrid');
     grid.innerHTML = '';
@@ -657,9 +606,10 @@ function updateModalContent() {
     modalCounter.textContent = `${currentModalIndex + 1} / ${availableReasons.length}`;
     modalPrev.disabled = currentModalIndex === 0;
     modalNext.disabled = currentModalIndex === availableReasons.length - 1;
+    modalContentInner.style.transition = '';
     modalContentInner.style.transform = 'translate3d(0,0,0) scale(1)';
     modalContentInner.style.opacity = '1';
-    modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right', 'swipe-animate');
+    modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right', 'swipe-animate', 'swiping');
 }
 function navigateModal(direction) {
     const newIndex = currentModalIndex + direction;
@@ -681,93 +631,129 @@ function closeModal() {
     modalOverlay.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
-// Touch/Swipe handling
+// Touch/Swipe handling for momentum
 function handleTouchStart(e) {
     if (!hasTouch) return;
     startX = e.touches[0].clientX;
+    lastX = startX;
+    currentX = startX;
+    dragStartTime = Date.now();
     isDragging = true;
     modalContentInner.classList.add('swiping');
     modalContentInner.classList.remove('swipe-animate');
+    modalContentInner.style.transition = 'none';
 }
 function handleTouchMove(e) {
     if (!isDragging || !hasTouch) return;
     e.preventDefault();
     currentX = e.touches[0].clientX;
-    const diffX = currentX - startX;
-    const maxSwipe = 120;
-    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-    const scale = 1 - Math.abs(boundedDiff) / 500;
-    const opacity = 1 - Math.abs(boundedDiff) / 300;
-    modalContentInner.style.transform = `translate3d(${boundedDiff}px,0,0) scale(${scale})`;
-    modalContentInner.style.opacity = opacity;
+    let diffX = currentX - startX;
+    modalContentInner.style.transition = 'none';
+    modalContentInner.style.transform = `translate3d(${diffX}px,0,0) scale(0.98)`;
+    modalContentInner.style.opacity = `${1 - Math.abs(diffX) / 350}`;
+    lastX = currentX;
 }
 function handleTouchEnd(e) {
     if (!isDragging || !hasTouch) return;
     isDragging = false;
-    modalContentInner.classList.remove('swiping');
-    const diffX = currentX - startX;
-    const threshold = 60;
-    if (Math.abs(diffX) > threshold) {
-        if (diffX > 0 && currentModalIndex > 0) {
-            navigateModal(-1); // Previous
-        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-            navigateModal(1); // Next
-        } else {
-            smoothResetModalTransform();
-        }
+    let totalDiffX = currentX - startX;
+    let timeDiff = Date.now() - dragStartTime;
+    let velocity = totalDiffX / timeDiff; // px/ms
+    // Thresholds for distance and velocity
+    const minDistance = 60; // px
+    const minVelocity = 0.5; // px/ms
+    if (
+        Math.abs(totalDiffX) > minDistance ||
+        Math.abs(velocity) > minVelocity
+    ) {
+        const direction = totalDiffX > 0 ? 1 : -1;
+        animateCardFlyOut(direction, () => {
+            if (direction > 0 && currentModalIndex > 0) {
+                navigateModal(-1);
+            } else if (direction < 0 && currentModalIndex < availableReasons.length - 1) {
+                navigateModal(1);
+            } else {
+                smoothResetModalTransform();
+            }
+        });
     } else {
         smoothResetModalTransform();
     }
     startX = 0;
     currentX = 0;
+    dragStartTime = 0;
 }
+function animateCardFlyOut(direction, cb) {
+    modalContentInner.style.transition = 'transform 0.3s cubic-bezier(.36,1.5,.64,1), opacity 0.3s cubic-bezier(.36,1.5,.64,1)';
+    modalContentInner.style.transform = `translate3d(${direction * window.innerWidth * 1.2}px,0,0) scale(0.95)`;
+    modalContentInner.style.opacity = '0.2';
+    setTimeout(() => {
+        modalContentInner.style.transition = '';
+        modalContentInner.style.transform = '';
+        modalContentInner.style.opacity = '';
+        cb && cb();
+    }, 300);
+}
+function smoothResetModalTransform() {
+    modalContentInner.style.transition = 'transform 0.33s cubic-bezier(.22,1,.36,1), opacity 0.2s cubic-bezier(.23,1,.32,1)';
+    modalContentInner.style.transform = 'translate3d(0,0,0) scale(1)';
+    modalContentInner.style.opacity = '1';
+    modalContentInner.addEventListener('transitionend', function cleanup() {
+        modalContentInner.style.transition = '';
+        modalContentInner.classList.remove('swiping');
+        modalContentInner.removeEventListener('transitionend', cleanup);
+    });
+}
+// Mouse events for desktop drag
 function handleMouseDown(e) {
     if (hasTouch) return;
     startX = e.clientX;
+    lastX = startX;
+    currentX = startX;
+    dragStartTime = Date.now();
     isDragging = true;
     modalContentInner.classList.add('swiping');
     modalContentInner.classList.remove('swipe-animate');
+    modalContentInner.style.transition = 'none';
     e.preventDefault();
 }
 function handleMouseMove(e) {
     if (!isDragging || hasTouch) return;
     currentX = e.clientX;
-    const diffX = currentX - startX;
-    const maxSwipe = 120;
-    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-    const scale = 1 - Math.abs(boundedDiff) / 500;
-    const opacity = 1 - Math.abs(boundedDiff) / 300;
-    modalContentInner.style.transform = `translate3d(${boundedDiff}px,0,0) scale(${scale})`;
-    modalContentInner.style.opacity = opacity;
+    let diffX = currentX - startX;
+    modalContentInner.style.transition = 'none';
+    modalContentInner.style.transform = `translate3d(${diffX}px,0,0) scale(0.98)`;
+    modalContentInner.style.opacity = `${1 - Math.abs(diffX) / 350}`;
+    lastX = currentX;
 }
 function handleMouseUp(e) {
     if (!isDragging || hasTouch) return;
     isDragging = false;
-    modalContentInner.classList.remove('swiping');
-    const diffX = currentX - startX;
-    const threshold = 60;
-    if (Math.abs(diffX) > threshold) {
-        if (diffX > 0 && currentModalIndex > 0) {
-            navigateModal(-1);
-        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-            navigateModal(1);
-        } else {
-            smoothResetModalTransform();
-        }
+    let totalDiffX = currentX - startX;
+    let timeDiff = Date.now() - dragStartTime;
+    let velocity = totalDiffX / timeDiff; // px/ms
+    const minDistance = 60;
+    const minVelocity = 0.5;
+    if (
+        Math.abs(totalDiffX) > minDistance ||
+        Math.abs(velocity) > minVelocity
+    ) {
+        const direction = totalDiffX > 0 ? 1 : -1;
+        animateCardFlyOut(direction, () => {
+            if (direction > 0 && currentModalIndex > 0) {
+                navigateModal(-1);
+            } else if (direction < 0 && currentModalIndex < availableReasons.length - 1) {
+                navigateModal(1);
+            } else {
+                smoothResetModalTransform();
+            }
+        });
     } else {
         smoothResetModalTransform();
     }
     startX = 0;
     currentX = 0;
-}
-function smoothResetModalTransform() {
-    modalContentInner.classList.add('swipe-animate');
-    modalContentInner.style.transform = 'translate3d(0,0,0) scale(1)';
-    modalContentInner.style.opacity = '1';
-    modalContentInner.addEventListener('transitionend', function cleanup() {
-        modalContentInner.classList.remove('swipe-animate');
-        modalContentInner.removeEventListener('transitionend', cleanup);
-    });
+    dragStartTime = 0;
 }
 modalClose.addEventListener('click', closeModal);
 modalPrev.addEventListener('click', () => navigateModal(-1));
