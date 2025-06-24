@@ -305,34 +305,7 @@
             position: relative;
             /* Remove default quotes, we'll do our own below */
         }
-        /* --- BEAUTIFUL, VISIBLE QUOTES FOR MODAL --- */
-        .modal-text::before,
-        .modal-text::after {
-            content: '"';
-            font-size: 3.5rem;
-            color: var(--main2);
-            opacity: 0.30;
-            font-family: serif;
-            pointer-events: none;
-            z-index: 2;
-            /* Soft shadow for visibility */
-            text-shadow: 0 2px 8px #fff, 0 2px 8px var(--main2);
-        }
-        .modal-text::before {
-            position: absolute;
-            top: -30px;
-            left: -30px;
-        }
-        .modal-text::after {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-        }
-        /* Adjust on mobile for quote positions */
-        @media (max-width: 768px) {
-            .modal-text::before { top: -18px; left: -10px; font-size: 2.2rem;}
-            .modal-text::after { bottom: -18px; right: -10px; font-size: 2.2rem;}
-        }
+        /* ---- QUOTATION MARKS REMOVED FROM MODAL ---- */
 
         .modal-hearts {
             display: flex;
