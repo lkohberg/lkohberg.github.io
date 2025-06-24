@@ -112,6 +112,14 @@
             transform: scale(1.045);
             letter-spacing: 1.5px;
         }
+        #shuffleBtn:active, .header-shuffle:active {
+            animation: rotateShuffle 0.32s cubic-bezier(.68,.21,.36,1.06);
+        }
+        @keyframes rotateShuffle {
+            0% { transform: scale(1) rotate(0deg);}
+            50% { transform: scale(1.1) rotate(14deg);}
+            100% { transform: scale(1) rotate(0deg);}
+        }
         .divider {
             border: none;
             border-top: 2px solid #ece6ff;
@@ -147,8 +155,8 @@
             outline: none;
         }
         .reason-card:hover, .reason-card:focus-visible {
-            transform: translateY(-8px) scale(1.04) rotateY(7deg) rotateX(2deg);
-            box-shadow: 0 30px 80px rgba(118, 75, 162, 0.20), 0 6px 40px rgba(90, 60, 120, .11);
+            transform: translateY(-14px) scale(1.08) rotateY(8deg) rotateX(3deg);
+            box-shadow: 0 40px 100px rgba(118, 75, 162, 0.25), 0 8px 40px rgba(90, 60, 120, .13);
             background: var(--glass-bg-deep);
         }
         .reason-card::before {
@@ -222,7 +230,7 @@
             0% { transform: translateY(0) scale(1);}
             100% { transform: translateY(-9px) scale(1.07);}
         }
-        /* Modal Styles ... unchanged ... */
+        /* Modal Styles ... geändert für größere Desktops ... */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -264,6 +272,33 @@
             animation: modalPopIn 0.6s cubic-bezier(.49,1.65,.73,1.01) both;
             will-change: transform, box-shadow;
             overflow: visible;
+        }
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1600px;
+                padding: 3.5rem 3rem 1.5rem 3rem;
+            }
+            .reasons-grid {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                gap: 2.8rem;
+            }
+            .header {
+                margin: 3.5rem 4rem 2.5rem 4rem;
+                padding: 3.3rem 3rem 2.5rem 3rem;
+            }
+            .footer {
+                font-size: 1.35rem;
+                padding: 2.8rem 3rem;
+            }
+            .modal-content {
+                max-width: 700px;
+                padding: 4rem 3rem 3rem 3rem;
+                font-size: 1.2rem;
+            }
+            #shuffleBtn, .header-shuffle {
+                font-size: 1.35rem;
+                padding: 1.2rem 4rem;
+            }
         }
         @keyframes modalPopIn {
             0% { transform: scale(0.55) translateY(120px);}
