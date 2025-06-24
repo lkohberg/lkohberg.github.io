@@ -382,7 +382,8 @@
         @keyframes cuddlePop { 0% { transform: scale(0.4) translateY(-30px); opacity:0;} 80%{ transform: scale(1.15) translateY(0); opacity:1;} 100%{ transform: scale(1) translateY(0); opacity:1;} }
         @keyframes cuddleFade { to {opacity:0; transform:scale(1.15) translateY(20px);} }
 
-     body.sunset-mode {
+        /* NACHTMODUS VIOLETT, MODERN, HELLER TEXT */
+        body.sunset-mode {
             background: linear-gradient(120deg, #24203B 0%, #3B2F4A 100%) !important;
             color: #f3e6d6;
             transition: background 1.2s cubic-bezier(.6,.2,.6,1.2), color 0.8s;
@@ -447,8 +448,11 @@
             background: rgba(85,63,100,0.8);
             border-color: #bda5e6;
         }
-
-        /* --- FIX: Ovales X im Nachtmodus entfernen & Hintergrund transparent --- */
+        /* Hintergrund-Gradient im Nachtmodus wärmer/orangener */
+        body.sunset-mode #tsparticles {
+            background: linear-gradient(135deg, #ffb074 0%, #e7bbee 100%) !important;
+        }
+        /* X-Button im Nachtmodus komplett transparent, kein Oval */
         body.sunset-mode .modal-close,
         body.sunset-mode .modal-close:focus,
         body.sunset-mode .modal-close:active,
