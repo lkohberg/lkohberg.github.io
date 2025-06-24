@@ -443,13 +443,15 @@
             color: #fff7ea;
             border: 1.5px solid #bda5e6;
         }
+        /* --- FIX: Ovales X im Nachtmodus entfernen --- */
         body.sunset-mode .modal-close,
         body.sunset-mode .modal-close:focus,
         body.sunset-mode .modal-close:active,
         body.sunset-mode .modal-close:focus-visible {
-            border: none !important;
             outline: none !important;
             box-shadow: none !important;
+            outline-offset: 0 !important;
+            border: none !important;
             background: rgba(85,63,100,0.8) !important;
             appearance: none !important;
             -webkit-appearance: none !important;
@@ -458,6 +460,9 @@
         }
         body.sunset-mode .modal-close::-moz-focus-inner {
             border: 0 !important;
+        }
+        body.sunset-mode .modal-close:active {
+            background: rgba(85,63,100,0.95) !important;
         }
         body.sunset-mode .modal-nav {
             color: #ffd6a5;
