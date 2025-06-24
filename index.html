@@ -143,6 +143,7 @@
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 2rem;
             margin-top: 2.2rem;
+            position: relative;
         }
         @keyframes cardIn {
             0% { transform: scale(0.85) translateY(60px); opacity: 0; }
@@ -537,6 +538,76 @@
             .divider { margin: 1rem 0; }
             .footer { margin-top: 1rem; }
         }
+
+        /* Kuschel-Animation */
+        .reasons-grid.cuddle {
+            gap: 0.5rem !important;
+            transition: gap 0.7s cubic-bezier(.8,.2,.8,1.6);
+        }
+        .cuddle-heart {
+            position: absolute;
+            top: -30px;
+            font-size: 2.3rem;
+            animation: cuddlePop 0.5s cubic-bezier(.8,.2,.8,1.6), cuddleFade 2s 0.5s linear forwards;
+            pointer-events: none;
+        }
+        @keyframes cuddlePop {
+            0% { transform: scale(0.4) translateY(-30px); opacity:0;}
+            80%{ transform: scale(1.15) translateY(0); opacity:1;}
+            100%{ transform: scale(1) translateY(0); opacity:1;}
+        }
+        @keyframes cuddleFade {
+            to {opacity:0; transform:scale(1.15) translateY(20px);}
+        }
+
+        /* Herzregen */
+        #heart-rain-container {
+            pointer-events:none;
+            position:fixed;
+            top:0;left:0;width:100vw;height:100vh;z-index:10000;
+            overflow:hidden;
+        }
+        .heart-rain-heart {
+            position: absolute;
+            top: -40px;
+            font-size: 2.1rem;
+            animation: heartRainFall 2.3s cubic-bezier(.57,.11,.84,.62) forwards;
+            user-select: none;
+            pointer-events: none;
+            filter: drop-shadow(0 0 7px #fca5f1bb);
+        }
+        @keyframes heartRainFall {
+            0% { opacity: 0; transform: scale(0.7) rotate(0deg);}
+            10% { opacity: 1;}
+            80% { opacity: 1; }
+            100% { top: 90vh; opacity: 0; transform: scale(1.3) rotate(70deg);}
+        }
+
+        /* Nachtmodus mit Sonnenuntergangsfarben */
+        body.sunset-mode {
+            background: linear-gradient(120deg, #fd5e53 0%, #f9cb28 50%, #734b6d 100%) !important;
+            color: #fff;
+            transition: background 1.2s cubic-bezier(.6,.2,.6,1.2), color 0.8s;
+        }
+        body.sunset-mode .container,
+        body.sunset-mode .header,
+        body.sunset-mode .intro,
+        body.sunset-mode .footer,
+        body.sunset-mode .reason-card {
+            background: rgba(255,255,255,0.11) !important;
+            color: #fff !important;
+            border-color: #fff3 !important;
+            box-shadow: 0 8px 32px 0 #3d1d4e33, 0 2px 8px #734b6d22;
+        }
+        body.sunset-mode .reason-number {
+            background: linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.sunset-mode #tsparticles {
+            background: linear-gradient(120deg, #fd5e53 0%, #f9cb28 50%, #734b6d 100%) !important;
+        }
     </style>
 </head>
 <body>
@@ -550,6 +621,12 @@
     </div>
     <hr class="divider">
     <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
+    <!-- Neue Buttons -->
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:20px;">
+        <button id="cuddleBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ffb6fc,#ffdeae);color:#7F53AC;">Kuschel-Animation 🤗</button>
+        <button id="heartRainBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ff99aa,#fca5f1);color:#fff;">Herzregen 💖</button>
+        <button id="sunsetModeBtn" class="header-shuffle" style="background:linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);color:#fff;">Nachtmodus 🌅</button>
+    </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
 <div class="footer">
@@ -836,7 +913,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ------ ÄNDERUNG: 50. Grund bleibt immer an letzter Stelle -------
+// ------ Shuffle-Button: 50. Grund bleibt immer an letzter Stelle -------
 document.getElementById('shuffleBtn').onclick = function() {
     availableReasons = [];
     // Gründe 1 bis 49 mischen:
@@ -850,6 +927,53 @@ document.getElementById('shuffleBtn').onclick = function() {
     generateReasonsGrid();
 };
 // ---------------------------------------------------------------
+
+// Kuschel-Animation
+document.getElementById('cuddleBtn').onclick = function() {
+    const grid = document.getElementById('reasonsGrid');
+    grid.classList.add('cuddle');
+    // Füge animierte Herzchen zwischen die Karten
+    if (!document.querySelector('.cuddle-heart')) {
+        const hearts = [];
+        for(let i=0;i<5;i++) {
+            const h = document.createElement('div');
+            h.className = 'cuddle-heart';
+            h.innerHTML = '💗';
+            h.style.left = (12 + i*17) + '%';
+            grid.appendChild(h);
+            hearts.push(h);
+        }
+        setTimeout(() => {
+            hearts.forEach(h => h.remove());
+        }, 2000);
+    }
+    setTimeout(() => grid.classList.remove('cuddle'), 2000);
+};
+
+// Herzregen
+document.getElementById('heartRainBtn').onclick = function() {
+    if(document.getElementById('heart-rain-container')) return;
+    const heartRain = document.createElement('div');
+    heartRain.id = "heart-rain-container";
+    document.body.appendChild(heartRain);
+    for(let i=0;i<35;i++){
+        const h = document.createElement('div');
+        h.className = 'heart-rain-heart';
+        h.innerHTML = "❤️";
+        h.style.left = Math.random()*100+"vw";
+        h.style.animationDelay = (Math.random()*1.5)+"s";
+        heartRain.appendChild(h);
+    }
+    setTimeout(()=>heartRain.remove(),2600);
+};
+
+// Nachtmodus mit Sonnenuntergangsfarben
+let sunsetMode = false;
+document.getElementById('sunsetModeBtn').onclick = function() {
+    sunsetMode = !sunsetMode;
+    document.body.classList.toggle('sunset-mode', sunsetMode);
+    document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅";
+};
 
 generateReasonsGrid();
 </script>
