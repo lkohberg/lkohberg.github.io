@@ -22,19 +22,18 @@
 
         html, body {
             height: 100%;
-            background: transparent !important; /* Transparent so only #tsparticles shows bg */
+            background: transparent !important;
         }
 
         body {
             font-family: 'Georgia', serif;
-            background: transparent !important; /* Remove background from body! */
+            background: transparent !important;
             min-height: 100vh;
             color: #333;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- SMOOTH BACKGROUND GRADIENT --- */
         #tsparticles {
             position: fixed;
             z-index: 0;
@@ -58,7 +57,7 @@
         .header {
             text-align: center;
             padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.85); /* more see-through */
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             margin: 2rem;
             border-radius: 20px;
@@ -110,7 +109,7 @@
             100% { transform: scale(1) translateY(0); opacity: 1; }
         }
         .reason-card {
-            background: rgba(255, 255, 255, 0.72); /* a touch more see-through */
+            background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 2rem;
@@ -235,11 +234,12 @@
             opacity: 1;
             visibility: visible;
         }
+        /* Increased padding and overflow for quotes */
         .modal-content {
             background: linear-gradient(135deg, rgba(255,255,255,0.93) 0%,rgba(240,240,255,0.88) 100%);
             backdrop-filter: blur(25px);
             border-radius: 25px;
-            padding: 3rem;
+            padding: 4rem 4rem 3rem 4rem; /* More space for quotes */
             max-width: 600px;
             width: 100%;
             position: relative;
@@ -251,6 +251,7 @@
             outline: 3px solid var(--main2);
             outline-offset: 5px;
             animation: modalPopIn 0.5s cubic-bezier(.49,1.65,.73,1.01) both;
+            overflow: visible;
         }
         @keyframes modalPopIn {
             0% { transform: scale(0.7) translateY(80px);}
@@ -303,35 +304,40 @@
             margin-bottom: 2rem;
             font-style: italic;
             position: relative;
-            /* Remove default quotes, we'll do our own below */
+            overflow: visible;
         }
-        /* --- BEAUTIFUL, VISIBLE QUOTES FOR MODAL --- */
+        /* --- BEAUTIFUL, FULLY VISIBLE QUOTES FOR MODAL --- */
         .modal-text::before,
         .modal-text::after {
             content: '"';
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             color: var(--main2);
-            opacity: 0.30;
+            opacity: 0.44;
             font-family: serif;
             pointer-events: none;
             z-index: 2;
-            /* Soft shadow for visibility */
-            text-shadow: 0 2px 8px #fff, 0 2px 8px var(--main2);
+            text-shadow: 0 1px 6px #fff, 0 2px 8px var(--main2), 0 0px 2px #fff;
         }
         .modal-text::before {
             position: absolute;
-            top: -30px;
-            left: -30px;
+            top: 0.1em;
+            left: 0.1em;
         }
         .modal-text::after {
             position: absolute;
-            bottom: -30px;
-            right: -30px;
+            bottom: 0.1em;
+            right: 0.1em;
         }
-        /* Adjust on mobile for quote positions */
         @media (max-width: 768px) {
-            .modal-text::before { top: -18px; left: -10px; font-size: 2.2rem;}
-            .modal-text::after { bottom: -18px; right: -10px; font-size: 2.2rem;}
+            .modal-content { padding: 2.5rem 1.5rem 2rem 1.5rem; }
+            .modal-number { font-size: 3rem; }
+            .modal-text { font-size: 1.4rem; }
+            .modal-text::before { top: 0.05em; left: 0.1em; font-size: 1.6rem;}
+            .modal-text::after { bottom: 0.05em; right: 0.1em; font-size: 1.6rem;}
+            .modal-nav { display: none; }
+            .modal-counter { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+            .header { margin: 1rem; padding: 2rem 1rem;}
+            .footer { padding: 2rem 1rem;}
         }
 
         .modal-hearts {
@@ -390,7 +396,7 @@
         }
         .modal-content-wrapper {
             position: relative;
-            overflow: hidden;
+            overflow: visible;
             width: 100%;
             height: 100%;
             border-radius: 15px;
@@ -464,18 +470,6 @@
             50% { background-position: 100% 50%; opacity: 0.6; }
         }
 
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2rem; }
-            .reasons-grid { grid-template-columns: 1fr; }
-            .container { padding: 1rem; }
-            .modal-content { padding: 2rem; margin: 1rem; }
-            .modal-number { font-size: 3rem; }
-            .modal-text { font-size: 1.4rem; }
-            .modal-nav { display: none; }
-            .modal-counter { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-            .header { margin: 1rem; padding: 2rem 1rem;}
-            .footer { padding: 2rem 1rem;}
-        }
     </style>
 </head>
 <body>
