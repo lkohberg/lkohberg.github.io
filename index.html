@@ -234,6 +234,12 @@
             font-size: 1.55rem;
             animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
         }
+        /* WEISSES HERZ NUR IN DER FUSSZEILE */
+        .white-heart {
+            color: #fff !important;
+            text-shadow: 0 1px 4px #8882;
+            animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
+        }
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.16); }
@@ -549,7 +555,7 @@
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
 <div class="footer">
-    <p>Mit ♥ gemacht für den wunderbarsten Menschen der Welt</p>
+    <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
 </div>
 <!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" tabindex="-1">
