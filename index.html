@@ -582,21 +582,26 @@
             background-clip: text;
             text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
         }
-        /* Nummern-Glow bleibt auch bei großen Karten */
         .reason-card.big .reason-number,
         body.sunset-mode .reason-card .reason-number {
             font-size: 3.2rem;
             text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
         }
-        /* Beispiel für große Karten (falls du so einen Button hast) */
         .reason-card.big {
             font-size: 1.6rem;
         }
-
-        /* --- Eigener Kuschel-Gleiteffekt für das "Zurückgleiten" --- */
         .reason-card.cuddle-leave {
             transition: transform 0.6s cubic-bezier(.35,.74,.38,1.07);
             transform: scale(0.95);
+        }
+        /* --- Leuchteffekt für große Karten im Nachtmodus --- */
+        body.sunset-mode .reason-card.big .reason-number {
+            background: linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
+            font-size: 3.2rem;
         }
     </style>
 </head>
@@ -611,7 +616,6 @@
     </div>
     <hr class="divider">
     <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
-    <!-- Angepasster Button-Container, enger & ohne Herzregen -->
     <div style="display:flex;gap:0.4rem;justify-content:center;flex-wrap:wrap;margin-top:14px;">
         <button id="cuddleBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ffb6fc,#ffdeae);color:#7F53AC;">Kuschel-Animation 🤗</button>
         <button id="sunsetModeBtn" class="header-shuffle" style="background:linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);color:#fff;">Nachtmodus 🌅</button>
