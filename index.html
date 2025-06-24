@@ -835,13 +835,22 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// ------ ÄNDERUNG: 50. Grund bleibt immer an letzter Stelle -------
 document.getElementById('shuffleBtn').onclick = function() {
     availableReasons = [];
-    let keys = Object.keys(reasons).sort(()=>Math.random()-0.5);
+    // Gründe 1 bis 49 mischen:
+    let keys = Object.keys(defaultReasons).filter(k => k != "50");
+    keys = keys.sort(() => Math.random() - 0.5);
     reasons = {};
-    keys.forEach((k,i) => reasons[i+1] = defaultReasons[k]);
+    // Gemischte Gründe 1-49 zuweisen
+    keys.forEach((k, i) => reasons[i + 1] = defaultReasons[k]);
+    // Grund 50 bleibt an letzter Stelle
+    reasons[50] = defaultReasons[50];
     generateReasonsGrid();
 };
+// ---------------------------------------------------------------
+
 generateReasonsGrid();
 </script>
 </body>
