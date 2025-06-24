@@ -443,6 +443,14 @@
             border: 1.5px solid #bda5e6;
         }
         body.sunset-mode .modal-close,
+        body.sunset-mode .modal-close:focus,
+        body.sunset-mode .modal-close:active {
+            color: #ffd6a5;
+            background: rgba(85,63,100,0.8);
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
         body.sunset-mode .modal-nav {
             color: #ffd6a5;
             background: rgba(85,63,100,0.8);
@@ -492,6 +500,7 @@
     </div>
 </div>
 <script>
+// ... JS-Code wie gehabt ...
 tsParticles.load("tsparticles", {
   fullScreen: { enable: false },
   background: { color: "transparent" },
