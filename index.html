@@ -381,69 +381,72 @@
         }
         @keyframes cuddlePop { 0% { transform: scale(0.4) translateY(-30px); opacity:0;} 80%{ transform: scale(1.15) translateY(0); opacity:1;} 100%{ transform: scale(1) translateY(0); opacity:1;} }
         @keyframes cuddleFade { to {opacity:0; transform:scale(1.15) translateY(20px);} }
-
-        /* --- NACHTMODUS MODERN & LESBAR --- */
+        /* NACHTMODUS VIOLETT, MODERN, HELLER TEXT */
         body.sunset-mode {
-            background: linear-gradient(120deg, #35253a 0%, #403134 90%) !important;
+            background: linear-gradient(120deg, #24203B 0%, #3B2F4A 100%) !important;
             color: #f3e6d6;
             transition: background 1.2s cubic-bezier(.6,.2,.6,1.2), color 0.8s;
         }
         body.sunset-mode .container { background: transparent !important; }
         body.sunset-mode .header {
-            background: rgba(60, 38, 55, 0.97) !important;
-            color: #ffe9c7 !important;
-            border-color: #b18c6e55 !important;
+            background: rgba(56, 44, 74, 0.98) !important;
+            color: #ffeedd !important;
+            border-color: #9a7fd1 !important;
         }
         body.sunset-mode .intro {
-            background: rgba(65, 42, 44, 0.8) !important;
-            color: #ffe3b1 !important;
-            border-color: #b18c6e55 !important;
+            background: rgba(85, 63, 100, 0.85) !important;
+            color: #fff7ea !important;
+            border-color: #bda5e6 !important;
         }
         body.sunset-mode .footer {
-            background: linear-gradient(90deg, #6f4b60 0%, #b18c6e 100%) !important;
-            color: #fff4d6 !important;
+            background: linear-gradient(90deg, #5d4e7e 0%, #bda5e6 100%) !important;
+            color: #fff7ea !important;
         }
         body.sunset-mode .reason-card {
-            background: rgba(72, 52, 60, 0.94) !important;
-            color: #ffe3b1 !important;
-            border-color: #ad8c7a99 !important;
-            box-shadow: 0 4px 24px 0 #3e2a3d33, 0 2px 8px #b18c6e22;
+            background: rgba(73, 55, 103, 0.94) !important;
+            color: #fffaf7 !important;
+            border-color: #bda5e6 !important;
+            box-shadow: 0 4px 24px 0 #3e2a6d33, 0 2px 8px #bda5e622;
+        }
+        body.sunset-mode .reason-text {
+            color: #fffdfb !important;
+            text-shadow: 0 1px 6px #0002, 0 2px 8px #fff2;
         }
         body.sunset-mode .reason-number {
-            background: linear-gradient(90deg,#ffb37d,#ffe3b1,#b18c6e,#a18db1);
+            background: linear-gradient(90deg,#ffd6a5,#fff7ea,#bda5e6,#a18db1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 8px #fff2, 0 0 10px #ffcf9b55, 0 2px 12px #ffb37d55;
+            text-shadow: 0 0 8px #fff8, 0 0 10px #ffd6a566, 0 2px 12px #fff;
         }
         body.sunset-mode .reason-card.big .reason-number {
-            background: linear-gradient(90deg,#ffb37d,#ffe3b1,#b18c6e,#a18db1);
+            background: linear-gradient(90deg,#ffd6a5,#fff7ea,#bda5e6,#a18db1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 8px #fff2, 0 0 10px #ffcf9b55, 0 2px 12px #ffb37d55;
+            text-shadow: 0 0 8px #fff8, 0 0 10px #ffd6a566, 0 2px 12px #fff;
             font-size: 3.2rem;
         }
         body.sunset-mode .modal-content {
-            background: linear-gradient(135deg, #433348 0%, #785f66 100%) !important;
-            color: #ffe3b1 !important;
-            border-color: #d6bfa899 !important;
+            background: linear-gradient(135deg, #352c50 0%, #6f5d8e 100%) !important;
+            color: #fff7ea !important;
+            border-color: #bda5e6 !important;
         }
-        body.sunset-mode .modal-heart, 
+        body.sunset-mode .modal-heart,
         body.sunset-mode .white-heart {
-            color: #ffb37d !important;
-            text-shadow: 0 1px 6px #c9795c99;
+            color: #ffd6a5 !important;
+            text-shadow: 0 1px 6px #bda5e6;
         }
         body.sunset-mode .modal-counter {
-            background: linear-gradient(90deg,#6a4b3c,#ffb37d22);
-            color: #ffe3b1;
-            border: 1.5px solid #d6bfa899;
+            background: linear-gradient(90deg,#6f5d8e,#ffd6a522);
+            color: #fff7ea;
+            border: 1.5px solid #bda5e6;
         }
         body.sunset-mode .modal-close,
         body.sunset-mode .modal-nav {
-            color: #ffb37d;
-            background: rgba(84,60,44,0.8);
-            border-color: #c9795c44;
+            color: #ffd6a5;
+            background: rgba(85,63,100,0.8);
+            border-color: #bda5e6;
         }
     </style>
 </head>
