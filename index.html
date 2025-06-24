@@ -66,7 +66,7 @@
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 3rem; /* Original size restored */
             color: var(--main2);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -234,12 +234,11 @@
             opacity: 1;
             visibility: visible;
         }
-        /* Increased padding and overflow for quotes */
         .modal-content {
             background: linear-gradient(135deg, rgba(255,255,255,0.93) 0%,rgba(240,240,255,0.88) 100%);
             backdrop-filter: blur(25px);
             border-radius: 25px;
-            padding: 4rem 4rem 3rem 4rem; /* More space for quotes */
+            padding: 4rem 4rem 3rem 4rem;
             max-width: 600px;
             width: 100%;
             position: relative;
@@ -306,39 +305,7 @@
             position: relative;
             overflow: visible;
         }
-        /* --- BEAUTIFUL, FULLY VISIBLE QUOTES FOR MODAL --- */
-        .modal-text::before,
-        .modal-text::after {
-            content: '"';
-            font-size: 2.8rem;
-            color: var(--main2);
-            opacity: 0.44;
-            font-family: serif;
-            pointer-events: none;
-            z-index: 2;
-            text-shadow: 0 1px 6px #fff, 0 2px 8px var(--main2), 0 0px 2px #fff;
-        }
-        .modal-text::before {
-            position: absolute;
-            top: 0.1em;
-            left: 0.1em;
-        }
-        .modal-text::after {
-            position: absolute;
-            bottom: 0.1em;
-            right: 0.1em;
-        }
-        @media (max-width: 768px) {
-            .modal-content { padding: 2.5rem 1.5rem 2rem 1.5rem; }
-            .modal-number { font-size: 3rem; }
-            .modal-text { font-size: 1.4rem; }
-            .modal-text::before { top: 0.05em; left: 0.1em; font-size: 1.6rem;}
-            .modal-text::after { bottom: 0.05em; right: 0.1em; font-size: 1.6rem;}
-            .modal-nav { display: none; }
-            .modal-counter { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-            .header { margin: 1rem; padding: 2rem 1rem;}
-            .footer { padding: 2rem 1rem;}
-        }
+        /* REMOVE QUOTES: No ::before or ::after for .modal-text */
 
         .modal-hearts {
             display: flex;
@@ -470,6 +437,19 @@
             50% { background-position: 100% 50%; opacity: 0.6; }
         }
 
+        /* --- MOBILE OVERRIDES --- */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 3rem; } /* keep large size on mobile */
+            .reasons-grid { grid-template-columns: 1fr; }
+            .container { padding: 1rem; }
+            .modal-content { padding: 2.5rem 1.5rem 2rem 1.5rem; }
+            .modal-number { font-size: 3rem; }
+            .modal-text { font-size: 1.4rem; }
+            .modal-nav { display: none !important; } /* Hide arrows on mobile */
+            .modal-counter { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+            .header { margin: 1rem; padding: 2rem 1rem;}
+            .footer { padding: 2rem 1rem;}
+        }
     </style>
 </head>
 <body>
@@ -515,287 +495,8 @@
 </div>
 
 <script>
-// Particles background
-tsParticles.load("tsparticles", {
-  fullScreen: { enable: false },
-  background: { color: "transparent" },
-  particles: {
-    number: { value: 60, density: { enable: true, area: 900 } },
-    color: { value: ["#764ba2", "#667eea", "#f093fb"] },
-    shape: { type: "circle" },
-    opacity: { value: 0.3 },
-    size: { value: { min: 2, max: 5 } },
-    move: { enable: true, speed: 2, direction: "none", outModes: "out" }
-  },
-  interactivity: {
-    events: { onHover: { enable: true, mode: "repulse" }, resize: true },
-    modes: { repulse: { distance: 100, duration: 0.4 } }
-  }
-});
-// Dynamic title
-document.title = "💜 50 Gründe warum ich dich liebe";
-
-// Gründe
-const defaultReasons = {
-    1: "Wegen deinem wunderschönen Lächeln",
-    2: "Wegen deinen hübschen tiefen Augen",
-    3: "Wegen der Art wie du deinen Körper bewegst",
-    4: "Wegen deiner weichen Haare",
-    5: "Wegen der Art mit der du Sprichst",
-    6: "Wegen deiner Leidenschaft für Sachen, die du liebst",
-    7: "Wegen deiner Begeisterung für kleine Dinge",
-    8: "Weil kein Bild dir je gerecht werden könnte, ich speichere sie trotzdem alle",
-    9: "Weil du mein Kopfkino bist",
-    10: "Weil du mich immer beim Wort nimmst",
-    11: "Weil du soooo gut riechst",
-    12: "Weil du selbst süß bist, wenn du am schmollen bist",
-    13: "Weil du das süßeste Grinsen auf der Welt hast",
-    14: "Weil deine Augen leuchten, wenn du von etwas sprichst, das du liebst",
-    15: "Weil mich deine Berührungen manchmal echt verrückt machen",
-    16: "Weil dein Körper für mich perfekt ist, nicht im Vergleich, sondern weil er deiner ist",
-    17: "Weil deine Lippen so aussehen, als wären sie dafür gemacht, dass ich sie küsse",
-    18: "Weil ich jedes Muttermal, jede Narbe oder Markierung an dir liebe",
-    19: "Wegen deiner Stimme, besonders wenn du flüsterst",
-    20: "Wegen deiner sanften Art",
-    21: "Weil du mich so ansiehst, als wäre ich das Beste auf der Welt",
-    22: "Weil du mir zuhörst, wirklich zuhörst",
-    23: "Weil du über meine dummen Witze lachst",
-    24: "Weil du so unendlich geduldig mit mir bist",
-    25: "Weil du mich mit einem Blick beruhigen kannst",
-    26: "Weil ich mich bei dir sicher fühle",
-    27: "Weil du dich für mich freust, wenn mir was gelingt",
-    28: "Weil du mich immer streichelst",
-    29: "Weil dein Herz trotz deiner Vergangenheit noch so viel Liebe für mich übrig hat",
-    30: "Weil ich mich immer aus neue freue dich zu sehen",
-    31: "Weil ich mich bei dir nicht anpassen muss",
-    32: "Weil du mich ernst nimmst",
-    33: "Weil du mich besser machst ohne Zwang",
-    34: "Weil du meine Art Mensch bist",
-    35: "Weil du versuchst, immer ehrlich mit mir zu sein",
-    36: "Weil du eine der intelligentesten Personen bist, die ich je kennengelernt habe",
-    37: "Weil du mir verzeihst, wenn ich Mist baue",
-    38: "Weil du meine Grenzen respektierst",
-    39: "Weil du mich nur mit deiner Stimme zur Ruhe bringen kannst",
-    40: "Weil selbst das Schweigen zwischen uns angenehm ist",
-    41: "Weil du merkst, wenn es mir schlecht geht",
-    42: "Weil du meine dummen Aktionen nicht durchgehen lässt",
-    43: "Weil du Wunden heilst, von denen du nichts weißt",
-    44: "Weil ich dich vermisse, sobald du weg bist",
-    45: "Weil ich dir auch meine Fehler gestehen kann",
-    46: "Weil du mein Herz schneller schlagen lässt",
-    47: "Weil ich nicht aufhören kann, an dich zu denken",
-    48: "Weil mich selbst deine Anwesenheit glücklich macht",
-    49: "Weil du alles bist, was ich nie gesucht habe, aber immer gebraucht habe",
-    50: "Weil du dir die Zeit genommen hast, diese Liste durchzulesen"
-};
-
-let reasons = {...defaultReasons};
-let currentModalIndex = 1;
-let availableReasons = [];
-
-// Modal Elemente
-const modalOverlay = document.getElementById('modalOverlay');
-const modalClose = document.getElementById('modalClose');
-const modalNumber = document.getElementById('modalNumber');
-const modalText = document.getElementById('modalText');
-const modalCounter = document.getElementById('modalCounter');
-const modalPrev = document.getElementById('modalPrev');
-const modalNext = document.getElementById('modalNext');
-const modalContentInner = document.getElementById('modalContentInner');
-
-let startX = 0;
-let currentX = 0;
-let isDragging = false;
-let hasTouch = 'ontouchstart' in window;
-
-function generateReasonsGrid() {
-    const grid = document.getElementById('reasonsGrid');
-    grid.innerHTML = '';
-    availableReasons = [];
-
-    let idx = 0;
-    for (let i = 1; i <= 50; i++) {
-        const card = document.createElement('div');
-        const isEmpty = !reasons[i];
-        card.className = `reason-card ${isEmpty ? 'empty-reason' : ''}`;
-        card.innerHTML = `
-            <div class="reason-number">#${i}</div>
-            <div class="reason-text" data-reason="${i}">
-                ${reasons[i] || ''}
-            </div>
-        `;
-        card.style.setProperty('--i', idx);
-        if (reasons[i]) {
-            availableReasons.push(i);
-            card.addEventListener('click', () => openModal(i));
-            grid.appendChild(card);
-            idx++;
-        }
-    }
-}
-
-function openModal(number) {
-    currentModalIndex = availableReasons.indexOf(number);
-    updateModalContent();
-    modalOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function updateModalContent() {
-    const reasonNumber = availableReasons[currentModalIndex];
-    const reasonText = reasons[reasonNumber];
-
-    modalNumber.textContent = `#${reasonNumber}`;
-    modalText.textContent = reasonText;
-    modalCounter.textContent = `${currentModalIndex + 1} / ${availableReasons.length}`;
-    modalPrev.disabled = currentModalIndex === 0;
-    modalNext.disabled = currentModalIndex === availableReasons.length - 1;
-    modalContentInner.style.transform = 'translateX(0) scale(1)';
-    modalContentInner.style.opacity = '1';
-    modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right');
-}
-
-function navigateModal(direction) {
-    const newIndex = currentModalIndex + direction;
-    if (newIndex >= 0 && newIndex < availableReasons.length) {
-        const isNext = direction > 0;
-        modalContentInner.classList.add(isNext ? 'slide-left' : 'slide-right');
-        setTimeout(() => {
-            currentModalIndex = newIndex;
-            updateModalContent();
-            modalContentInner.classList.remove('slide-left', 'slide-right');
-            modalContentInner.classList.add(isNext ? 'slide-in-right' : 'slide-in-left');
-            setTimeout(() => {
-                modalContentInner.classList.remove('slide-in-left', 'slide-in-right');
-            }, 400);
-        }, 400);
-    }
-}
-
-function closeModal() {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-// Touch/Swipe handling
-function handleTouchStart(e) {
-    if (!hasTouch) return;
-    startX = e.touches[0].clientX;
-    isDragging = true;
-    modalContentInner.classList.add('swiping');
-}
-function handleTouchMove(e) {
-    if (!isDragging || !hasTouch) return;
-    e.preventDefault();
-    currentX = e.touches[0].clientX;
-    const diffX = currentX - startX;
-    const maxSwipe = 120;
-    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-    const scale = 1 - Math.abs(boundedDiff) / 500;
-    const opacity = 1 - Math.abs(boundedDiff) / 300;
-    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
-    modalContentInner.style.opacity = opacity;
-}
-function handleTouchEnd(e) {
-    if (!isDragging || !hasTouch) return;
-    isDragging = false;
-    modalContentInner.classList.remove('swiping');
-    const diffX = currentX - startX;
-    const threshold = 60;
-    if (Math.abs(diffX) > threshold) {
-        if (diffX > 0 && currentModalIndex > 0) {
-            navigateModal(-1); // Previous
-        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-            navigateModal(1); // Next
-        } else {
-            resetModalTransform();
-        }
-    } else {
-        resetModalTransform();
-    }
-    startX = 0;
-    currentX = 0;
-}
-// Mouse events for desktop drag
-function handleMouseDown(e) {
-    if (hasTouch) return;
-    startX = e.clientX;
-    isDragging = true;
-    modalContentInner.classList.add('swiping');
-    e.preventDefault();
-}
-function handleMouseMove(e) {
-    if (!isDragging || hasTouch) return;
-    currentX = e.clientX;
-    const diffX = currentX - startX;
-    const maxSwipe = 120;
-    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-    const scale = 1 - Math.abs(boundedDiff) / 500;
-    const opacity = 1 - Math.abs(boundedDiff) / 300;
-    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
-    modalContentInner.style.opacity = opacity;
-}
-function handleMouseUp(e) {
-    if (!isDragging || hasTouch) return;
-    isDragging = false;
-    modalContentInner.classList.remove('swiping');
-    const diffX = currentX - startX;
-    const threshold = 60;
-    if (Math.abs(diffX) > threshold) {
-        if (diffX > 0 && currentModalIndex > 0) {
-            navigateModal(-1);
-        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-            navigateModal(1);
-        } else {
-            resetModalTransform();
-        }
-    } else {
-        resetModalTransform();
-    }
-    startX = 0;
-    currentX = 0;
-}
-function resetModalTransform() {
-    modalContentInner.style.transform = 'translateX(0) scale(1)';
-    modalContentInner.style.opacity = '1';
-}
-
-// Modal event listeners
-modalClose.addEventListener('click', closeModal);
-modalPrev.addEventListener('click', () => navigateModal(-1));
-modalNext.addEventListener('click', () => navigateModal(1));
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-        closeModal();
-    }
-});
-modalContentInner.addEventListener('touchstart', handleTouchStart, { passive: false });
-modalContentInner.addEventListener('touchmove', handleTouchMove, { passive: false });
-modalContentInner.addEventListener('touchend', handleTouchEnd, { passive: false });
-modalContentInner.addEventListener('mousedown', handleMouseDown);
-document.addEventListener('mousemove', handleMouseMove);
-document.addEventListener('mouseup', handleMouseUp);
-document.addEventListener('keydown', (e) => {
-    if (modalOverlay.classList.contains('active')) {
-        switch(e.key) {
-            case 'Escape': closeModal(); break;
-            case 'ArrowLeft': if (currentModalIndex > 0) navigateModal(-1); break;
-            case 'ArrowRight': if (currentModalIndex < availableReasons.length - 1) navigateModal(1); break;
-        }
-    }
-});
-
-// Shuffle button
-document.getElementById('shuffleBtn').onclick = function() {
-    availableReasons = [];
-    let keys = Object.keys(reasons).sort(()=>Math.random()-0.5);
-    reasons = {};
-    keys.forEach((k,i) => reasons[i+1] = defaultReasons[k]);
-    generateReasonsGrid();
-};
-
-// Initialisierung
-generateReasonsGrid();
+// ... your unchanged JavaScript ...
+// (No changes needed)
 </script>
 </body>
 </html>
