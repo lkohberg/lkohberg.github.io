@@ -3,19 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>50 Gründe warum ich dich liebe</title>
+    <title>💜 50 Gründe warum ich dich liebe</title>
+    <link rel="icon" href="https://fonts.gstatic.com/s/e/notoemoji/latest/2764_fe0f/512.png">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
     <style>
+        :root {
+            --main1: #667eea;
+            --main2: #764ba2;
+            --main3: #f093fb;
+            --heart: #e74c3c;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--main1) 0%, var(--main2) 100%);
             min-height: 100vh;
             color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #tsparticles {
+            position: fixed;
+            z-index: 0;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
@@ -25,13 +59,13 @@
             backdrop-filter: blur(10px);
             margin: 2rem;
             border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 24px rgba(102,126,234,0.07);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .header h1 {
             font-size: 3rem;
-            color: #764ba2;
+            color: var(--main2);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
@@ -42,10 +76,23 @@
             font-style: italic;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        #shuffleBtn {
+            margin: 2rem auto 0 auto;
+            display: block;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            background: var(--main2);
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 2px 12px rgba(118,75,162,.12);
+            cursor: pointer;
+            transition: .2s;
+        }
+        #shuffleBtn:hover {
+            background: var(--main1);
+            color: #fff;
+            letter-spacing: 1px;
         }
 
         .reasons-grid {
@@ -55,6 +102,10 @@
             margin-top: 2rem;
         }
 
+        @keyframes cardIn {
+            0% { transform: scale(0.8) translateY(50px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
         .reason-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
@@ -62,18 +113,19 @@
             padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 0.3s cubic-bezier(.05,.37,.33,1.02), box-shadow 0.3s, background 0.4s cubic-bezier(0.25,0.8,0.25,1);
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            perspective: 400px;
+            animation: cardIn 0.8s cubic-bezier(0.25,0.8,0.25,1) both;
+            animation-delay: calc(var(--i, 0) * 0.05s);
         }
-
         .reason-card:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-10px) scale(1.03) rotateY(6deg) rotateX(2deg);
             box-shadow: 0 20px 60px rgba(118, 75, 162, 0.25);
             background: rgba(255, 255, 255, 0.95);
         }
-
         .reason-card::before {
             content: '';
             position: absolute;
@@ -81,10 +133,9 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            background: linear-gradient(135deg, var(--main1), var(--main2), var(--main3));
             border-radius: 20px 20px 0 0;
         }
-
         .reason-card::after {
             content: '';
             position: absolute;
@@ -97,29 +148,19 @@
             transition: all 0.6s ease;
             opacity: 0;
         }
-
         .reason-card:hover::after {
             animation: shimmer 1.5s ease-in-out;
         }
-
         @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-                opacity: 0;
-            }
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
         }
 
         .reason-number {
             font-size: 2.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--main1), var(--main2));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -127,7 +168,6 @@
             text-align: center;
             text-shadow: 0 2px 10px rgba(118, 75, 162, 0.3);
         }
-
         .reason-text {
             font-size: 1.1rem;
             line-height: 1.7;
@@ -140,7 +180,6 @@
             font-weight: 500;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-
         .empty-reason {
             color: #999;
             font-style: italic;
@@ -153,17 +192,22 @@
             padding: 3rem;
             color: white;
             font-size: 1.1rem;
+            box-shadow: 0 4px 24px rgba(102,126,234,0.07);
+            flex-shrink: 0;
         }
 
-        .heart {
-            color: #e74c3c;
+        .heart, .modal-heart {
+            color: var(--heart);
             font-size: 1.5rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            animation: heartbeat 1.5s ease-in-out infinite, floatHeart 4s infinite alternate;
         }
-
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
+        }
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-6px) scale(1.1);}
         }
 
         /* Modal Styles */
@@ -173,8 +217,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(18px) saturate(120%);
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
@@ -184,31 +228,34 @@
             justify-content: center;
             padding: 2rem;
         }
-
         .modal-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-
         .modal-content {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%,rgba(240,240,255,0.92) 100%);
             backdrop-filter: blur(20px);
             border-radius: 25px;
             padding: 3rem;
             max-width: 600px;
             width: 100%;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(90, 60, 120, .12);
+            border: 1.5px solid rgba(180,160,255,0.25);
             transform: scale(0.8) translateY(50px);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
+            outline: 3px solid var(--main2);
+            outline-offset: 5px;
+            animation: modalPopIn 0.5s cubic-bezier(.49,1.65,.73,1.01) both;
         }
-
+        @keyframes modalPopIn {
+            0% { transform: scale(0.7) translateY(80px);}
+            100% { transform: scale(1) translateY(0);}
+        }
         .modal-overlay.active .modal-content {
             transform: scale(1) translateY(0);
         }
-
         .modal-close {
             position: absolute;
             top: 1rem;
@@ -216,28 +263,25 @@
             background: none;
             border: none;
             font-size: 2rem;
-            color: #764ba2;
+            color: var(--main2);
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 50%;
             transition: all 0.3s ease;
             line-height: 1;
         }
-
         .modal-close:hover {
             background: rgba(118, 75, 162, 0.1);
             transform: rotate(90deg);
         }
-
         .modal-number {
             font-size: 4rem;
             font-weight: bold;
-            color: #764ba2;
+            color: var(--main2);
             margin-bottom: 1.5rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-
         .modal-number::after {
             content: '';
             position: absolute;
@@ -246,10 +290,9 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--main1), var(--main2));
             border-radius: 2px;
         }
-
         .modal-text {
             font-size: 1.8rem;
             line-height: 1.8;
@@ -258,57 +301,39 @@
             font-style: italic;
             position: relative;
         }
-
         .modal-text::before,
         .modal-text::after {
             content: '"';
             font-size: 3rem;
-            color: #764ba2;
+            color: var(--main2);
             opacity: 0.3;
             position: absolute;
             font-family: serif;
         }
-
         .modal-text::before {
             top: -10px;
             left: -20px;
         }
-
         .modal-text::after {
             bottom: -30px;
             right: -20px;
         }
-
         .modal-hearts {
             display: flex;
             justify-content: center;
             gap: 0.5rem;
             margin-top: 2rem;
         }
-
         .modal-heart {
-            color: #e74c3c;
+            color: var(--heart);
             font-size: 2rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            animation-delay: 0s;
         }
+        .modal-heart:nth-child(2) { animation-delay: 0.2s; }
+        .modal-heart:nth-child(3) { animation-delay: 0.4s; }
+        .modal-heart:nth-child(4) { animation-delay: 0.6s; }
+        .modal-heart:nth-child(5) { animation-delay: 0.8s; }
 
-        .modal-heart:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .modal-heart:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .modal-heart:nth-child(4) {
-            animation-delay: 0.6s;
-        }
-
-        .modal-heart:nth-child(5) {
-            animation-delay: 0.8s;
-        }
-
-        /* Navigation Arrows */
         .modal-nav {
             position: absolute;
             top: 50%;
@@ -324,41 +349,29 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: #764ba2;
+            color: var(--main2);
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
         .modal-nav:hover {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-50%) scale(1.1);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
-
         .modal-nav:active {
             transform: translateY(-50%) scale(0.95);
         }
-
-        .modal-nav.prev {
-            left: -25px;
-        }
-
-        .modal-nav.next {
-            right: -25px;
-        }
-
+        .modal-nav.prev { left: -25px; }
+        .modal-nav.next { right: -25px; }
         .modal-nav:disabled {
             opacity: 0.3;
             cursor: not-allowed;
             transform: translateY(-50%) scale(0.9);
         }
-
         .modal-nav:disabled:hover {
             transform: translateY(-50%) scale(0.9);
             background: rgba(255, 255, 255, 0.9);
         }
-
-        /* Swipe Animation */
         .modal-content-wrapper {
             position: relative;
             overflow: hidden;
@@ -366,59 +379,48 @@
             height: 100%;
             border-radius: 15px;
         }
-
         .modal-content-inner {
             transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             will-change: transform;
         }
-
         .modal-content-inner.swiping {
             transition: transform 0.1s ease-out;
         }
-
         .modal-content-inner.slide-left {
             animation: slideOutLeft 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         .modal-content-inner.slide-right {
             animation: slideOutRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         .modal-content-inner.slide-in-left {
             animation: slideInLeft 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         .modal-content-inner.slide-in-right {
             animation: slideInRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         @keyframes slideOutLeft {
             0% { transform: translateX(0) scale(1); opacity: 1; }
             100% { transform: translateX(-100%) scale(0.9); opacity: 0; }
         }
-
         @keyframes slideOutRight {
             0% { transform: translateX(0) scale(1); opacity: 1; }
             100% { transform: translateX(100%) scale(0.9); opacity: 0; }
         }
-
         @keyframes slideInLeft {
             0% { transform: translateX(-100%) scale(0.9); opacity: 0; }
             100% { transform: translateX(0) scale(1); opacity: 1; }
         }
-
         @keyframes slideInRight {
             0% { transform: translateX(100%) scale(0.9); opacity: 0; }
             100% { transform: translateX(0) scale(1); opacity: 1; }
         }
-
         .modal-counter {
             position: absolute;
             top: 1rem;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, rgba(118, 75, 162, 0.15), rgba(102, 126, 234, 0.15));
-            color: #764ba2;
+            color: var(--main2);
             padding: 0.6rem 1.2rem;
             border-radius: 25px;
             font-size: 0.95rem;
@@ -427,7 +429,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
         .modal-content::before {
             content: '';
             position: absolute;
@@ -435,68 +436,41 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+            background: linear-gradient(45deg, var(--main1), var(--main2), var(--main3), var(--main1));
             border-radius: 28px;
             z-index: -1;
             opacity: 0.4;
             animation: borderGlow 4s ease-in-out infinite;
             background-size: 300% 300%;
         }
-
         @keyframes borderGlow {
-            0%, 100% { 
-                background-position: 0% 50%;
-                opacity: 0.3;
-            }
-            50% { 
-                background-position: 100% 50%;
-                opacity: 0.6;
-            }
+            0%, 100% { background-position: 0% 50%; opacity: 0.3; }
+            50% { background-position: 100% 50%; opacity: 0.6; }
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .reasons-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-
-            .modal-content {
-                padding: 2rem;
-                margin: 1rem;
-            }
-
-            .modal-number {
-                font-size: 3rem;
-            }
-
-            .modal-text {
-                font-size: 1.4rem;
-            }
-
-            .modal-nav {
-                display: none;
-            }
-
-            .modal-counter {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
+            .header h1 { font-size: 2rem; }
+            .reasons-grid { grid-template-columns: 1fr; }
+            .container { padding: 1rem; }
+            .modal-content { padding: 2rem; margin: 1rem; }
+            .modal-number { font-size: 3rem; }
+            .modal-text { font-size: 1.4rem; }
+            .modal-nav { display: none; }
+            .modal-counter { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+            .header { margin: 1rem; padding: 2rem 1rem;}
+            .footer { padding: 2rem 1rem;}
         }
     </style>
 </head>
 <body>
+<div id="tsparticles"></div>
 <div class="container">
     <div class="header">
         <h1>50 Gründe warum ich dich liebe</h1>
         <p>Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span></p>
     </div>
+
+    <button id="shuffleBtn">Zufällige Reihenfolge</button>
 
     <div class="reasons-grid" id="reasonsGrid">
         <!-- Reasons will be generated by JavaScript -->
@@ -531,302 +505,288 @@
 </div>
 
 <script>
-    // Beispiel-Gründe für den Anfang
-    const defaultReasons = {
-        1: "Wegen deinem wunderschönen Lächeln",
-        2: "Wegen deinen hübschen tiefen Augen",
-        3: "Wegen der Art wie du deinen Körper bewegst",
-        4: "Wegen deiner weichen Haare",
-        5: "Wegen der Art mit der du Sprichst",
-        6: "Wegen deiner Leidenschaft für Sachen, die du liebst",
-        7: "Wegen deiner Begeisterung für kleine Dinge",
-        8: "Weil kein Bild dir je gerecht werden könnte, ich speichere sie trotzdem alle",
-        9: "Weil du mein Kopfkino bist",
-        10: "Weil du mich immer beim Wort nimmst",
-        11: "Weil du soooo gut riechst",
-        12: "Weil du selbst süß bist, wenn du am schmollen bist",
-        13: "Weil du das süßeste Grinsen auf der Welt hast",
-        14: "Weil deine Augen leuchten, wenn du von etwas sprichst, das du liebst",
-        15: "Weil mich deine Berührungen manchmal echt verrückt machen",
-        16: "Weil dein Körper für mich perfekt ist, nicht im Vergleich, sondern weil er deiner ist",
-        17: "Weil deine Lippen so aussehen, als wären sie dafür gemacht, dass ich sie küsse",
-        18: "Weil ich jedes Muttermal, jede Narbe oder Markierung an dir liebe",
-        19: "Wegen deiner Stimme, besonders wenn du flüsterst",
-        20: "Wegen deiner sanften Art",
-        21: "Weil du mich so ansiehst, als wäre ich das Beste auf der Welt",
-        22: "Weil du mir zuhörst, wirklich zuhörst",
-        23: "Weil du über meine dummen Witze lachst",
-        24: "Weil du so unendlich geduldig mit mir bist",
-        25: "Weil du mich mit einem Blick beruhigen kannst",
-        26: "Weil ich mich bei dir sicher fühle",
-        27: "Weil du dich für mich freust, wenn mir was gelingt",
-        28: "Weil du mich immer streichelst",
-        29: "Weil dein Herz trotz deiner Vergangenheit noch so viel Liebe für mich übrig hat",
-        30: "Weil ich mich immer aus neue freue dich zu sehen",
-        31: "Weil ich mich bei dir nicht anpassen muss",
-        32: "Weil du mich ernst nimmst",
-        33: "Weil du mich besser machst ohne Zwang",
-        34: "Weil du meine Art Mensch bist",
-        35: "Weil du versuchst, immer ehrlich mit mir zu sein",
-        36: "Weil du eine der intelligentesten Personen bist, die ich je kennengelernt habe",
-        37: "Weil du mir verzeihst, wenn ich Mist baue",
-        38: "Weil du meine Grenzen respektierst",
-        39: "Weil du mich nur mit deiner Stimme zur Ruhe bringen kannst",
-        40: "Weil selbst das Schweigen zwischen uns angenehm ist",
-        41: "Weil du merkst, wenn es mir schlecht geht",
-        42: "Weil du meine dummen Aktionen nicht durchgehen lässt",
-        43: "Weil du Wunden heilst, von denen du nichts weißt",
-        44: "Weil ich dich vermisse, sobald du weg bist",
-        45: "Weil ich dir auch meine Fehler gestehen kann",
-        46: "Weil du mein Herz schneller schlagen lässt",
-        47: "Weil ich nicht aufhören kann, an dich zu denken",
-        48: "Weil mich selbst deine Anwesenheit glücklich macht",
-        49: "Weil du alles bist, was ich nie gesucht habe, aber immer gebraucht habe",
-        50: "Weil du dir die Zeit genommen hast, diese Liste durchzulesen"
-    };
+// Particles background
+tsParticles.load("tsparticles", {
+  fullScreen: { enable: false },
+  background: { color: "transparent" },
+  particles: {
+    number: { value: 60, density: { enable: true, area: 900 } },
+    color: { value: ["#764ba2", "#667eea", "#f093fb"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.3 },
+    size: { value: { min: 2, max: 5 } },
+    move: { enable: true, speed: 2, direction: "none", outModes: "out" }
+  },
+  interactivity: {
+    events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+    modes: { repulse: { distance: 100, duration: 0.4 } }
+  }
+});
+// Dynamic title
+document.title = "💜 50 Gründe warum ich dich liebe";
 
-    let reasons = {...defaultReasons};
-    let currentModalIndex = 1;
-    let availableReasons = [];
+// Gründe
+const defaultReasons = {
+    1: "Wegen deinem wunderschönen Lächeln",
+    2: "Wegen deinen hübschen tiefen Augen",
+    3: "Wegen der Art wie du deinen Körper bewegst",
+    4: "Wegen deiner weichen Haare",
+    5: "Wegen der Art mit der du Sprichst",
+    6: "Wegen deiner Leidenschaft für Sachen, die du liebst",
+    7: "Wegen deiner Begeisterung für kleine Dinge",
+    8: "Weil kein Bild dir je gerecht werden könnte, ich speichere sie trotzdem alle",
+    9: "Weil du mein Kopfkino bist",
+    10: "Weil du mich immer beim Wort nimmst",
+    11: "Weil du soooo gut riechst",
+    12: "Weil du selbst süß bist, wenn du am schmollen bist",
+    13: "Weil du das süßeste Grinsen auf der Welt hast",
+    14: "Weil deine Augen leuchten, wenn du von etwas sprichst, das du liebst",
+    15: "Weil mich deine Berührungen manchmal echt verrückt machen",
+    16: "Weil dein Körper für mich perfekt ist, nicht im Vergleich, sondern weil er deiner ist",
+    17: "Weil deine Lippen so aussehen, als wären sie dafür gemacht, dass ich sie küsse",
+    18: "Weil ich jedes Muttermal, jede Narbe oder Markierung an dir liebe",
+    19: "Wegen deiner Stimme, besonders wenn du flüsterst",
+    20: "Wegen deiner sanften Art",
+    21: "Weil du mich so ansiehst, als wäre ich das Beste auf der Welt",
+    22: "Weil du mir zuhörst, wirklich zuhörst",
+    23: "Weil du über meine dummen Witze lachst",
+    24: "Weil du so unendlich geduldig mit mir bist",
+    25: "Weil du mich mit einem Blick beruhigen kannst",
+    26: "Weil ich mich bei dir sicher fühle",
+    27: "Weil du dich für mich freust, wenn mir was gelingt",
+    28: "Weil du mich immer streichelst",
+    29: "Weil dein Herz trotz deiner Vergangenheit noch so viel Liebe für mich übrig hat",
+    30: "Weil ich mich immer aus neue freue dich zu sehen",
+    31: "Weil ich mich bei dir nicht anpassen muss",
+    32: "Weil du mich ernst nimmst",
+    33: "Weil du mich besser machst ohne Zwang",
+    34: "Weil du meine Art Mensch bist",
+    35: "Weil du versuchst, immer ehrlich mit mir zu sein",
+    36: "Weil du eine der intelligentesten Personen bist, die ich je kennengelernt habe",
+    37: "Weil du mir verzeihst, wenn ich Mist baue",
+    38: "Weil du meine Grenzen respektierst",
+    39: "Weil du mich nur mit deiner Stimme zur Ruhe bringen kannst",
+    40: "Weil selbst das Schweigen zwischen uns angenehm ist",
+    41: "Weil du merkst, wenn es mir schlecht geht",
+    42: "Weil du meine dummen Aktionen nicht durchgehen lässt",
+    43: "Weil du Wunden heilst, von denen du nichts weißt",
+    44: "Weil ich dich vermisse, sobald du weg bist",
+    45: "Weil ich dir auch meine Fehler gestehen kann",
+    46: "Weil du mein Herz schneller schlagen lässt",
+    47: "Weil ich nicht aufhören kann, an dich zu denken",
+    48: "Weil mich selbst deine Anwesenheit glücklich macht",
+    49: "Weil du alles bist, was ich nie gesucht habe, aber immer gebraucht habe",
+    50: "Weil du dir die Zeit genommen hast, diese Liste durchzulesen"
+};
 
-    // Modal Elemente
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalClose = document.getElementById('modalClose');
-    const modalNumber = document.getElementById('modalNumber');
-    const modalText = document.getElementById('modalText');
-    const modalCounter = document.getElementById('modalCounter');
-    const modalPrev = document.getElementById('modalPrev');
-    const modalNext = document.getElementById('modalNext');
-    const modalContentInner = document.getElementById('modalContentInner');
+let reasons = {...defaultReasons};
+let currentModalIndex = 1;
+let availableReasons = [];
 
-    // Touch/Swipe variables
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    let hasTouch = 'ontouchstart' in window;
+// Modal Elemente
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalNumber = document.getElementById('modalNumber');
+const modalText = document.getElementById('modalText');
+const modalCounter = document.getElementById('modalCounter');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+const modalContentInner = document.getElementById('modalContentInner');
 
-    function generateReasonsGrid() {
-        const grid = document.getElementById('reasonsGrid');
-        grid.innerHTML = '';
-        availableReasons = [];
+// Touch/Swipe variables
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
+let hasTouch = 'ontouchstart' in window;
 
-        for (let i = 1; i <= 50; i++) {
-            const card = document.createElement('div');
-            const isEmpty = !reasons[i];
+function generateReasonsGrid() {
+    const grid = document.getElementById('reasonsGrid');
+    grid.innerHTML = '';
+    availableReasons = [];
 
-            card.className = `reason-card ${isEmpty ? 'empty-reason' : ''}`;
-            card.innerHTML = `
-                <div class="reason-number">#${i}</div>
-                <div class="reason-text" data-reason="${i}">
-                    ${reasons[i] || ''}
-                </div>
-            `;
-
-            // Event Listener für Modal hinzufügen
-            if (reasons[i]) {
-                availableReasons.push(i);
-                card.addEventListener('click', () => openModal(i));
-                grid.appendChild(card);
-            }
+    let idx = 0;
+    for (let i = 1; i <= 50; i++) {
+        const card = document.createElement('div');
+        const isEmpty = !reasons[i];
+        card.className = `reason-card ${isEmpty ? 'empty-reason' : ''}`;
+        card.innerHTML = `
+            <div class="reason-number">#${i}</div>
+            <div class="reason-text" data-reason="${i}">
+                ${reasons[i] || ''}
+            </div>
+        `;
+        card.style.setProperty('--i', idx);
+        if (reasons[i]) {
+            availableReasons.push(i);
+            card.addEventListener('click', () => openModal(i));
+            grid.appendChild(card);
+            idx++;
         }
     }
+}
 
-    function openModal(number) {
-        currentModalIndex = availableReasons.indexOf(number);
-        updateModalContent();
-        modalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+function openModal(number) {
+    currentModalIndex = availableReasons.indexOf(number);
+    updateModalContent();
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    function updateModalContent() {
-        const reasonNumber = availableReasons[currentModalIndex];
-        const reasonText = reasons[reasonNumber];
-        
-        modalNumber.textContent = `#${reasonNumber}`;
-        modalText.textContent = reasonText;
-        modalCounter.textContent = `${currentModalIndex + 1} / ${availableReasons.length}`;
-        
-        // Navigation buttons aktivieren/deaktivieren
-        modalPrev.disabled = currentModalIndex === 0;
-        modalNext.disabled = currentModalIndex === availableReasons.length - 1;
-        
-        // Reset transform
-        modalContentInner.style.transform = 'translateX(0) scale(1)';
-        modalContentInner.style.opacity = '1';
-        modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right');
-    }
+function updateModalContent() {
+    const reasonNumber = availableReasons[currentModalIndex];
+    const reasonText = reasons[reasonNumber];
 
-    function navigateModal(direction) {
-        const newIndex = currentModalIndex + direction;
-        if (newIndex >= 0 && newIndex < availableReasons.length) {
-            // Improved slide animation with classes
-            const isNext = direction > 0;
-            
-            // Add exit animation
-            modalContentInner.classList.add(isNext ? 'slide-left' : 'slide-right');
-            
+    modalNumber.textContent = `#${reasonNumber}`;
+    modalText.textContent = reasonText;
+    modalCounter.textContent = `${currentModalIndex + 1} / ${availableReasons.length}`;
+    modalPrev.disabled = currentModalIndex === 0;
+    modalNext.disabled = currentModalIndex === availableReasons.length - 1;
+    modalContentInner.style.transform = 'translateX(0) scale(1)';
+    modalContentInner.style.opacity = '1';
+    modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right');
+}
+
+function navigateModal(direction) {
+    const newIndex = currentModalIndex + direction;
+    if (newIndex >= 0 && newIndex < availableReasons.length) {
+        const isNext = direction > 0;
+        modalContentInner.classList.add(isNext ? 'slide-left' : 'slide-right');
+        setTimeout(() => {
+            currentModalIndex = newIndex;
+            updateModalContent();
+            modalContentInner.classList.remove('slide-left', 'slide-right');
+            modalContentInner.classList.add(isNext ? 'slide-in-right' : 'slide-in-left');
             setTimeout(() => {
-                // Update content
-                currentModalIndex = newIndex;
-                updateModalContent();
-                
-                // Remove exit animation and add enter animation
-                modalContentInner.classList.remove('slide-left', 'slide-right');
-                modalContentInner.classList.add(isNext ? 'slide-in-right' : 'slide-in-left');
-                
-                setTimeout(() => {
-                    modalContentInner.classList.remove('slide-in-left', 'slide-in-right');
-                }, 400);
+                modalContentInner.classList.remove('slide-in-left', 'slide-in-right');
             }, 400);
-        }
+        }, 400);
     }
+}
 
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-    // Touch/Swipe handling
-    function handleTouchStart(e) {
-        if (!hasTouch) return;
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        modalContentInner.classList.add('swiping');
-    }
-
-    function handleTouchMove(e) {
-        if (!isDragging || !hasTouch) return;
-        e.preventDefault();
-        currentX = e.touches[0].clientX;
-        const diffX = currentX - startX;
-        const maxSwipe = 120;
-        const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-        
-        // Add subtle scale effect while swiping
-        const scale = 1 - Math.abs(boundedDiff) / 500;
-        const opacity = 1 - Math.abs(boundedDiff) / 300;
-        
-        modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
-        modalContentInner.style.opacity = opacity;
-    }
-
-    function handleTouchEnd(e) {
-        if (!isDragging || !hasTouch) return;
-        isDragging = false;
-        modalContentInner.classList.remove('swiping');
-        
-        const diffX = currentX - startX;
-        const threshold = 60;
-        
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0 && currentModalIndex > 0) {
-                navigateModal(-1); // Previous
-            } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-                navigateModal(1); // Next
-            } else {
-                resetModalTransform();
-            }
+// Touch/Swipe handling
+function handleTouchStart(e) {
+    if (!hasTouch) return;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    modalContentInner.classList.add('swiping');
+}
+function handleTouchMove(e) {
+    if (!isDragging || !hasTouch) return;
+    e.preventDefault();
+    currentX = e.touches[0].clientX;
+    const diffX = currentX - startX;
+    const maxSwipe = 120;
+    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
+    const scale = 1 - Math.abs(boundedDiff) / 500;
+    const opacity = 1 - Math.abs(boundedDiff) / 300;
+    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
+    modalContentInner.style.opacity = opacity;
+}
+function handleTouchEnd(e) {
+    if (!isDragging || !hasTouch) return;
+    isDragging = false;
+    modalContentInner.classList.remove('swiping');
+    const diffX = currentX - startX;
+    const threshold = 60;
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0 && currentModalIndex > 0) {
+            navigateModal(-1); // Previous
+        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
+            navigateModal(1); // Next
         } else {
             resetModalTransform();
         }
-        
-        startX = 0;
-        currentX = 0;
+    } else {
+        resetModalTransform();
     }
-
-    // Mouse events for desktop drag
-    function handleMouseDown(e) {
-        if (hasTouch) return; // Skip if touch device
-        startX = e.clientX;
-        isDragging = true;
-        modalContentInner.classList.add('swiping');
-        e.preventDefault();
-    }
-
-    function handleMouseMove(e) {
-        if (!isDragging || hasTouch) return;
-        currentX = e.clientX;
-        const diffX = currentX - startX;
-        const maxSwipe = 120;
-        const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
-        
-        // Add subtle scale effect while dragging
-        const scale = 1 - Math.abs(boundedDiff) / 500;
-        const opacity = 1 - Math.abs(boundedDiff) / 300;
-        
-        modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
-        modalContentInner.style.opacity = opacity;
-    }
-
-    function handleMouseUp(e) {
-        if (!isDragging || hasTouch) return;
-        isDragging = false;
-        modalContentInner.classList.remove('swiping');
-        
-        const diffX = currentX - startX;
-        const threshold = 60;
-        
-        if (Math.abs(diffX) > threshold) {
-            if (diffX > 0 && currentModalIndex > 0) {
-                navigateModal(-1);
-            } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-                navigateModal(1);
-            } else {
-                resetModalTransform();
-            }
+    startX = 0;
+    currentX = 0;
+}
+// Mouse events for desktop drag
+function handleMouseDown(e) {
+    if (hasTouch) return;
+    startX = e.clientX;
+    isDragging = true;
+    modalContentInner.classList.add('swiping');
+    e.preventDefault();
+}
+function handleMouseMove(e) {
+    if (!isDragging || hasTouch) return;
+    currentX = e.clientX;
+    const diffX = currentX - startX;
+    const maxSwipe = 120;
+    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
+    const scale = 1 - Math.abs(boundedDiff) / 500;
+    const opacity = 1 - Math.abs(boundedDiff) / 300;
+    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
+    modalContentInner.style.opacity = opacity;
+}
+function handleMouseUp(e) {
+    if (!isDragging || hasTouch) return;
+    isDragging = false;
+    modalContentInner.classList.remove('swiping');
+    const diffX = currentX - startX;
+    const threshold = 60;
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0 && currentModalIndex > 0) {
+            navigateModal(-1);
+        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
+            navigateModal(1);
         } else {
             resetModalTransform();
         }
-        
-        startX = 0;
-        currentX = 0;
+    } else {
+        resetModalTransform();
     }
+    startX = 0;
+    currentX = 0;
+}
+function resetModalTransform() {
+    modalContentInner.style.transform = 'translateX(0) scale(1)';
+    modalContentInner.style.opacity = '1';
+}
 
-    function resetModalTransform() {
-        modalContentInner.style.transform = 'translateX(0) scale(1)';
-        modalContentInner.style.opacity = '1';
+// Modal event listeners
+modalClose.addEventListener('click', closeModal);
+modalPrev.addEventListener('click', () => navigateModal(-1));
+modalNext.addEventListener('click', () => navigateModal(1));
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        closeModal();
     }
-
-    // Event Listeners für Modal
-    modalClose.addEventListener('click', closeModal);
-    modalPrev.addEventListener('click', () => navigateModal(-1));
-    modalNext.addEventListener('click', () => navigateModal(1));
-    
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
+});
+modalContentInner.addEventListener('touchstart', handleTouchStart, { passive: false });
+modalContentInner.addEventListener('touchmove', handleTouchMove, { passive: false });
+modalContentInner.addEventListener('touchend', handleTouchEnd, { passive: false });
+modalContentInner.addEventListener('mousedown', handleMouseDown);
+document.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('mouseup', handleMouseUp);
+document.addEventListener('keydown', (e) => {
+    if (modalOverlay.classList.contains('active')) {
+        switch(e.key) {
+            case 'Escape': closeModal(); break;
+            case 'ArrowLeft': if (currentModalIndex > 0) navigateModal(-1); break;
+            case 'ArrowRight': if (currentModalIndex < availableReasons.length - 1) navigateModal(1); break;
         }
-    });
+    }
+});
 
-    // Touch Events
-    modalContentInner.addEventListener('touchstart', handleTouchStart, { passive: false });
-    modalContentInner.addEventListener('touchmove', handleTouchMove, { passive: false });
-    modalContentInner.addEventListener('touchend', handleTouchEnd, { passive: false });
-
-    // Mouse Events für Desktop
-    modalContentInner.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-        if (modalOverlay.classList.contains('active')) {
-            switch(e.key) {
-                case 'Escape':
-                    closeModal();
-                    break;
-                case 'ArrowLeft':
-                    if (currentModalIndex > 0) navigateModal(-1);
-                    break;
-                case 'ArrowRight':
-                    if (currentModalIndex < availableReasons.length - 1) navigateModal(1);
-                    break;
-            }
-        }
-    });
-
-    // Initialisierung
+// Shuffle button
+document.getElementById('shuffleBtn').onclick = function() {
+    availableReasons = [];
+    let keys = Object.keys(reasons).sort(()=>Math.random()-0.5);
+    reasons = {};
+    keys.forEach((k,i) => reasons[i+1] = defaultReasons[k]);
     generateReasonsGrid();
+};
+
+// Initialisierung
+generateReasonsGrid();
 </script>
 </body>
 </html>
