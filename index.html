@@ -234,7 +234,6 @@
             font-size: 1.55rem;
             animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
         }
-        /* WEISSES HERZ NUR IN DER FUSSZEILE */
         .white-heart {
             color: #fff !important;
             text-shadow: 0 1px 4px #8882;
@@ -248,7 +247,6 @@
             0% { transform: translateY(0) scale(1);}
             100% { transform: translateY(-9px) scale(1.07);}
         }
-        /* Modal Styles ... geändert für größere Desktops ... */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -557,7 +555,6 @@
 <div class="footer">
     <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
 </div>
-<!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" tabindex="-1">
     <div class="modal-content" role="dialog" aria-modal="true">
         <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
@@ -734,7 +731,6 @@ function closeModal() {
     modalOverlay.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
-// Touch/Swipe handling
 function handleTouchStart(e) {
     if (!hasTouch) return;
     startX = e.touches[0].clientX;
@@ -761,9 +757,9 @@ function handleTouchEnd(e) {
     const threshold = 60;
     if (Math.abs(diffX) > threshold) {
         if (diffX > 0 && currentModalIndex > 0) {
-            navigateModal(-1); // Previous
+            navigateModal(-1);
         } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
-            navigateModal(1); // Next
+            navigateModal(1);
         } else {
             resetModalTransform();
         }
@@ -773,7 +769,6 @@ function handleTouchEnd(e) {
     startX = 0;
     currentX = 0;
 }
-// Mouse events for desktop drag
 function handleMouseDown(e) {
     if (hasTouch) return;
     startX = e.clientX;
