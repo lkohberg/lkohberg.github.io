@@ -292,19 +292,59 @@
             will-change: transform, box-shadow;
             overflow: visible;
         }
-        /* Tag/Nachtmodus auch im Modal */
-        body.sunset-mode .modal-content {
-            background: linear-gradient(120deg, #fd5e53 0%, #f9cb28 50%, #734b6d 100%) !important;
-            color: #fff !important;
-            border-color: #fff3 !important;
-            box-shadow: 0 8px 32px 0 #3d1d4e33, 0 2px 8px #734b6d22;
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1600px;
+                padding: 3.5rem 3rem 1.5rem 3rem;
+            }
+            .reasons-grid {
+                grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+                gap: 2.8rem;
+            }
+            .header {
+                margin: 3.5rem 4rem 2.5rem 4rem;
+                padding: 3.3rem 3rem 2.5rem 3rem;
+            }
+            .footer {
+                font-size: 1.35rem;
+                padding: 2.8rem 3rem;
+            }
+            .modal-content {
+                max-width: 700px;
+                padding: 4rem 3rem 3rem 3rem;
+                font-size: 1.2rem;
+            }
+            #shuffleBtn, .header-shuffle {
+                font-size: 1.35rem;
+                padding: 1.2rem 4rem;
+            }
         }
-        body.sunset-mode .modal-number {
-            background: linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
+        @keyframes modalPopIn {
+            0% { transform: scale(0.55) translateY(120px);}
+            80% { transform: scale(1.04) translateY(-8px);}
+            100% { transform: scale(1) translateY(0);}
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            font-size: 2.2rem;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(.49,1.65,.73,1.01);
+            line-height: 1;
+            z-index: 2001;
+        }
+        .modal-close:hover, .modal-close:focus {
+            background: rgba(118, 75, 162, 0.10);
+            transform: rotate(90deg) scale(1.14);
         }
         .modal-number {
             font-size: 3.6rem;
@@ -521,6 +561,30 @@
             to {opacity:0; transform:scale(1.15) translateY(20px);}
         }
 
+        /* Herzregen */
+        #heart-rain-container {
+            pointer-events:none;
+            position:fixed;
+            top:0;left:0;width:100vw;height:100vh;z-index:10000;
+            overflow:hidden;
+        }
+        .heart-rain-heart {
+            position: absolute;
+            top: -40px;
+            font-size: 2.1rem;
+            animation: heartRainFall 2.3s cubic-bezier(.57,.11,.84,.62) forwards;
+            user-select: none;
+            pointer-events: none;
+            filter: drop-shadow(0 0 7px #fca5f1bb);
+            left: 0;
+        }
+        @keyframes heartRainFall {
+            0% { opacity: 0; transform: scale(0.8) rotate(0deg);}
+            10% { opacity: 1;}
+            80% { opacity: 1; }
+            100% { top: 90vh; opacity: 0; transform: scale(1.15) rotate(15deg);}
+        }
+
         /* Nachtmodus mit Sonnenuntergangsfarben */
         body.sunset-mode {
             background: linear-gradient(120deg, #fd5e53 0%, #f9cb28 50%, #734b6d 100%) !important;
@@ -544,10 +608,15 @@
             background-clip: text;
             text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
         }
+        /* Nummern-Glow bleibt auch bei großen Karten */
         .reason-card.big .reason-number,
         body.sunset-mode .reason-card .reason-number {
             font-size: 3.2rem;
             text-shadow: 0 0 8px #fff, 0 0 18px #fff7, 0 0 3px #fff, 0 2px 20px #f9cb28cc;
+        }
+        /* Beispiel für große Karten (falls du so einen Button hast) */
+        .reason-card.big {
+            font-size: 1.6rem;
         }
     </style>
 </head>
@@ -564,6 +633,7 @@
     <button id="shuffleBtn" class="header-shuffle">Zufällige Reihenfolge</button>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:20px;">
         <button id="cuddleBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ffb6fc,#ffdeae);color:#7F53AC;">Kuschel-Animation 🤗</button>
+        <button id="heartRainBtn" class="header-shuffle" style="background:linear-gradient(90deg,#ff99aa,#fca5f1);color:#fff;">Herzregen 💖</button>
         <button id="sunsetModeBtn" class="header-shuffle" style="background:linear-gradient(90deg,#fd5e53,#f9cb28,#734b6d);color:#fff;">Nachtmodus 🌅</button>
     </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
@@ -712,9 +782,6 @@ function generateReasonsGrid() {
 function openModal(number) {
     currentModalIndex = availableReasons.indexOf(number);
     updateModalContent();
-    // Modal Tag/Nachtmodus dynamisch übernehmen
-    if (sunsetMode) document.body.classList.add('sunset-mode');
-    else document.body.classList.remove('sunset-mode');
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     modalOverlay.focus();
@@ -895,6 +962,24 @@ document.getElementById('cuddleBtn').onclick = function() {
             hearts.forEach(h => h.remove());
         }, 2000);
     }
+};
+
+// Herzregen: flüssiger und weniger laggy
+document.getElementById('heartRainBtn').onclick = function() {
+    if(document.getElementById('heart-rain-container')) return;
+    const heartRain = document.createElement('div');
+    heartRain.id = "heart-rain-container";
+    document.body.appendChild(heartRain);
+    for(let i=0;i<28;i++){
+        const h = document.createElement('div');
+        h.className = 'heart-rain-heart';
+        h.innerHTML = "❤️";
+        h.style.left = (3 + Math.random()*94)+"vw";
+        h.style.fontSize = (1.4 + Math.random()*1.3) + "rem";
+        h.style.animationDelay = (Math.random()*1.1)+"s";
+        heartRain.appendChild(h);
+    }
+    setTimeout(()=>heartRain.remove(),2400);
 };
 
 // Nachtmodus mit Sonnenuntergangsfarben + Nummern immer sichtbar
