@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -373,7 +372,6 @@
             .divider { margin: 1rem 0; }
             .footer { margin-top: 1rem; }
         }
-        /* Kuschel-Animation */
         .reasons-grid.cuddle { gap: 0.5rem !important; }
         .cuddle-heart {
             position: absolute; top: -30px; font-size: 2.3rem;
@@ -382,8 +380,6 @@
         }
         @keyframes cuddlePop { 0% { transform: scale(0.4) translateY(-30px); opacity:0;} 80%{ transform: scale(1.15) translateY(0); opacity:1;} 100%{ transform: scale(1) translateY(0); opacity:1;} }
         @keyframes cuddleFade { to {opacity:0; transform:scale(1.15) translateY(20px);} }
-
-        /* NACHTMODUS VIOLETT, MODERN, HELLER TEXT */
         body.sunset-mode {
             background: linear-gradient(120deg, #24203B 0%, #3B2F4A 100%) !important;
             color: #f3e6d6;
@@ -449,15 +445,12 @@
             background: rgba(85,63,100,0.8);
             border-color: #bda5e6;
         }
-        /* Hintergrund-Gradient im Nachtmodus wärmer/orangener */
         body.sunset-mode #tsparticles {
             background: linear-gradient(135deg, #ffb074 0%, #e7bbee 100%) !important;
         }
-        /* Auch Modal-Hintergrund im Nachtmodus wärmer/orangener */
         body.sunset-mode .modal-overlay {
             background: linear-gradient(120deg, #ffb074 40%, #e7bbee 100%) !important;
         }
-        /* X-Button im Nachtmodus komplett transparent, kein Oval */
         body.sunset-mode .modal-close,
         body.sunset-mode .modal-close:focus,
         body.sunset-mode .modal-close:active,
@@ -475,7 +468,6 @@
         body.sunset-mode .modal-close::-moz-focus-inner {
             border: 0 !important;
         }
-        /* Jubiläumsblock Styling */
         #loveAnniversary {
             margin-top: 2.2rem;
             padding: 1.2rem 1rem 1rem 1rem;
@@ -492,7 +484,6 @@
             animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
             margin-left: 0.25em;
         }
-        /* Kalender-Ansicht Styling */
         #calendarContainer {
             display: none;
         }
@@ -500,7 +491,7 @@
             background: var(--glass-bg);
             border-radius: 18px;
             padding: 1.2rem 1.2rem 1.7rem 1.2rem;
-            max-width: 420px;
+            max-width: 480px;
             margin: 0 auto 1.5rem auto;
             box-shadow: 0 2px 10px rgba(126,125,255,0.11);
             font-size: 1.1rem;
@@ -510,6 +501,34 @@
         }
         #kalenderInfos .heart-ani {
             margin-left: 0.2em;
+        }
+        #kalenderInfos .bday-block {
+            margin-bottom: 1.2rem;
+            padding: 0.9rem 0.8rem;
+            background: rgba(255,255,255,0.39);
+            border-radius: 16px;
+            box-shadow: 0 1px 5px rgba(102,126,234,0.07);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.07rem;
+        }
+        #kalenderInfos .bday-block .bday-label {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        #kalenderInfos .bday-block .bday-date {
+            color: #4c4976;
+            font-style: italic;
+        }
+        #kalenderInfos .bday-block .bday-countdown {
+            font-weight: bold;
+            color: var(--accent);
+            margin-left: 0.5em;
+        }
+        @media (max-width:600px){
+            #kalenderInfos { max-width: 98vw; font-size: 0.97rem; padding: 0.7rem 0.25rem 1rem 0.25rem;}
+            #kalenderInfos .bday-block { flex-direction: column; align-items: flex-start; gap: 0.3em; font-size:0.97rem;}
         }
     </style>
 </head>
@@ -531,7 +550,6 @@
     <hr class="divider">
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
-<!-- Kalender Container -->
 <div class="container" id="calendarContainer" style="display:none">
     <div class="header">
         <h1>📅 Kalender & Jubiläen</h1>
@@ -541,27 +559,32 @@
         <span class="heart">♥</span>
     </div>
     <div id="kalenderInfos">
-        <div style="margin-bottom:1.2rem;">
-            <b>Unser Jahrestag:</b><br>
-            <span>21.06.2025</span>
+        <div class="bday-block" style="background:rgba(255,255,255,0.52);">
+            <span class="bday-label">Unser Jahrestag:</span>
+            <span class="bday-date">21.06.2025</span>
         </div>
-        <div style="margin-bottom:1.2rem;">
-            <b>Zusammen seit:</b>
-            <div id="kalenderAnniversaryCounter"></div>
+        <div class="bday-block">
+            <span class="bday-label">Zusammen seit:</span>
+            <span id="kalenderAnniversaryCounter"></span>
         </div>
-        <div style="margin-bottom:1.2rem;">
-            <b>Mein Geburtstag:</b>
-            <div>25.11.2008 (<span id="myBdayCountdown"></span>)</div>
+        <div class="bday-block">
+            <span class="bday-label">Ihr Geburtstag:</span>
+            <span>
+                <span class="bday-date">02.11.2008</span>
+                <span class="bday-countdown" id="herBdayCountdown"></span>
+            </span>
         </div>
-        <div>
-            <b>Ihr Geburtstag:</b>
-            <div>03.11.2008 (<span id="herBdayCountdown"></span>)</div>
+        <div class="bday-block">
+            <span class="bday-label">Mein Geburtstag:</span>
+            <span>
+                <span class="bday-date">25.11.2008</span>
+                <span class="bday-countdown" id="myBdayCountdown"></span>
+            </span>
         </div>
     </div>
 </div>
 <div class="footer">
     <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
-    <!-- Jubiläums-/Kalenderfunktion -->
     <div id="loveAnniversary">
       <div style="font-size:1.19rem;font-weight:bold;color:#ffd6a5;">Unser Jahrestag</div>
       <div style="margin:0.2rem 0;">
@@ -704,7 +727,6 @@ function generateReasonsGrid() {
             idx++;
         }
     }
-    // Bleibt gekuschelt, wenn cuddleActive true
     if (cuddleActive) grid.classList.add('cuddle');
     else grid.classList.remove('cuddle');
 }
@@ -857,8 +879,6 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
-
-// Shuffle-Button: 50. Grund bleibt immer an letzter Stelle
 document.getElementById('shuffleBtn').onclick = function() {
     availableReasons = [];
     let keys = Object.keys(defaultReasons).filter(k => k != "50");
@@ -870,14 +890,10 @@ document.getElementById('shuffleBtn').onclick = function() {
     document.getElementById('reasonsGrid').classList.remove('cuddle');
     generateReasonsGrid();
 };
-
-// Kuschel-Animation mit automatischem, sanftem Zurückgleiten
 document.getElementById('cuddleBtn').onclick = function() {
     cuddleActive = true;
     const grid = document.getElementById('reasonsGrid');
     generateReasonsGrid();
-
-    // Einmalige Herzchen-Animation
     if (!document.querySelector('.cuddle-heart')) {
         const hearts = [];
         for(let i=0;i<5;i++) {
@@ -890,48 +906,35 @@ document.getElementById('cuddleBtn').onclick = function() {
         }
         setTimeout(() => { hearts.forEach(h => h.remove()); }, 2000);
     }
-
-    // Nach 4 Sekunden automatisch Kuschelmodus beenden mit sanftem Gleiteffekt
     setTimeout(() => {
-        // Karten leicht skalieren für den Gleiteffekt
         const cards = grid.querySelectorAll('.reason-card');
         cards.forEach(card => {
             card.classList.add('cuddle-leave');
         });
-
-        // Nach Skalierung Kuschelmodus entfernen und Karten zurücksetzen
         setTimeout(() => {
             cuddleActive = false;
             generateReasonsGrid();
-        }, 600); // Skalierung zurück, dann Grid neu rendern
-    }, 4000); // 4 Sekunden Kuschelzeit
+        }, 600);
+    }, 4000);
 };
-
-// Nachtmodus mit warmem, augenschonendem Farbdesign
 document.getElementById('sunsetModeBtn').onclick = function() {
     sunsetMode = !sunsetMode;
     document.body.classList.toggle('sunset-mode', sunsetMode);
     document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "☀️" : "🌅";
     document.getElementById('sunsetModeBtn').setAttribute('title', sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅");
-    // Entfernt "Kuscheln" falls aktiviert, weil der Modus wichtiger ist
     if (sunsetMode && cuddleActive) {
         cuddleActive = false;
         document.getElementById('reasonsGrid').classList.remove('cuddle');
         generateReasonsGrid();
     }
 };
-
 generateReasonsGrid();
-
-/* Jubiläums-/Kalenderfunktion */
 function updateAnniversary() {
-    // Start-Datum: 21.06.2025
-    const start = new Date(2025, 5, 21); // 0-basiert: 5 = Juni
+    const start = new Date(2025, 5, 21);
     const now = new Date();
     let years = now.getFullYear() - start.getFullYear();
     let months = now.getMonth() - start.getMonth();
     let days = now.getDate() - start.getDate();
-
     if (days < 0) {
         months--;
         const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
@@ -941,31 +944,28 @@ function updateAnniversary() {
         years--;
         months += 12;
     }
-
     let text = "Wir sind seit ";
     if (years > 0) text += years + (years === 1 ? " Jahr, " : " Jahren, ");
     if (months > 0) text += months + (months === 1 ? " Monat, " : " Monaten, ");
     text += days + (days === 1 ? " Tag" : " Tagen");
     text += ' zusammen <span class="heart-ani">♥</span>';
-
     document.getElementById("anniversaryCounter").innerHTML = text;
 }
 updateAnniversary();
-setInterval(updateAnniversary, 8 * 60 * 60 * 1000); // alle 8h aktualisieren
-
-// --- KALENDER BUTTON & KALENDER-ANSICHT ---
+setInterval(updateAnniversary, 8 * 60 * 60 * 1000);
 const mainContainer = document.getElementById('mainContainer');
 const calendarContainer = document.getElementById('calendarContainer');
 const calendarBtn = document.getElementById('calendarBtn');
-
 function showCalendarView() {
     mainContainer.style.display = 'none';
     calendarContainer.style.display = '';
     updateCalendarInfo();
+    document.querySelector('.footer').style.display = 'none';
 }
 function showMainView() {
     mainContainer.style.display = '';
     calendarContainer.style.display = 'none';
+    document.querySelector('.footer').style.display = '';
 }
 calendarBtn.onclick = function() {
     if (calendarContainer.style.display === 'none' || calendarContainer.style.display === '') {
@@ -974,11 +974,22 @@ calendarBtn.onclick = function() {
         showMainView();
     }
 };
-
-// Berechnung für Kalender-Ansicht
+function getBdayCountdown(month, day) {
+    const now = new Date();
+    let next = new Date(now.getFullYear(), month - 1, day);
+    if (
+        now.getMonth() > (month - 1) ||
+        (now.getMonth() === (month - 1) && now.getDate() > day)
+    ) {
+        next.setFullYear(now.getFullYear() + 1);
+    }
+    next.setHours(0,0,0,0);
+    now.setHours(0,0,0,0);
+    const diff = Math.ceil((next - now) / (1000 * 60 * 60 * 24));
+    return diff === 0 ? "heute! 🎉" : `in ${diff} Tag${diff === 1 ? "" : "en"}`;
+}
 function updateCalendarInfo() {
-    // Jubiläum
-    const start = new Date(2025, 5, 21); // 21.06.2025
+    const start = new Date(2025, 5, 21);
     const now = new Date();
     let years = now.getFullYear() - start.getFullYear();
     let months = now.getMonth() - start.getMonth();
@@ -998,24 +1009,8 @@ function updateCalendarInfo() {
     text += days + (days === 1 ? " Tag" : " Tagen");
     text += ' zusammen <span class="heart-ani">♥</span>';
     document.getElementById('kalenderAnniversaryCounter').innerHTML = text;
-
-    // Geburtstage
-    function nextBirthday(day, month, year) {
-        let now = new Date();
-        let next = new Date(now.getFullYear(), month - 1, day);
-        if (next < now) next.setFullYear(next.getFullYear() + 1);
-        let diff = Math.ceil((next - now) / (1000 * 60 * 60 * 24));
-        let datum = `${String(day).padStart(2,'0')}.${String(month).padStart(2,'0')}.${year}`;
-        return {diff, datum, year: next.getFullYear()};
-    }
-    const myBday = nextBirthday(25, 11, 2008);
-    const herBday = nextBirthday(3, 11, 2008);
-
-    document.getElementById('myBdayCountdown').textContent = 
-        myBday.diff === 0 ? "Heute 🎉" : `in ${myBday.diff} Tag${myBday.diff==1?'':'en'} (${myBday.datum.replace('2008', myBday.year)})`;
-
-    document.getElementById('herBdayCountdown').textContent = 
-        herBday.diff === 0 ? "Heute 🎉" : `in ${herBday.diff} Tag${herBday.diff==1?'':'en'} (${herBday.datum.replace('2008', herBday.year)})`;
+    document.getElementById('herBdayCountdown').textContent = getBdayCountdown(11, 2);
+    document.getElementById('myBdayCountdown').textContent = getBdayCountdown(11, 25);
 }
 </script>
 </body>
