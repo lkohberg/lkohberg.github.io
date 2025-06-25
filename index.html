@@ -474,6 +474,23 @@
         body.sunset-mode .modal-close::-moz-focus-inner {
             border: 0 !important;
         }
+        /* Jubiläumsblock Styling */
+        #loveAnniversary {
+            margin-top: 2.2rem;
+            padding: 1.2rem 1rem 1rem 1rem;
+            background: rgba(255,255,255,0.13);
+            border-radius: 18px;
+            box-shadow: 0 2px 10px rgba(126,125,255,0.11);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #loveAnniversary .heart-ani {
+            color: #e74c3c;
+            font-size: 1.25em;
+            animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
+            margin-left: 0.25em;
+        }
     </style>
 </head>
 <body>
@@ -495,6 +512,14 @@
 </div>
 <div class="footer">
     <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
+    <!-- Jubiläums-/Kalenderfunktion -->
+    <div id="loveAnniversary">
+      <div style="font-size:1.19rem;font-weight:bold;color:#ffd6a5;">Unser Jahrestag</div>
+      <div style="margin:0.2rem 0;">
+        <span style="font-size:1.1rem;">Zusammen seit: <b>21.06.2025</b></span>
+      </div>
+      <div id="anniversaryCounter" style="margin-top:0.5rem;font-size:1.14rem;"></div>
+    </div>
 </div>
 <div class="modal-overlay" id="modalOverlay" tabindex="-1">
     <div class="modal-content" role="dialog" aria-modal="true">
@@ -848,6 +873,37 @@ document.getElementById('sunsetModeBtn').onclick = function() {
 };
 
 generateReasonsGrid();
+
+/* Jubiläums-/Kalenderfunktion */
+function updateAnniversary() {
+    // Start-Datum: 21.06.2025
+    const start = new Date(2025, 5, 21); // 0-basiert: 5 = Juni
+    const now = new Date();
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let text = "Wir sind seit ";
+    if (years > 0) text += years + (years === 1 ? " Jahr, " : " Jahren, ");
+    if (months > 0) text += months + (months === 1 ? " Monat, " : " Monaten, ");
+    text += days + (days === 1 ? " Tag" : " Tagen");
+    text += ' zusammen <span class="heart-ani">♥</span>';
+
+    document.getElementById("anniversaryCounter").innerHTML = text;
+}
+updateAnniversary();
+setInterval(updateAnniversary, 8 * 60 * 60 * 1000); // alle 8h aktualisieren
+
 </script>
 </body>
 </html>
