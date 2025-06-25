@@ -960,12 +960,14 @@ function showCalendarView() {
     mainContainer.style.display = 'none';
     calendarContainer.style.display = '';
     updateCalendarInfo();
-    document.querySelector('.footer').style.display = 'none';
+    var footer = document.querySelector('.footer');
+    if (footer) footer.style.display = 'none';
 }
 function showMainView() {
     mainContainer.style.display = '';
     calendarContainer.style.display = 'none';
-    document.querySelector('.footer').style.display = '';
+    var footer = document.querySelector('.footer');
+    if (footer) footer.style.display = '';
 }
 calendarBtn.onclick = function() {
     if (calendarContainer.style.display === 'none' || calendarContainer.style.display === '') {
@@ -974,6 +976,8 @@ calendarBtn.onclick = function() {
         showMainView();
     }
 };
+    
+    
 function getBdayCountdown(month, day) {
     const now = new Date();
     let next = new Date(now.getFullYear(), month - 1, day);
