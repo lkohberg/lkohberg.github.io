@@ -372,15 +372,6 @@
             .divider { margin: 1rem 0; }
             .footer { margin-top: 1rem; }
         }
-        /* Kuschel-Animation */
-        .reasons-grid.cuddle { gap: 0.5rem !important; }
-        .cuddle-heart {
-            position: absolute; top: -30px; font-size: 2.3rem;
-            animation: cuddlePop 0.5s cubic-bezier(.8,.2,.8,1.6), cuddleFade 2s 0.5s linear forwards;
-            pointer-events: none;
-        }
-        @keyframes cuddlePop { 0% { transform: scale(0.4) translateY(-30px); opacity:0;} 80%{ transform: scale(1.15) translateY(0); opacity:1;} 100%{ transform: scale(1) translateY(0); opacity:1;} }
-        @keyframes cuddleFade { to {opacity:0; transform:scale(1.15) translateY(20px);} }
 
         /* NACHTMODUS VIOLETT, MODERN, HELLER TEXT */
         body.sunset-mode {
@@ -898,42 +889,6 @@ document.getElementById('shuffleBtn').onclick = function() {
     cuddleActive = false;
     document.getElementById('reasonsGrid').classList.remove('cuddle');
     generateReasonsGrid();
-};
-
-// Kuschel-Animation mit automatischem, sanftem Zurückgleiten
-document.getElementById('cuddleBtn').onclick = function() {
-    cuddleActive = true;
-    const grid = document.getElementById('reasonsGrid');
-    generateReasonsGrid();
-
-    // Einmalige Herzchen-Animation
-    if (!document.querySelector('.cuddle-heart')) {
-        const hearts = [];
-        for(let i=0;i<5;i++) {
-            const h = document.createElement('div');
-            h.className = 'cuddle-heart';
-            h.innerHTML = '💗';
-            h.style.left = (12 + i*17) + '%';
-            grid.appendChild(h);
-            hearts.push(h);
-        }
-        setTimeout(() => { hearts.forEach(h => h.remove()); }, 2000);
-    }
-
-    // Nach 4 Sekunden automatisch Kuschelmodus beenden mit sanftem Gleiteffekt
-    setTimeout(() => {
-        // Karten leicht skalieren für den Gleiteffekt
-        const cards = grid.querySelectorAll('.reason-card');
-        cards.forEach(card => {
-            card.classList.add('cuddle-leave');
-        });
-
-        // Nach Skalierung Kuschelmodus entfernen und Karten zurücksetzen
-        setTimeout(() => {
-            cuddleActive = false;
-            generateReasonsGrid();
-        }, 600); // Skalierung zurück, dann Grid neu rendern
-    }, 4000); // 4 Sekunden Kuschelzeit
 };
 
 // Nachtmodus mit warmem, augenschonendem Farbdesign
