@@ -995,12 +995,15 @@ function showCalendarView() {
     updateCalendarInfo();
     calendarBtn.textContent = "🏠";
     calendarBtn.setAttribute('title', 'Zurück zur Hauptseite');
+    document.getElementById('mainFooter').style.display = 'none'; // Footer ausblenden
 }
 function showMainView() {
     mainContainer.style.display = '';
     calendarContainer.style.display = 'none';
     calendarBtn.textContent = "📅";
     calendarBtn.setAttribute('title', 'Kalender anzeigen 📅');
+    document.getElementById('mainFooter').style.display = ''; // Footer wieder anzeigen
+    // ...
 }
 calendarBtn.onclick = function() {
     if (calendarContainer.style.display === '' || calendarContainer.style.display === 'block') {
@@ -1055,5 +1058,6 @@ function updateCalendarInfo() {
 }
 updateCalendarInfo();
 </script>
+<div class="footer" id="mainFooter">
 </body>
 </html>
