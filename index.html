@@ -491,24 +491,51 @@
             animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
             margin-left: 0.25em;
         }
-        /* Kalender-Ansicht Styling */
-        #calendarContainer {
-            display: none;
-        }
+        /* Kalender-Block neues Design */
         #kalenderInfos {
-            background: var(--glass-bg);
+            background: linear-gradient(135deg, #e0c3fc 60%, #a1c4fd 100%);
             border-radius: 18px;
-            padding: 1.2rem 1.2rem 1.7rem 1.2rem;
-            max-width: 420px;
+            padding: 1.7rem 1.3rem 2.1rem 1.3rem;
+            max-width: 440px;
             margin: 0 auto 1.5rem auto;
-            box-shadow: 0 2px 10px rgba(126,125,255,0.11);
-            font-size: 1.1rem;
+            box-shadow: 0 4px 22px rgba(126,125,255,0.13);
+            font-size: 1.12rem;
         }
-        #kalenderInfos b {
-            color: var(--accent);
+        .kalender-section {
+            background: rgba(255,255,255,0.90);
+            border-radius: 14px;
+            margin-bottom: 1.3rem;
+            padding: 1rem 1rem 0.6rem 1rem;
+            box-shadow: 0 2px 10px rgba(127,83,172,0.08);
+            border: 1.5px solid #e0c3fc;
+            text-align: center;
+            position: relative;
+            transition: box-shadow 0.3s;
         }
-        #kalenderInfos .heart-ani {
-            margin-left: 0.2em;
+        .kalender-section:last-child { margin-bottom: 0; }
+        .kalender-label {
+            font-size: 1.08rem;
+            color: #7F53AC;
+            letter-spacing: 0.03em;
+            font-weight: bold;
+            margin-bottom: 0.35rem;
+        }
+        .kalender-date {
+            font-size: 1.25rem;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            color: #5d3693;
+            margin-bottom: 0.3rem;
+        }
+        .bday-me { color: #e17055; }
+        .bday-her { color: #00b894; }
+        .kalender-subinfo {
+            font-size: 1.01rem;
+            color: #57477c;
+            margin-bottom: 0.1rem;
+        }
+        .bday-section .kalender-subinfo {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -540,21 +567,26 @@
         <span class="heart">♥</span>
     </div>
     <div id="kalenderInfos">
-        <div style="margin-bottom:1.2rem;">
-            <b>Unser Jahrestag:</b><br>
-            <span>21.06.2025</span>
+        <div class="kalender-section">
+            <div class="kalender-label"><b>Unser Jahrestag</b></div>
+            <div class="kalender-date">21.06.2025</div>
+            <div class="kalender-subinfo">
+                <span id="kalenderAnniversaryCounter"></span>
+            </div>
         </div>
-        <div style="margin-bottom:1.2rem;">
-            <b>Zusammen seit:</b>
-            <div id="kalenderAnniversaryCounter"></div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Mein Geburtstag</b></div>
+            <div class="kalender-date bday-me">25.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="myBdayCountdown"></span>
+            </div>
         </div>
-        <div style="margin-bottom:1.2rem;">
-            <b>Mein Geburtstag:</b>
-            <div>25.11.2008 (<span id="myBdayCountdown"></span>)</div>
-        </div>
-        <div>
-            <b>Ihr Geburtstag:</b>
-            <div>03.11.2008 (<span id="herBdayCountdown"></span>)</div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Ihr Geburtstag</b></div>
+            <div class="kalender-date bday-her">03.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="herBdayCountdown"></span>
+            </div>
         </div>
     </div>
 </div>
@@ -953,7 +985,6 @@ updateAnniversary();
 setInterval(updateAnniversary, 8 * 60 * 60 * 1000); // alle 8h aktualisieren
 
 // --- KALENDER BUTTON & KALENDER-ANSICHT ---
-// Überarbeitete Umschalt-Logik mit Icon-Wechsel
 const mainContainer = document.getElementById('mainContainer');
 const calendarContainer = document.getElementById('calendarContainer');
 const calendarBtn = document.getElementById('calendarBtn');
@@ -972,13 +1003,28 @@ function showMainView() {
     calendarBtn.setAttribute('title', 'Kalender anzeigen 📅');
 }
 calendarBtn.onclick = function() {
-    // Wenn Kalender sichtbar ist, dann zurück zur Hauptseite – sonst Kalender zeigen
     if (calendarContainer.style.display === '' || calendarContainer.style.display === 'block') {
         showMainView();
     } else {
         showCalendarView();
     }
 };
+
+// Geburtstags-Countdown modernisiert
+function birthdayCountdown(day, month) {
+    const now = new Date();
+    let next = new Date(now.getFullYear(), month - 1, day);
+    if (
+        now.getMonth() + 1 > month ||
+        (now.getMonth() + 1 === month && now.getDate() > day)
+    ) {
+        next.setFullYear(now.getFullYear() + 1);
+    }
+    const diff = Math.ceil((next - now) / 1000 / 60 / 60 / 24);
+    if (diff === 0) return "🎉 Heute!";
+    if (diff === 1) return "in 1 Tag";
+    return `in ${diff} Tagen`;
+}
 
 // Berechnung für Kalender-Ansicht
 function updateCalendarInfo() {
@@ -1004,14 +1050,6 @@ function updateCalendarInfo() {
     text += ' zusammen <span class="heart-ani">♥</span>';
     document.getElementById('kalenderAnniversaryCounter').innerHTML = text;
 
-    // Geburtstage (Beispiel-Countdown, kann noch erweitert werden)
-    function birthdayCountdown(day, month) {
-        const now = new Date();
-        let next = new Date(now.getFullYear(), month - 1, day);
-        if (now > next) next.setFullYear(now.getFullYear() + 1);
-        const diff = Math.ceil((next - now) / 1000 / 60 / 60 / 24);
-        return diff === 0 ? "heute!" : `in ${diff} Tag${diff === 1 ? "" : "en"}`;
-    }
     document.getElementById('myBdayCountdown').textContent = birthdayCountdown(25, 11);
     document.getElementById('herBdayCountdown').textContent = birthdayCountdown(3, 11);
 }
