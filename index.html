@@ -925,9 +925,9 @@ function updateAnniversary() {
         months += 12;
     }
 
-    let text = "Seit ";
-    if (years > 0) text += years + (years === 1 ? " Jahr, " : " Jahren, ");
-    if (months > 0) text += months + (months === 1 ? " Monat, " : " Monaten, ");
+    let text = "Seit";
+    if (years > 0) text += years + (years === 1 ? " Jahr und " : " Jahren und ");
+    if (months > 0) text += months + (months === 1 ? " Monat und " : " Monaten und");
     text += days + (days === 1 ? " Tag" : " Tagen");
     text += ' zusammen <span class="heart-ani">♥</span>';
 
