@@ -3,276 +3,1013 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsere gemeinsame Zeit ❤</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>50 Gründe warum ich dich liebe</title>
+    <link rel="icon" href="https://fonts.gstatic.com/s/e/notoemoji/latest/2764_fe0f/512.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Georgia&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
     <style>
         :root {
-            --primary-color: #ff4b6e;
-            --secondary-color: #4b6eff;
-            --background-color: #fafafa;
-            --text-color: #333;
+            --main1: #8EC5FC;
+            --main2: #E0C3FC;
+            --main3: #a1c4fd;
+            --main4: #c2e9fb;
+            --glass-bg: rgba(255,255,255,0.55);
+            --glass-bg-deep: rgba(255,255,255,0.85);
+            --accent: #7F53AC;
+            --secondary: #647DEE;
+            --heart: #e74c3c;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { height: 100%; background: transparent !important; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Montserrat', 'Georgia', serif;
+            background: transparent !important;
             min-height: 100vh;
+            color: #2d2940;
             display: flex;
             flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+            letter-spacing: 0.01em;
         }
-
+       #tsparticles {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(135deg, var(--main1) 0%, var(--main2) 100%);
+}
+        .floating-buttons {
+            position: fixed;
+            top: 22px;
+            right: 24px;
+            display: flex;
+            gap: 0.3rem;
+            z-index: 100;
+        }
+        .mini-btn {
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1.5px solid #d3c1fc;
+            background: rgba(255,255,255,0.72);
+            color: #7F53AC;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 6px rgba(102,126,234,0.06);
+            cursor: pointer;
+            transition: border 0.2s, box-shadow 0.2s, background 0.2s, transform 0.15s;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+        .mini-btn:hover, .mini-btn:focus {
+            border: 1.5px solid #b08cff;
+            background: #f8f3ff;
+            box-shadow: 0 0 0 2px #e0c3fc66, 0 1px 8px rgba(127,83,172,0.09);
+            transform: scale(1.1);
+        }
+        @media (max-width:600px){
+            .floating-buttons { top: 8px; right: 6px; gap: 0.18rem; }
+            .mini-btn { width: 1.85rem; height: 1.85rem; font-size: 1.05rem; }
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            flex: 1;
+            padding: 2.5rem 1.2rem 1rem 1.2rem;
+            flex: 1 0 auto;
+            position: relative;
+            z-index: 1;
         }
-
         .header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding-top: 2rem;
+            padding: 2.7rem 2rem 2rem 2rem;
+            background: var(--glass-bg-deep);
+            backdrop-filter: blur(24px) saturate(140%);
+            margin: 2.5rem 2rem 1.5rem 2rem;
+            border-radius: 28px;
+            box-shadow: 0 10px 32px rgba(126, 125, 255, 0.13), 0 2px 8px rgba(0,0,0,0.08);
+            border: 1.5px solid rgba(180, 160, 255, 0.16);
+            transition: box-shadow 0.35s cubic-bezier(.35,.74,.38,1.07);
+            position: relative;
         }
-
         .header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-size: 2.6rem;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            font-family: 'Montserrat', 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 16px rgba(126,125,255,0.09);
         }
-
-        .counters {
+        .header p { font-size: 1.2rem; color: #4c4976; font-style: italic; opacity: 0.72; }
+        .intro {
+            text-align: center;
+            margin: 0 2rem 1.2rem 2rem;
+            padding: 1.2rem 1rem 1.2rem 1rem;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            font-size: 1.13rem;
+            color: #57477c;
+            font-style: italic;
+            box-shadow: 0 2px 10px rgba(126,125,255,0.07);
+            backdrop-filter: blur(10px) saturate(120%);
+        }
+        .divider {
+            border: none;
+            border-top: 2px solid #ece6ff;
+            margin: 2.5rem 0 2rem 0;
+            opacity: 0.6;
+        }
+        .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-top: 2.2rem;
+            position: relative;
+            transition: gap 0.7s cubic-bezier(.8,.2,.8,1.6);
         }
-
-        .counter-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
+        @keyframes cardIn {
+            0% { transform: scale(0.85) translateY(60px); opacity: 0; }
+            80% { transform: scale(1.03) translateY(-10px); opacity: 1;}
+            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
-
-        .counter-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .counter-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .counter-value {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .counter-details {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 1rem;
-        }
-
-        .counter-label {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Spotify Section Styling */
-.spotify-section {
-    background-color: var(--secondary-color);
-    padding: 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.spotify-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.spotify-container:hover {
-    transform: translateY(-5px);
-}
-
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: auto;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .counter-card {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Barrierefreiheit */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
+        .reason-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px) saturate(120%);
+            border-radius: 24px;
+            padding: 1.7rem 1.2rem 1.3rem 1.2rem;
+            box-shadow: 0 8px 32px rgba(118, 75, 162, 0.09), 0 2px 8px rgba(0,0,0,0.07);
+            border: 1.5px solid rgba(180,160,255,0.18);
+            transition: transform 0.37s cubic-bezier(.15,.57,.42,1.09), box-shadow 0.35s, background 0.41s cubic-bezier(0.25,0.8,0.25,1), font-size 0.4s cubic-bezier(.5,.5,.5,1.1);
+            position: relative;
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
+            cursor: pointer;
+            perspective: 600px;
+            animation: cardIn 1s cubic-bezier(0.22,1,0.36,1) both;
+            animation-delay: calc(var(--i, 0) * 0.05s);
+            will-change: transform, box-shadow;
+            outline: none;
+        }
+        .reason-card:hover, .reason-card:focus-visible {
+            transform: translateY(-14px) scale(1.08) rotateY(8deg) rotateX(3deg);
+            box-shadow: 0 40px 100px rgba(118, 75, 162, 0.25), 0 8px 40px rgba(90, 60, 120, .13);
+            background: var(--glass-bg-deep);
+        }
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--main1), var(--main2), var(--main3));
+            border-radius: 24px 24px 0 0;
+        }
+        .reason-number {
+            font-size: 2.1rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.8rem;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(118, 75, 162, 0.16);
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.04em;
+            transition: text-shadow 0.4s cubic-bezier(.5,.5,.5,1.1), font-size 0.4s cubic-bezier(.5,.5,.5,1.1);
+        }
+        .reason-text {
+            font-size: 1.13rem;
+            line-height: 1.7;
+            color: #3d3c52;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+            font-family: 'Georgia', serif;
+        }
+        .empty-reason {
+            color: #999;
+            font-style: italic;
+            border: 2px dashed #ddd;
+            background: rgba(255, 255, 255, 0.54);
+        }
+        .footer {
+            text-align: center;
+            padding: 2.7rem;
+            color: #fff;
+            font-size: 1.12rem;
+            box-shadow: 0 4px 24px rgba(102,126,234,0.09);
+            flex-shrink: 0;
+            margin-top: 3rem;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+            border-radius: 22px 22px 0 0;
+            opacity: 0.92;
+            font-family: 'Montserrat', sans-serif;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .heart, .modal-heart {
+            color: var(--heart);
+            font-size: 1.55rem;
+            animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
+        }
+        .white-heart {
+            color: #fff !important;
+            text-shadow: 0 1px 4px #8882;
+            animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
+        }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.16); } }
+        @keyframes floatHeart { 0% { transform: translateY(0) scale(1);} 100% { transform: translateY(-9px) scale(1.07);} }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(120deg, var(--main1) 40%, var(--main2) 100%);
+            background-blend-mode: overlay;
+            backdrop-filter: blur(26px) saturate(145%);
+            z-index: 1000;
+            opacity: 0; visibility: hidden;
+            transition: all 0.55s cubic-bezier(.7,.09,.38,.97);
+            display: flex; align-items: center; justify-content: center; padding: 2rem;
+            will-change: opacity;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%,rgba(240,240,255,0.91) 100%);
+            backdrop-filter: blur(29px) saturate(148%);
+            border-radius: 32px;
+            padding: 3.3rem 2.5rem 2.5rem 2.5rem;
+            max-width: 600px; width: 100%; position: relative;
+            box-shadow: 0 30px 90px rgba(90, 60, 120, .22), 0 3px 12px rgba(90, 60, 120, .13);
+            border: 2px solid rgba(180,160,255,0.16);
+            transform: scale(0.7) translateY(80px);
+            transition: all 0.55s cubic-bezier(.36,1.65,.73,1.01);
+            text-align: center; outline: 4px solid var(--secondary); outline-offset: 7px;
+            animation: modalPopIn 0.6s cubic-bezier(.49,1.65,.73,1.01) both;
+            will-change: transform, box-shadow; overflow: visible;
+        }
+        @media (min-width: 1200px) {
+            .container { max-width: 1600px; padding: 3.5rem 3rem 1.5rem 3rem; }
+            .reasons-grid { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.8rem; }
+            .header { margin: 3.5rem 4rem 2.5rem 4rem; padding: 3.3rem 3rem 2.5rem 3rem; }
+            .footer { font-size: 1.35rem; padding: 2.8rem 3rem; }
+            .modal-content { max-width: 700px; padding: 4rem 3rem 3rem 3rem; font-size: 1.2rem; }
+        }
+        @keyframes modalPopIn {
+            0% { transform: scale(0.55) translateY(120px);}
+            80% { transform: scale(1.04) translateY(-8px);}
+            100% { transform: scale(1) translateY(0);}
+        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        .modal-close {
+            position: absolute; top: 1.2rem; right: 2rem;
+            background: none; border: none; font-size: 2.2rem; color: var(--accent);
+            cursor: pointer; padding: 0.5rem; border-radius: 50%;
+            transition: all 0.3s cubic-bezier(.49,1.65,.73,1.01); line-height: 1; z-index: 2001;
+        }
+        .modal-close:hover, .modal-close:focus {
+            background: rgba(118, 75, 162, 0.10);
+            transform: rotate(90deg) scale(1.14);
+        }
+        .modal-number {
+            font-size: 3.6rem; font-weight: bold; color: var(--accent);
+            margin-bottom: 1.4rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.09);
+            position: relative; font-family: 'Montserrat', 'Georgia', serif; z-index: 5;
+        }
+        .modal-number::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%;
+            transform: translateX(-50%); width: 90px; height: 4px;
+            background: linear-gradient(90deg, var(--main1), var(--secondary)); border-radius: 2px;
+        }
+        .modal-text {
+            font-size: 1.75rem; line-height: 1.8; color: #3b3a53; margin-bottom: 2.3rem;
+            font-style: italic; position: relative; font-family: 'Georgia', serif; transition: color 0.25s;
+        }
+        .modal-counter {
+            position: absolute; top: 1.1rem; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.13), rgba(102, 126, 234, 0.11));
+            color: var(--accent); padding: 0.7rem 1.4rem; border-radius: 25px; font-size: 1.05rem;
+            font-weight: bold; backdrop-filter: blur(12px); border: 1.5px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); z-index: 10;
+        }
+        .modal-content::before {
+            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
+            background: linear-gradient(45deg, var(--main1), var(--main2), var(--main3), var(--main1));
+            border-radius: 38px; z-index: -1; opacity: 0.39; animation: borderGlow 4.5s ease-in-out infinite;
+            background-size: 340% 340%;
+        }
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; opacity: 0.24; }
+            50% { background-position: 100% 50%; opacity: 0.55; }
+        }
+        .modal-hearts {
+            display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem;
+        }
+        .modal-heart { color: var(--heart); font-size: 2rem; animation-delay: 0s; }
+        .modal-heart:nth-child(2) { animation-delay: 0.2s; }
+        .modal-heart:nth-child(3) { animation-delay: 0.4s; }
+        .modal-heart:nth-child(4) { animation-delay: 0.6s; }
+        .modal-heart:nth-child(5) { animation-delay: 0.8s; }
+        .modal-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(13px); border: none;
+            width: 54px; height: 54px; border-radius: 50%; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 2rem; color: var(--accent);
+            transition: all 0.3s cubic-bezier(.36,1.65,.73,1.01);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); z-index: 5;
+        }
+        .modal-nav:hover {
+            background: rgba(240, 240, 255, 1);
+            transform: translateY(-50%) scale(1.11);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        .modal-nav:active { transform: translateY(-50%) scale(0.97); }
+        .modal-nav.prev { left: -25px; }
+        .modal-nav.next { right: -25px; }
+        .modal-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(0.92);
+        }
+        .modal-content-wrapper { position: relative; overflow: hidden; width: 100%; height: 100%; border-radius: 19px; }
+        .modal-content-inner {
+            transition: transform 0.47s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.32s cubic-bezier(.68,.21,.36,1.06);
+            will-change: transform, opacity;
+        }
+        .modal-content-inner.swiping {
+            transition: transform 0.18s cubic-bezier(.68,.21,.36,1.06), opacity 0.13s;
+        }
+        .modal-content-inner.slide-left { animation: slideOutLeft 0.38s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .modal-content-inner.slide-right { animation: slideOutRight 0.38s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .modal-content-inner.slide-in-left { animation: slideInLeft 0.38s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .modal-content-inner.slide-in-right { animation: slideInRight 0.38s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        @keyframes slideOutLeft { 0% { transform: translateX(0) scale(1); opacity: 1; } 100% { transform: translateX(-100%) scale(0.93); opacity: 0; } }
+        @keyframes slideOutRight { 0% { transform: translateX(0) scale(1); opacity: 1; } 100% { transform: translateX(100%) scale(0.93); opacity: 0; } }
+        @keyframes slideInLeft { 0% { transform: translateX(-100%) scale(0.93); opacity: 0; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+        @keyframes slideInRight { 0% { transform: translateX(100%) scale(0.93); opacity: 0; } 100% { transform: translateX(0) scale(1); opacity: 1; } }
+        @media (max-width: 768px) {
+            .intro { margin: 0.7rem 0.2rem 1rem 0.2rem; padding: 0.7rem 0.5rem;}
+            .modal-close { top: 0.3rem; right: 0.3rem; font-size: 2.7rem; padding: 1.2rem 1.2rem 1.2rem 1.2rem; z-index: 2001; }
+            .modal-content { padding: 2.9rem 0.5rem 1.3rem 0.5rem; margin: 0.8rem; }
+            .modal-counter { top: 0.15rem; left: 50%; transform: translateX(-50%); font-size: 0.90rem; padding: 0.38rem 1rem; z-index: 10; }
+            .modal-number { font-size: 1.35rem; margin-bottom: 1.2rem; z-index: 5; position: relative; }
+            .modal-text { font-size: 1.13rem; }
+            .modal-nav { display: none; }
+            .container { padding: 0.6rem; }
+            .header { margin: 0.7rem; padding: 1.1rem 0.7rem;}
+            .footer { padding: 1.1rem 0.7rem;}
+            .divider { margin: 1rem 0; }
+            .footer { margin-top: 1rem; }
         }
 
-        /* Fokus-Styles für Tastaturnavigation */
-        *:focus {
-            outline: 3px solid var(--primary-color);
-            outline-offset: 2px;
+        /* NACHTMODUS VIOLETT, MODERN, HELLER TEXT */
+        body.sunset-mode {
+            background: linear-gradient(120deg, #24203B 0%, #3B2F4A 100%) !important;
+            color: #f3e6d6;
+            transition: background 1.2s cubic-bezier(.6,.2,.6,1.2), color 0.8s;
+        }
+        body.sunset-mode .container { background: transparent !important; }
+        body.sunset-mode .header {
+            background: rgba(56, 44, 74, 0.98) !important;
+            color: #ffeedd !important;
+            border-color: #9a7fd1 !important;
+        }
+        body.sunset-mode .intro {
+            background: rgba(85, 63, 100, 0.85) !important;
+            color: #fff7ea !important;
+            border-color: #bda5e6 !important;
+        }
+        body.sunset-mode .footer {
+            background: linear-gradient(90deg, #5d4e7e 0%, #bda5e6 100%) !important;
+            color: #fff7ea !important;
+        }
+        body.sunset-mode .reason-card {
+            background: rgba(73, 55, 103, 0.94) !important;
+            color: #fffaf7 !important;
+            border-color: #bda5e6 !important;
+            box-shadow: 0 4px 24px 0 #3e2a6d33, 0 2px 8px #bda5e622;
+        }
+        body.sunset-mode .reason-text {
+            color: #fffdfb !important;
+            text-shadow: 0 1px 6px #0002, 0 2px 8px #fff2;
+        }
+        body.sunset-mode .reason-number {
+            background: linear-gradient(90deg,#ffd6a5,#fff7ea,#bda5e6,#a18db1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 8px #fff8, 0 0 10px #ffd6a566, 0 2px 12px #fff;
+        }
+        body.sunset-mode .reason-card.big .reason-number {
+            background: linear-gradient(90deg,#ffd6a5,#fff7ea,#bda5e6,#a18db1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 8px #fff8, 0 0 10px #ffd6a566, 0 2px 12px #fff;
+            font-size: 3.2rem;
+        }
+        body.sunset-mode .modal-content {
+            background: linear-gradient(135deg, #352c50 0%, #6f5d8e 100%) !important;
+            color: #fff7ea !important;
+            border-color: #bda5e6 !important;
+        }
+        body.sunset-mode .modal-heart,
+        body.sunset-mode .white-heart {
+            color: #ffd6a5 !important;
+            text-shadow: 0 1px 6px #bda5e6;
+        }
+        body.sunset-mode .modal-counter {
+            background: linear-gradient(90deg,#6f5d8e,#ffd6a522);
+            color: #fff7ea;
+            border: 1.5px solid #bda5e6;
+        }
+        body.sunset-mode .modal-nav {
+            color: #ffd6a5;
+            background: rgba(85,63,100,0.8);
+            border-color: #bda5e6;
+        }
+        /* Hintergrund-Gradient im Nachtmodus wärmer/orangener */
+        body.sunset-mode #tsparticles {
+            background: linear-gradient(135deg, #ffb074 0%, #e7bbee 100%) !important;
+        }
+        /* Auch Modal-Hintergrund im Nachtmodus wärmer/orangener */
+        body.sunset-mode .modal-overlay {
+            background: linear-gradient(120deg, #ffb074 40%, #e7bbee 100%) !important;
+        }
+        /* X-Button im Nachtmodus komplett transparent, kein Oval */
+        body.sunset-mode .modal-close,
+        body.sunset-mode .modal-close:focus,
+        body.sunset-mode .modal-close:active,
+        body.sunset-mode .modal-close:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+            outline-offset: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+        body.sunset-mode .modal-close::-moz-focus-inner {
+            border: 0 !important;
+        }
+        /* Jubiläumsblock Styling */
+        #loveAnniversary {
+            margin-top: 2.2rem;
+            padding: 1.2rem 1rem 1rem 1rem;
+            background: rgba(255,255,255,0.13);
+            border-radius: 18px;
+            box-shadow: 0 2px 10px rgba(126,125,255,0.11);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #loveAnniversary .heart-ani {
+            color: #e74c3c;
+            font-size: 1.25em;
+            animation: heartbeat 1.7s ease-in-out infinite, floatHeart 5s infinite alternate;
+            margin-left: 0.25em;
+        }
+        /* Kalender-Block neues Design */
+        #kalenderInfos {
+            background: linear-gradient(135deg, #e0c3fc 60%, #a1c4fd 100%);
+            border-radius: 18px;
+            padding: 1.7rem 1.3rem 2.1rem 1.3rem;
+            max-width: 440px;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 4px 22px rgba(126,125,255,0.13);
+            font-size: 1.12rem;
+        }
+        .kalender-section {
+            background: rgba(255,255,255,0.90);
+            border-radius: 14px;
+            margin-bottom: 1.3rem;
+            padding: 1rem 1rem 0.6rem 1rem;
+            box-shadow: 0 2px 10px rgba(127,83,172,0.08);
+            border: 1.5px solid #e0c3fc;
+            text-align: center;
+            position: relative;
+            transition: box-shadow 0.3s;
+        }
+        .kalender-section:last-child { margin-bottom: 0; }
+        .kalender-label {
+            font-size: 1.08rem;
+            color: #7F53AC;
+            letter-spacing: 0.03em;
+            font-weight: bold;
+            margin-bottom: 0.35rem;
+        }
+        .kalender-date {
+            font-size: 1.25rem;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            color: #5d3693;
+            margin-bottom: 0.3rem;
+        }
+        .bday-me { color: #e17055; }
+        .bday-her { color: #00b894; }
+        .kalender-subinfo {
+            font-size: 1.01rem;
+            color: #57477c;
+            margin-bottom: 0.1rem;
+        }
+        .bday-section .kalender-subinfo {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Unsere gemeinsame Zeit</h1>
-            <p>Jeder Moment mit dir ist kostbar ❤</p>
-        </header>
-
-        <main>
-            <div class="counters">
-                <div class="counter-card" role="article" aria-labelledby="anniversary-title">
-                    <h2 id="anniversary-title">Unser Jahrestag</h2>
-                    <div class="counter-value" id="anniversary-counter"></div>
-                    <div class="counter-label">21. Juni 2025</div>
-                    <div class="counter-details" id="anniversary-details"></div>
-                </div>
-
-                <div class="counter-card" role="article" aria-labelledby="olivia-birthday">
-                    <h2 id="olivia-birthday">Olivias Geburtstag</h2>
-                    <div class="counter-value" id="olivia-counter"></div>
-                    <div class="counter-label">3. November</div>
-                    <div class="counter-details" id="olivia-details"></div>
-                </div>
-
-                <div class="counter-card" role="article" aria-labelledby="luca-birthday">
-                    <h2 id="luca-birthday">Lucas Geburtstag</h2>
-                    <div class="counter-value" id="luca-counter"></div>
-                    <div class="counter-label">25. November</div>
-                    <div class="counter-details" id="luca-details"></div>
+<div id="tsparticles"></div>
+<div class="floating-buttons">
+    <button id="calendarBtn" class="mini-btn" title="Kalender anzeigen 📅">📅</button>
+    <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
+    <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
+</div>
+<div class="container" id="mainContainer">
+    <div class="header">
+        <h1>#50 Gründe warum ich dich liebe</h1>
+    </div>
+    <div class="intro">
+       Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span>
+    </div>
+    <hr class="divider">
+    <div class="reasons-grid" id="reasonsGrid"></div>
+</div>
+<!-- Kalender Container -->
+<div class="container" id="calendarContainer" style="display:none">
+    <div class="header">
+        <h1>📅 Kalender & Jubiläen</h1>
+    </div>
+    <div class="intro" style="margin-bottom:2rem;">
+        Hier findest du besondere Daten von uns beiden!
+        <span class="heart">♥</span>
+    </div>
+    <div id="kalenderInfos">
+        <div class="kalender-section">
+            <div class="kalender-label"><b>Unser Jahrestag</b></div>
+            <div class="kalender-date">21.06.2025</div>
+            <div class="kalender-subinfo">
+                <span id="kalenderAnniversaryCounter"></span>
+            </div>
+        </div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Luca's Geburtstag</b></div>
+            <div class="kalender-date bday-me">25.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="myBdayCountdown"></span>
+            </div>
+        </div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Olivia's Geburtstag</b></div>
+            <div class="kalender-date bday-her">03.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="herBdayCountdown"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
+    <div id="loveAnniversary">
+      <div style="font-size:1.19rem;font-weight:bold;color:#ffd6a5;">Unser Jahrestag</div>
+      <div style="margin:0.2rem 0;">
+        <span style="font-size:1.1rem;">Zusammen seit: <b>21.06.2025</b></span>
+      </div>
+      <div id="anniversaryCounter" style="margin-top:0.5rem;font-size:1.14rem;"></div>
+    </div>
+</div>
+<div class="modal-overlay" id="modalOverlay" tabindex="-1">
+    <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
+        <div class="modal-counter" id="modalCounter">1 / 50</div>
+        <div class="modal-content-wrapper">
+            <div class="modal-content-inner" id="modalContentInner">
+                <div class="modal-number" id="modalNumber">#1</div>
+                <div class="modal-text" id="modalText">Grund Text</div>
+                <div class="modal-hearts">
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
                 </div>
             </div>
-        </main>
+        </div>
+        <button class="modal-nav prev" id="modalPrev" aria-label="Vorheriger Grund">‹</button>
+        <button class="modal-nav next" id="modalNext" aria-label="Nächster Grund">›</button>
     </div>
+</div>
+<script>
+tsParticles.load("tsparticles", {
+  fullScreen: { enable: false },
+  background: { color: "transparent" },
+  particles: {
+    number: { value: 70, density: { enable: true, area: 900 } },
+    color: { value: ["#e0c3fc", "#8ec5fc", "#a1c4fd"] },
+    shape: { type: "circle" },
+    opacity: { value: 0.19, anim: { enable: true, speed: 0.8, opacity_min: 0.06, sync: false } },
+    size: { value: { min: 2, max: 7 }, anim: { enable: true, speed: 5, size_min: 1, sync: false } },
+    move: { enable: true, speed: 1.3, direction: "none", outModes: "out", random: true }
+  },
+  interactivity: {
+    events: { onHover: { enable: true, mode: "bubble" }, resize: true },
+    modes: { bubble: { distance: 84, duration: 0.6, size: 12, opacity: 0.45 } }
+  }
+});
+document.title = "#50 Gründe warum ich dich liebe";
+const defaultReasons = {
+    1: "Wegen deinem wunderschönen Lächeln",
+    2: "Wegen deinen hübschen tiefen Augen",
+    3: "Wegen der Art wie du deinen Körper bewegst",
+    4: "Wegen deiner weichen Haare",
+    5: "Wegen der Art mit der du Sprichst",
+    6: "Wegen deiner Leidenschaft für Sachen, die du liebst",
+    7: "Wegen deiner Begeisterung für kleine Dinge",
+    8: "Weil kein Bild dir je gerecht werden könnte, ich speichere sie trotzdem alle",
+    9: "Weil du mein Kopfkino bist",
+    10: "Weil du mich immer beim Wort nimmst",
+    11: "Weil du soooo gut riechst",
+    12: "Weil du selbst süß bist, wenn du am schmollen bist",
+    13: "Weil du das süßeste Grinsen auf der Welt hast",
+    14: "Weil deine Augen leuchten, wenn du von etwas sprichst, das du liebst",
+    15: "Weil mich deine Berührungen manchmal echt verrückt machen",
+    16: "Weil dein Körper für mich perfekt ist, nicht im Vergleich, sondern weil er deiner ist",
+    17: "Weil deine Lippen so aussehen, als wären sie dafür gemacht, dass ich sie küsse",
+    18: "Weil ich jedes Muttermal, jede Narbe oder Markierung an dir liebe",
+    19: "Wegen deiner Stimme, besonders wenn du flüsterst",
+    20: "Wegen deiner sanften Art",
+    21: "Weil du mich so ansiehst, als wäre ich das Beste auf der Welt",
+    22: "Weil du mir zuhörst, wirklich zuhörst",
+    23: "Weil du über meine dummen Witze lachst",
+    24: "Weil du so unendlich geduldig mit mir bist",
+    25: "Weil du mich mit einem Blick beruhigen kannst",
+    26: "Weil ich mich bei dir sicher fühle",
+    27: "Weil du dich für mich freust, wenn mir was gelingt",
+    28: "Weil du mich immer streichelst",
+    29: "Weil dein Herz trotz deiner Vergangenheit noch so viel Liebe für mich übrig hat",
+    30: "Weil ich mich immer aus neue freue dich zu sehen",
+    31: "Weil ich mich bei dir nicht anpassen muss",
+    32: "Weil du mich ernst nimmst",
+    33: "Weil du mich besser machst ohne Zwang",
+    34: "Weil du meine Art Mensch bist",
+    35: "Weil du versuchst, immer ehrlich mit mir zu sein",
+    36: "Weil du eine der intelligentesten Personen bist, die ich je kennengelernt habe",
+    37: "Weil du mir verzeihst, wenn ich Mist baue",
+    38: "Weil du meine Grenzen respektierst",
+    39: "Weil du mich nur mit deiner Stimme zur Ruhe bringen kannst",
+    40: "Weil selbst das Schweigen zwischen uns angenehm ist",
+    41: "Weil du merkst, wenn es mir schlecht geht",
+    42: "Weil du meine dummen Aktionen nicht durchgehen lässt",
+    43: "Weil du Wunden heilst, von denen du nichts weißt",
+    44: "Weil ich dich vermisse, sobald du weg bist",
+    45: "Weil ich dir auch meine Fehler gestehen kann",
+    46: "Weil du mein Herz schneller schlagen lässt",
+    47: "Weil ich nicht aufhören kann, an dich zu denken",
+    48: "Weil mich selbst deine Anwesenheit glücklich macht",
+    49: "Weil du alles bist, was ich nie gesucht habe, aber immer gebraucht habe",
+    50: "Weil du dir die Zeit genommen hast, diese Liste durchzulesen"
+};
+let reasons = {...defaultReasons};
+let currentModalIndex = 1;
+let availableReasons = [];
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalNumber = document.getElementById('modalNumber');
+const modalText = document.getElementById('modalText');
+const modalCounter = document.getElementById('modalCounter');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+const modalContentInner = document.getElementById('modalContentInner');
+let startX = 0, currentX = 0, isDragging = false, hasTouch = 'ontouchstart' in window;
+let cuddleActive = false;
+let sunsetMode = false;
 
-    <!-- Spotify Section -->
-<section class="spotify-section" aria-labelledby="spotify-title">
-    <h2 id="spotify-title">Unsere Playlist ♫</h2>
-    <div class="spotify-container">
-        <iframe 
-            style="border-radius:12px" 
-            src="https://open.spotify.com/embed/playlist/1FQ8jtVnCo8uGbMHMhLc4F" 
-            width="100%" 
-            height="352" 
-            frameborder="0" 
-            allowfullscreen="" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy">
-        </iframe>
-    </div>
-</section>
-
-    <footer>
-        <p>Mit Liebe erstellt ❤</p>
-    </footer>
-
-    <script>
-        // Zieldatum für den Jahrestag (21. Juni 2025)
-        const ANNIVERSARY_DATE = new Date('2025-06-21T10:00:00');
-        
-        function updateCounters() {
-            const now = new Date();
-            
-            // Jahrestag Counter
-            const anniversaryDiff = ANNIVERSARY_DATE - now;
-            const anniversaryCounter = document.getElementById('anniversary-counter');
-            const anniversaryDetails = document.getElementById('anniversary-details');
-            
-            if (anniversaryDiff > 0) {
-                const { days, hours, minutes, seconds } = calculateTimeUnits(anniversaryDiff);
-                anniversaryCounter.textContent = `Noch ${days} Tage`;
-                anniversaryDetails.textContent = `${hours} Stunden, ${minutes} Minuten und ${seconds} Sekunden`;
-            } else {
-                anniversaryCounter.textContent = "Der große Tag ist da! ❤";
-                anniversaryDetails.textContent = "";
-            }
-
-            // Olivias Geburtstag
-            updateBirthdayCounter('olivia-counter', 'olivia-details', 11, 3, now);
-
-            // Lucas Geburtstag
-            updateBirthdayCounter('luca-counter', 'luca-details', 11, 25, now);
+function generateReasonsGrid() {
+    const grid = document.getElementById('reasonsGrid');
+    grid.innerHTML = '';
+    availableReasons = [];
+    let idx = 0;
+    for (let i = 1; i <= 50; i++) {
+        const card = document.createElement('div');
+        const isEmpty = !reasons[i];
+        card.className = `reason-card${isEmpty ? ' empty-reason' : ''}`;
+        card.tabIndex = 0;
+        card.innerHTML = `
+            <div class="reason-number">#${i}</div>
+            <div class="reason-text" data-reason="${i}">
+                ${reasons[i] || ''}
+            </div>
+        `;
+        card.style.setProperty('--i', idx);
+        if (cuddleActive) card.classList.add("big");
+        if (reasons[i]) {
+            availableReasons.push(i);
+            card.addEventListener('click', () => openModal(i));
+            card.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') openModal(i);
+            });
+            grid.appendChild(card);
+            idx++;
         }
-
-        function updateBirthdayCounter(counterId, detailsId, month, day, now) {
-            let birthday = new Date(now.getFullYear(), month - 1, day);
-            if (birthday < now) {
-                birthday.setFullYear(birthday.getFullYear() + 1);
-            }
-            
-            const diff = birthday - now;
-            const counter = document.getElementById(counterId);
-            const details = document.getElementById(detailsId);
-            
-            const { days, hours, minutes, seconds } = calculateTimeUnits(diff);
-            counter.textContent = `Noch ${days} Tage`;
-            details.textContent = `${hours} Stunden, ${minutes} Minuten und ${seconds} Sekunden`;
+    }
+    // Bleibt gekuschelt, wenn cuddleActive true
+    if (cuddleActive) grid.classList.add('cuddle');
+    else grid.classList.remove('cuddle');
+}
+function openModal(number) {
+    currentModalIndex = availableReasons.indexOf(number);
+    updateModalContent();
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    modalOverlay.focus();
+}
+function updateModalContent() {
+    const reasonNumber = availableReasons[currentModalIndex];
+    const reasonText = reasons[reasonNumber];
+    modalNumber.textContent = `#${reasonNumber}`;
+    modalText.textContent = reasonText;
+    modalCounter.textContent = `${currentModalIndex + 1} / ${availableReasons.length}`;
+    modalPrev.disabled = currentModalIndex === 0;
+    modalNext.disabled = currentModalIndex === availableReasons.length - 1;
+    modalContentInner.style.transform = 'translateX(0) scale(1)';
+    modalContentInner.style.opacity = '1';
+    modalContentInner.classList.remove('slide-left', 'slide-right', 'slide-in-left', 'slide-in-right');
+}
+function navigateModal(direction) {
+    const newIndex = currentModalIndex + direction;
+    if (newIndex >= 0 && newIndex < availableReasons.length) {
+        const isNext = direction > 0;
+        modalContentInner.style.transform = 'translateX(0) scale(1)';
+        modalContentInner.style.opacity = '1';
+        modalContentInner.classList.add(isNext ? 'slide-left' : 'slide-right');
+        setTimeout(() => {
+            currentModalIndex = newIndex;
+            updateModalContent();
+            modalContentInner.style.transform = 'translateX(0) scale(1)';
+            modalContentInner.style.opacity = '1';
+            modalContentInner.classList.remove('slide-left', 'slide-right');
+            modalContentInner.classList.add(isNext ? 'slide-in-right' : 'slide-in-left');
+            setTimeout(() => {
+                modalContentInner.classList.remove('slide-in-left', 'slide-in-right');
+                modalContentInner.style.transform = 'translateX(0) scale(1)';
+                modalContentInner.style.opacity = '1';
+            }, 380);
+        }, 380);
+    }
+}
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+function handleTouchStart(e) {
+    if (!hasTouch) return;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    modalContentInner.classList.add('swiping');
+}
+function handleTouchMove(e) {
+    if (!isDragging || !hasTouch) return;
+    e.preventDefault();
+    currentX = e.touches[0].clientX;
+    const diffX = currentX - startX;
+    const maxSwipe = 120;
+    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
+    const scale = 1 - Math.abs(boundedDiff) / 500;
+    const opacity = 1 - Math.abs(boundedDiff) / 300;
+    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
+    modalContentInner.style.opacity = opacity;
+}
+function handleTouchEnd(e) {
+    if (!isDragging || !hasTouch) return;
+    isDragging = false;
+    modalContentInner.classList.remove('swiping');
+    const diffX = currentX - startX;
+    const threshold = 60;
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0 && currentModalIndex > 0) {
+            navigateModal(-1);
+        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
+            navigateModal(1);
+        } else {
+            resetModalTransform();
         }
-
-        function calculateTimeUnits(milliseconds) {
-            const seconds = Math.floor((milliseconds / 1000) % 60);
-            const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
-            const hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
-            const days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
-            
-            return { days, hours, minutes, seconds };
+    } else {
+        resetModalTransform();
+    }
+    startX = 0;
+    currentX = 0;
+}
+function handleMouseDown(e) {
+    if (hasTouch) return;
+    startX = e.clientX;
+    isDragging = true;
+    modalContentInner.classList.add('swiping');
+    e.preventDefault();
+}
+function handleMouseMove(e) {
+    if (!isDragging || hasTouch) return;
+    currentX = e.clientX;
+    const diffX = currentX - startX;
+    const maxSwipe = 120;
+    const boundedDiff = Math.max(-maxSwipe, Math.min(maxSwipe, diffX));
+    const scale = 1 - Math.abs(boundedDiff) / 500;
+    const opacity = 1 - Math.abs(boundedDiff) / 300;
+    modalContentInner.style.transform = `translateX(${boundedDiff}px) scale(${scale})`;
+    modalContentInner.style.opacity = opacity;
+}
+function handleMouseUp(e) {
+    if (!isDragging || hasTouch) return;
+    isDragging = false;
+    modalContentInner.classList.remove('swiping');
+    const diffX = currentX - startX;
+    const threshold = 60;
+    if (Math.abs(diffX) > threshold) {
+        if (diffX > 0 && currentModalIndex > 0) {
+            navigateModal(-1);
+        } else if (diffX < 0 && currentModalIndex < availableReasons.length - 1) {
+            navigateModal(1);
+        } else {
+            resetModalTransform();
         }
-        <!-- Spotify Section -->
+    } else {
+        resetModalTransform();
+    }
+    startX = 0;
+    currentX = 0;
+}
+function resetModalTransform() {
+    modalContentInner.style.transition = '';
+    modalContentInner.style.transform = 'translateX(0) scale(1)';
+    modalContentInner.style.opacity = '1';
+}
+modalClose.addEventListener('click', closeModal);
+modalPrev.addEventListener('click', () => navigateModal(-1));
+modalNext.addEventListener('click', () => navigateModal(1));
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+        closeModal();
+    }
+});
+modalContentInner.addEventListener('touchstart', handleTouchStart, { passive: false });
+modalContentInner.addEventListener('touchmove', handleTouchMove, { passive: false });
+modalContentInner.addEventListener('touchend', handleTouchEnd, { passive: false });
+modalContentInner.addEventListener('mousedown', handleMouseDown);
+document.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('mouseup', handleMouseUp);
+document.addEventListener('keydown', (e) => {
+    if (modalOverlay.classList.contains('active')) {
+        switch(e.key) {
+            case 'Escape': closeModal(); break;
+            case 'ArrowLeft': if (currentModalIndex > 0) navigateModal(-1); break;
+            case 'ArrowRight': if (currentModalIndex < availableReasons.length - 1) navigateModal(1); break;
+        }
+    }
+});
 
+// Shuffle-Button: 50. Grund bleibt immer an letzter Stelle
+document.getElementById('shuffleBtn').onclick = function() {
+    availableReasons = [];
+    let keys = Object.keys(defaultReasons).filter(k => k != "50");
+    keys = keys.sort(() => Math.random() - 0.5);
+    reasons = {};
+    keys.forEach((k, i) => reasons[i + 1] = defaultReasons[k]);
+    reasons[50] = defaultReasons[50];
+    cuddleActive = false;
+    document.getElementById('reasonsGrid').classList.remove('cuddle');
+    generateReasonsGrid();
+};
 
-        // Update counters every second
-        updateCounters();
-        setInterval(updateCounters, 1000);
+// Nachtmodus mit warmem, augenschonendem Farbdesign
+document.getElementById('sunsetModeBtn').onclick = function() {
+    sunsetMode = !sunsetMode;
+    document.body.classList.toggle('sunset-mode', sunsetMode);
+    document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "☀️" : "🌅";
+    document.getElementById('sunsetModeBtn').setAttribute('title', sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅");
+    // Entfernt "Kuscheln" falls aktiviert, weil der Modus wichtiger ist
+    if (sunsetMode && cuddleActive) {
+        cuddleActive = false;
+        document.getElementById('reasonsGrid').classList.remove('cuddle');
+        generateReasonsGrid();
+    }
+};
 
-        // Announce updates for screen readers
-        setInterval(() => {
-            const announcer = document.createElement('div');
-            announcer.setAttribute('aria-live', 'polite');
-            announcer.classList.add('sr-only');
-            document.body.appendChild(announcer);
-            setTimeout(() => announcer.remove(), 1000);
-        }, 60000);
-    </script>
+generateReasonsGrid();
+
+/* Jubiläums-/Kalenderfunktion */
+function updateAnniversary() {
+    // Start-Datum: 21.06.2025
+    const start = new Date(2025, 5, 21); // 0-basiert: 5 = Juni
+    const now = new Date();
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let text = "Wir sind seit ";
+    if (years > 0) text += years + (years === 1 ? " Jahr, " : " Jahren, ");
+    if (months > 0) text += months + (months === 1 ? " Monat, " : " Monaten, ");
+    text += days + (days === 1 ? " Tag" : " Tagen");
+    text += ' zusammen <span class="heart-ani">♥</span>';
+
+    document.getElementById("anniversaryCounter").innerHTML = text;
+}
+updateAnniversary();
+setInterval(updateAnniversary, 8 * 60 * 60 * 1000); // alle 8h aktualisieren
+
+// --- KALENDER BUTTON & KALENDER-ANSICHT ---
+const mainContainer = document.getElementById('mainContainer');
+const calendarContainer = document.getElementById('calendarContainer');
+const calendarBtn = document.getElementById('calendarBtn');
+
+function showCalendarView() {
+    mainContainer.style.display = 'none';
+    calendarContainer.style.display = '';
+    updateCalendarInfo();
+    calendarBtn.textContent = "🏠";
+    calendarBtn.setAttribute('title', 'Zurück zur Hauptseite');
+    document.getElementById('mainFooter').style.display = 'none'; // Footer ausblenden
+}
+function showMainView() {
+    mainContainer.style.display = '';
+    calendarContainer.style.display = 'none';
+    calendarBtn.textContent = "📅";
+    calendarBtn.setAttribute('title', 'Kalender anzeigen 📅');
+    document.getElementById('mainFooter').style.display = ''; // Footer wieder anzeigen
+    // ...
+}
+calendarBtn.onclick = function() {
+    if (calendarContainer.style.display === '' || calendarContainer.style.display === 'block') {
+        showMainView();
+    } else {
+        showCalendarView();
+    }
+};
+
+// Geburtstags-Countdown modernisiert
+function birthdayCountdown(day, month) {
+    const now = new Date();
+    let next = new Date(now.getFullYear(), month - 1, day);
+    if (
+        now.getMonth() + 1 > month ||
+        (now.getMonth() + 1 === month && now.getDate() > day)
+    ) {
+        next.setFullYear(now.getFullYear() + 1);
+    }
+    const diff = Math.ceil((next - now) / 1000 / 60 / 60 / 24);
+    if (diff === 0) return "🎉 Heute!";
+    if (diff === 1) return "in 1 Tag";
+    return `in ${diff} Tagen`;
+}
+
+// Berechnung für Kalender-Ansicht
+function updateCalendarInfo() {
+    // Jubiläum
+    const start = new Date(2025, 5, 21); // 21.06.2025
+    const now = new Date();
+    let years = now.getFullYear() - start.getFullYear();
+    let months = now.getMonth() - start.getMonth();
+    let days = now.getDate() - start.getDate();
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+    let text = "";
+    if (years > 0) text += years + (years === 1 ? " Jahr, " : " Jahren, ");
+    if (months > 0) text += months + (months === 1 ? " Monat, " : " Monaten, ");
+    text += days + (days === 1 ? " Tag" : " Tagen");
+    text += ' zusammen <span class="heart-ani">♥</span>';
+    document.getElementById('kalenderAnniversaryCounter').innerHTML = text;
+
+    document.getElementById('myBdayCountdown').textContent = birthdayCountdown(25, 11);
+    document.getElementById('herBdayCountdown').textContent = birthdayCountdown(3, 11);
+}
+updateCalendarInfo();
+</script>
 </body>
 </html>
