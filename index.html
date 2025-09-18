@@ -6,7 +6,6 @@
     <title>Unsere gemeinsame Seite</title>
     <style>
         :root {
-            /* Sanfte, augenfreundliche Farben */
             --primary-color: #f8b4d9;  /* Sanftes Rosa */
             --secondary-color: #e2e8f0; /* Helles Grau */
             --background-color: #ffffff;
@@ -43,13 +42,36 @@
             margin-bottom: 2rem;
         }
 
-        /* Beziehungscounter Styling */
-        .counter {
+        /* Counter Section Styling */
+        .counters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .counter-card {
             background-color: var(--secondary-color);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
-            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .counter-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .counter-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: var(--accent-color);
+        }
+
+        .counter-details {
+            font-size: 0.9rem;
+            color: var(--text-color);
         }
 
         /* Fotogalerie Styling */
@@ -122,11 +144,26 @@
     </header>
 
     <div class="container">
-        <!-- Beziehungscounter -->
-        <section class="counter" aria-labelledby="counter-title">
-            <h2 id="counter-title">Unsere gemeinsame Zeit</h2>
-            <div id="relationship-counter">
-                Wir sind zusammen seit: <span id="days">0</span> Tagen
+        <!-- Counter Section -->
+        <section class="counters" aria-labelledby="counters-title">
+            <h2 id="counters-title" class="sr-only">Unsere wichtigen Daten</h2>
+            
+            <div class="counter-card" role="article" aria-labelledby="anniversary-title">
+                <h2 id="anniversary-title">Unser Jahrestag</h2>
+                <div class="counter-value" id="anniversary-counter">Wird berechnet...</div>
+                <div class="counter-details" id="anniversary-details">21. Juni 2025</div>
+            </div>
+
+            <div class="counter-card" role="article" aria-labelledby="olivia-title">
+                <h2 id="olivia-title">Olivias Geburtstag</h2>
+                <div class="counter-value" id="olivia-counter">Wird berechnet...</div>
+                <div class="counter-details" id="olivia-details">3. November</div>
+            </div>
+
+            <div class="counter-card" role="article" aria-labelledby="luca-title">
+                <h2 id="luca-title">Lucas Geburtstag</h2>
+                <div class="counter-value" id="luca-counter">Wird berechnet...</div>
+                <div class="counter-details" id="luca-details">25. November</div>
             </div>
         </section>
 
@@ -159,13 +196,60 @@
     </div>
 
     <script>
-        // Beziehungscounter Funktionalität
-        function updateCounter() {
-            const startDate = new Date('2024-01-01'); // Hier das Startdatum eintragen
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('days').textContent = diffDays;
+        // Counter Funktionalität
+        function updateCounters() {
+            const now = new Date();
+            
+            // Jahrestag Counter - Nächster Jahrestag berechnen
+            const anniversary = new Date('2025-06-21T00:00:00');
+            const anniversaryDiff = anniversary - now;
+            const anniversaryCounter = document.getElementById('anniversary-counter');
+            
+            if (anniversaryDiff > 0) {
+                const timeUnits = calculateTimeUnits(anniversaryDiff);
+                anniversaryCounter.textContent = `Noch ${timeUnits.days} Tage`;
+                document.getElementById('anniversary-details').textContent = 
+                    `${timeUnits.hours} Stunden, ${timeUnits.minutes} Minuten`;
+            } else {
+                const daysSince = Math.floor(Math.abs(anniversaryDiff) / (1000 * 60 * 60 * 24));
+                anniversaryCounter.textContent = `${daysSince} Tage seit unserem Jahrestag`;
+                document.getElementById('anniversary-details').textContent = 
+                    `Der nächste Jahrestag kommt bald!`;
+            }
+
+            // Olivias Geburtstag
+            updateBirthdayCounter('olivia', 11, 3, now);
+
+            // Lucas Geburtstag
+            updateBirthdayCounter('luca', 11, 25, now);
+        }
+
+        function updateBirthdayCounter(id, month, day, now) {
+            let birthday = new Date(now.getFullYear(), month - 1, day);
+            if (birthday < now) {
+                birthday.setFullYear(birthday.getFullYear() + 1);
+            }
+            
+            const diff = birthday - now;
+            const timeUnits = calculateTimeUnits(diff);
+            document.getElementById(`${id}-counter`).textContent = 
+                `Noch ${timeUnits.days} Tage`;
+            document.getElementById(`${id}-details`).textContent = 
+                `${timeUnits.hours} Stunden, ${timeUnits.minutes} Minuten`;
+        }
+
+        function calculateTimeUnits(milliseconds) {
+            const seconds = Math.floor(milliseconds / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            return {
+                days: days,
+                hours: hours % 24,
+                minutes: minutes % 60,
+                seconds: seconds % 60
+            };
         }
 
         // Nachrichtenbrett Funktionalität
@@ -178,10 +262,8 @@
                 messageDiv.className = 'message';
                 messageDiv.textContent = input.value;
                 
-                // Füge neue Nachricht am Anfang der Liste ein
                 messageList.insertBefore(messageDiv, messageList.firstChild);
                 
-                // Speichere Nachricht im localStorage
                 const messages = JSON.parse(localStorage.getItem('messages') || '[]');
                 messages.unshift({
                     text: input.value,
@@ -193,7 +275,6 @@
             }
         }
 
-        // Lade gespeicherte Nachrichten beim Start
         function loadMessages() {
             const messages = JSON.parse(localStorage.getItem('messages') || '[]');
             const messageList = document.getElementById('message-list');
@@ -206,11 +287,12 @@
             });
         }
 
-        // Initialisiere die Seite
-        updateCounter();
+        // Initialisierung
+        updateCounters();
         loadMessages();
-        // Aktualisiere den Counter jede Minute
-        setInterval(updateCounter, 60000);
+        
+        // Update Counter jede Sekunde
+        setInterval(updateCounters, 1000);
     </script>
 </body>
 </html>
