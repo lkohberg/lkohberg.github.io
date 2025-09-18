@@ -3,57 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unsere gemeinsame Seite</title>
+    <title>Unsere gemeinsame Zeit ❤</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #f8b4d9;  /* Sanftes Rosa */
-            --secondary-color: #e2e8f0; /* Helles Grau */
-            --background-color: #ffffff;
-            --text-color: #2d3748;
-            --accent-color: #9f7aea;   /* Sanftes Violett */
+            --primary-color: #ff4b6e;
+            --secondary-color: #4b6eff;
+            --background-color: #fafafa;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
-        }
-
-        /* Verbesserte Barrierefreiheit */
-        *:focus {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 2px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            text-align: center;
             padding: 2rem;
-            margin-bottom: 2rem;
+            flex: 1;
         }
 
-        /* Counter Section Styling */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
         .counters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 2rem;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .counter-card {
-            background-color: var(--secondary-color);
+            background: white;
+            border-radius: 15px;
             padding: 2rem;
-            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -62,237 +68,211 @@
             transform: translateY(-5px);
         }
 
-        .counter-value {
+        .counter-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
             font-size: 1.5rem;
-            font-weight: bold;
-            margin: 1rem 0;
-            color: var(--accent-color);
+        }
+
+        .counter-value {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         .counter-details {
             font-size: 0.9rem;
-            color: var(--text-color);
+            color: #666;
+            margin-top: 1rem;
         }
 
-        /* Fotogalerie Styling */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            padding: 1rem;
+        .counter-label {
+            color: #666;
+            font-size: 0.9rem;
         }
 
-        .gallery img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
+        /* Spotify Section Styling */
+.spotify-section {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
 
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
+.spotify-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
 
-        /* Nachrichten Board Styling */
-        .message-board {
-            background-color: var(--secondary-color);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
+.spotify-container:hover {
+    transform: translateY(-5px);
+}
 
-        .message-input {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
-        }
-
-        .message-list {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .message {
-            background-color: white;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        button {
-            background-color: var(--accent-color);
+        footer {
+            background-color: var(--primary-color);
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
         }
 
-        button:hover {
-            opacity: 0.9;
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .counter-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Barrierefreiheit */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Fokus-Styles für Tastaturnavigation */
+        *:focus {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Unsere gemeinsame Seite ❤️</h1>
-    </header>
-
     <div class="container">
-        <!-- Counter Section -->
-        <section class="counters" aria-labelledby="counters-title">
-            <h2 id="counters-title" class="sr-only">Unsere wichtigen Daten</h2>
-            
-            <div class="counter-card" role="article" aria-labelledby="anniversary-title">
-                <h2 id="anniversary-title">Unser Jahrestag</h2>
-                <div class="counter-value" id="anniversary-counter">Wird berechnet...</div>
-                <div class="counter-details" id="anniversary-details">21. Juni 2025</div>
-            </div>
+        <header class="header">
+            <h1>Unsere gemeinsame Zeit</h1>
+            <p>Jeder Moment mit dir ist kostbar ❤</p>
+        </header>
 
-            <div class="counter-card" role="article" aria-labelledby="olivia-title">
-                <h2 id="olivia-title">Olivias Geburtstag</h2>
-                <div class="counter-value" id="olivia-counter">Wird berechnet...</div>
-                <div class="counter-details" id="olivia-details">3. November</div>
-            </div>
+        <main>
+            <div class="counters">
+                <div class="counter-card" role="article" aria-labelledby="anniversary-title">
+                    <h2 id="anniversary-title">Unser Jahrestag</h2>
+                    <div class="counter-value" id="anniversary-counter"></div>
+                    <div class="counter-label">21. Juni 2025</div>
+                    <div class="counter-details" id="anniversary-details"></div>
+                </div>
 
-            <div class="counter-card" role="article" aria-labelledby="luca-title">
-                <h2 id="luca-title">Lucas Geburtstag</h2>
-                <div class="counter-value" id="luca-counter">Wird berechnet...</div>
-                <div class="counter-details" id="luca-details">25. November</div>
-            </div>
-        </section>
+                <div class="counter-card" role="article" aria-labelledby="olivia-birthday">
+                    <h2 id="olivia-birthday">Olivias Geburtstag</h2>
+                    <div class="counter-value" id="olivia-counter"></div>
+                    <div class="counter-label">3. November</div>
+                    <div class="counter-details" id="olivia-details"></div>
+                </div>
 
-        <!-- Fotogalerie -->
-        <section class="gallery-section" aria-labelledby="gallery-title">
-            <h2 id="gallery-title">Unsere Erinnerungen</h2>
-            <div class="gallery">
-                <!-- Hier können Beispielbilder eingefügt werden -->
-                <img src="placeholder1.jpg" alt="Beschreibung des Bildes 1">
-                <img src="placeholder2.jpg" alt="Beschreibung des Bildes 2">
-                <img src="placeholder3.jpg" alt="Beschreibung des Bildes 3">
+                <div class="counter-card" role="article" aria-labelledby="luca-birthday">
+                    <h2 id="luca-birthday">Lucas Geburtstag</h2>
+                    <div class="counter-value" id="luca-counter"></div>
+                    <div class="counter-label">25. November</div>
+                    <div class="counter-details" id="luca-details"></div>
+                </div>
             </div>
-        </section>
-
-        <!-- Nachrichten Board -->
-        <section class="message-board" aria-labelledby="message-title">
-            <h2 id="message-title">Unsere Nachrichten</h2>
-            <div class="message-input-container">
-                <textarea 
-                    class="message-input" 
-                    placeholder="Hinterlasse eine süße Nachricht..."
-                    aria-label="Nachricht eingeben"
-                ></textarea>
-                <button onclick="addMessage()" aria-label="Nachricht senden">Senden</button>
-            </div>
-            <div class="message-list" id="message-list">
-                <!-- Nachrichten werden hier dynamisch eingefügt -->
-            </div>
-        </section>
+        </main>
     </div>
 
+    <!-- Spotify Section -->
+<section class="spotify-section" aria-labelledby="spotify-title">
+    <h2 id="spotify-title">Unsere Playlist ♫</h2>
+    <div class="spotify-container">
+        <iframe 
+            style="border-radius:12px" 
+            src="https://open.spotify.com/embed/playlist/1FQ8jtVnCo8uGbMHMhLc4F" 
+            width="100%" 
+            height="352" 
+            frameborder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+    <footer>
+        <p>Mit Liebe erstellt ❤</p>
+    </footer>
+
     <script>
-        // Counter Funktionalität
+        // Zieldatum für den Jahrestag (21. Juni 2025)
+        const ANNIVERSARY_DATE = new Date('2025-06-21T00:00:00');
+        
         function updateCounters() {
             const now = new Date();
             
-            // Jahrestag Counter - Nächster Jahrestag berechnen
-            const anniversary = new Date('2025-06-21T00:00:00');
-            const anniversaryDiff = anniversary - now;
+            // Jahrestag Counter
+            const anniversaryDiff = ANNIVERSARY_DATE - now;
             const anniversaryCounter = document.getElementById('anniversary-counter');
+            const anniversaryDetails = document.getElementById('anniversary-details');
             
             if (anniversaryDiff > 0) {
-                const timeUnits = calculateTimeUnits(anniversaryDiff);
-                anniversaryCounter.textContent = `Noch ${timeUnits.days} Tage`;
-                document.getElementById('anniversary-details').textContent = 
-                    `${timeUnits.hours} Stunden, ${timeUnits.minutes} Minuten`;
+                const { days, hours, minutes, seconds } = calculateTimeUnits(anniversaryDiff);
+                anniversaryCounter.textContent = `Noch ${days} Tage`;
+                anniversaryDetails.textContent = `${hours} Stunden, ${minutes} Minuten und ${seconds} Sekunden`;
             } else {
-                const daysSince = Math.floor(Math.abs(anniversaryDiff) / (1000 * 60 * 60 * 24));
-                anniversaryCounter.textContent = `${daysSince} Tage seit unserem Jahrestag`;
-                document.getElementById('anniversary-details').textContent = 
-                    `Der nächste Jahrestag kommt bald!`;
+                anniversaryCounter.textContent = "Der große Tag ist da! ❤";
+                anniversaryDetails.textContent = "";
             }
 
             // Olivias Geburtstag
-            updateBirthdayCounter('olivia', 11, 3, now);
+            updateBirthdayCounter('olivia-counter', 'olivia-details', 11, 3, now);
 
             // Lucas Geburtstag
-            updateBirthdayCounter('luca', 11, 25, now);
+            updateBirthdayCounter('luca-counter', 'luca-details', 11, 25, now);
         }
 
-        function updateBirthdayCounter(id, month, day, now) {
+        function updateBirthdayCounter(counterId, detailsId, month, day, now) {
             let birthday = new Date(now.getFullYear(), month - 1, day);
             if (birthday < now) {
                 birthday.setFullYear(birthday.getFullYear() + 1);
             }
             
             const diff = birthday - now;
-            const timeUnits = calculateTimeUnits(diff);
-            document.getElementById(`${id}-counter`).textContent = 
-                `Noch ${timeUnits.days} Tage`;
-            document.getElementById(`${id}-details`).textContent = 
-                `${timeUnits.hours} Stunden, ${timeUnits.minutes} Minuten`;
+            const counter = document.getElementById(counterId);
+            const details = document.getElementById(detailsId);
+            
+            const { days, hours, minutes, seconds } = calculateTimeUnits(diff);
+            counter.textContent = `Noch ${days} Tage`;
+            details.textContent = `${hours} Stunden, ${minutes} Minuten und ${seconds} Sekunden`;
         }
 
         function calculateTimeUnits(milliseconds) {
-            const seconds = Math.floor(milliseconds / 1000);
-            const minutes = Math.floor(seconds / 60);
-            const hours = Math.floor(minutes / 60);
-            const days = Math.floor(hours / 24);
-
-            return {
-                days: days,
-                hours: hours % 24,
-                minutes: minutes % 60,
-                seconds: seconds % 60
-            };
-        }
-
-        // Nachrichtenbrett Funktionalität
-        function addMessage() {
-            const input = document.querySelector('.message-input');
-            const messageList = document.getElementById('message-list');
+            const seconds = Math.floor((milliseconds / 1000) % 60);
+            const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+            const hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
             
-            if (input.value.trim() !== '') {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message';
-                messageDiv.textContent = input.value;
-                
-                messageList.insertBefore(messageDiv, messageList.firstChild);
-                
-                const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-                messages.unshift({
-                    text: input.value,
-                    date: new Date().toISOString()
-                });
-                localStorage.setItem('messages', JSON.stringify(messages));
-                
-                input.value = '';
-            }
+            return { days, hours, minutes, seconds };
         }
+        <!-- Spotify Section -->
 
-        function loadMessages() {
-            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-            const messageList = document.getElementById('message-list');
-            
-            messages.forEach(message => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message';
-                messageDiv.textContent = message.text;
-                messageList.appendChild(messageDiv);
-            });
-        }
 
-        // Initialisierung
+        // Update counters every second
         updateCounters();
-        loadMessages();
-        
-        // Update Counter jede Sekunde
         setInterval(updateCounters, 1000);
+
+        // Announce updates for screen readers
+        setInterval(() => {
+            const announcer = document.createElement('div');
+            announcer.setAttribute('aria-live', 'polite');
+            announcer.classList.add('sr-only');
+            document.body.appendChild(announcer);
+            setTimeout(() => announcer.remove(), 1000);
+        }, 60000);
     </script>
 </body>
 </html>
