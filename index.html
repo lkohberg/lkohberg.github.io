@@ -205,27 +205,21 @@
             background: rgba(255, 255, 255, 0.54);
         }
         .footer {
-          
-    background-color: var(--secondary-color);
-    padding: 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.spotify-container {
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.spotify-container:hover {
-    transform: translateY(-5px);
-}
-        
+            text-align: center;
+            padding: 2.7rem;
+            color: #fff;
+            font-size: 1.12rem;
+            box-shadow: 0 4px 24px rgba(102,126,234,0.09);
+            flex-shrink: 0;
+            margin-top: 3rem;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+            border-radius: 22px 22px 0 0;
+            opacity: 0.92;
+            font-family: 'Montserrat', sans-serif;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .heart, .modal-heart {
             color: var(--heart);
             font-size: 1.55rem;
@@ -588,22 +582,35 @@
 </div>
 <div class="footer">
     <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
-    <!-- Spotify Section -->
-<section class="spotify-section" aria-labelledby="spotify-title">
-    <h2 id="spotify-title">Unsere Playlist ♫</h2>
-    <div class="spotify-container">
-        <iframe 
-            style="border-radius:12px" 
-            src="https://open.spotify.com/embed/playlist/1FQ8jtVnCo8uGbMHMhLc4F" 
-            width="100%" 
-            height="352" 
-            frameborder="0" 
-            allowfullscreen="" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-            loading="lazy">
-        </iframe>
+    <div id="loveAnniversary">
+      <div style="font-size:1.19rem;font-weight:bold;color:#ffd6a5;">Unser Jahrestag</div>
+      <div style="margin:0.2rem 0;">
+        <span style="font-size:1.1rem;">Zusammen seit: <b>21.06.2025</b></span>
+      </div>
+      <div id="anniversaryCounter" style="margin-top:0.5rem;font-size:1.14rem;"></div>
     </div>
-</section>
+</div>
+<div class="modal-overlay" id="modalOverlay" tabindex="-1">
+    <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
+        <div class="modal-counter" id="modalCounter">1 / 50</div>
+        <div class="modal-content-wrapper">
+            <div class="modal-content-inner" id="modalContentInner">
+                <div class="modal-number" id="modalNumber">#1</div>
+                <div class="modal-text" id="modalText">Grund Text</div>
+                <div class="modal-hearts">
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                </div>
+            </div>
+        </div>
+        <button class="modal-nav prev" id="modalPrev" aria-label="Vorheriger Grund">‹</button>
+        <button class="modal-nav next" id="modalNext" aria-label="Nächster Grund">›</button>
+    </div>
+</div>
 <script>
 tsParticles.load("tsparticles", {
   fullScreen: { enable: false },
