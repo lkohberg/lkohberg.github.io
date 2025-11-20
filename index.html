@@ -701,7 +701,7 @@ function generateReasonsGrid() {
     grid.innerHTML = '';
     availableReasons = [];
     let idx = 0;
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 51; i++) {
         const card = document.createElement('div');
         const isEmpty = !reasons[i];
         card.className = `reason-card${isEmpty ? ' empty-reason' : ''}`;
