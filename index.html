@@ -913,7 +913,7 @@
         <h1>#152 Gründe warum ich dich liebe</h1>
     </div>
     <div class="intro">
-        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben <span class="heart">♥</span>
+        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben (Das war ernst gemeint🙃)<span class="heart">♥</span>
     </div>
     <hr class="divider">
     <div class="reasons-grid" id="reasonsGrid"></div>
@@ -1152,7 +1152,60 @@
         97: "Weil du mir das Gefühl gibst, nach Hause zu kommen",
         98: "Weil du mein Sinn für Abenteuer bist",
         99: "Weil du meinen Drang nach adrenalin verstehst",
-        100: "Weil du dir die Zeit genommen hast, diese Liste durchzulesen",
+        100: "Weil du in einen Raum voller menschen mich wählen würdest",
+        101: "Weil du meine Launen erträgst",
+        102: "Weil du mich tröstest wenn ich traurig bin",
+        103: "Weil du mein erster Gedanke am Morgen bist",
+        104: "Weil du mein letzter Gedanke am Abend bist",
+        105: "Weil du mir zeigst, dass Schönheit von innen kommt",
+        106: "Weil du meine Hobbys interessant findest",
+        107: "Weil du mich in deine Welt einlädst",
+        108: "Weil du meine Stärken bewunderst",
+        109: "Weil du meine Schwächen akzeptierst",
+        110: "Weil du immerzu meinen Ring trägst",
+        111: "Weil du für fehler immer entschuldigst",
+        112: "Weil du mir gibst, ohne etwas zu erwarten",
+        113: "Weil ich mich nie mit der schämen müsste",
+        114: "Weil du meine Albernheit teilst",
+        115: "Weil du mich nie ändern willst",
+        116: "Weil du ernst sein kannst wenn es sein muss",
+        117: "Weil du mein persönlicher Sonnenschein bist",
+        118: "Weil du meine Entscheidungen respektierst",
+        119: "Weil du mir das Gefühl gibst, der wichtigste Mensch zu sein",
+        120: "Weil du mich verstehst, auch ohne Worte",
+        121: "Weil du meine Leidenschaft für dich entfacht hast",
+        122: "Weil du mir zeigst, wie man wirklich liebt",
+        123: "Weil ich deinee Hand auf meinem Herzen spürst",
+        124: "Weil du die Kälte mit deiner Wärme vertreibst",
+        125: "Weil du die Art, wie du für mich kämpfst",
+        126: "Weil du meine Zweifel vertreibst",
+        127: "Weil du meine Seele zur Ruhe bringst",
+        128: "Weil du meine Abenteuerlust teilst",
+        129: "Weil du mein stiller Verbündeter bist",
+        130: "Weil du meine Träume ernst nimmst",
+        131: "Weil du meine Art zu lieben erwiderst",
+        132: "Weil du mein Kompass im Chaos bist",
+        133: "Weil du meine Vergangenheit nicht verurteilst",
+        134: "Weil du meine Zukunft mit mir planen willst",
+        135: "Weil du meine Ehrlichkeit zu schätzen weißt",
+        136: "Weil du meine Schultern massierst, wenn ich verspannt bin",
+        137: "Weil du meine Lieblingskünstlerin bist",
+        138: "Weil du meine Stille genießen kannst",
+        139: "Weil du mein größtes Vorbild in Sachen Liebe bist",
+        140: "Weil du meine Art, dich anzuschauen, liebst",
+        141: "Weil du meine Art, dich zu küssen, liebst",
+        142: "Weil du meine Art, dich zu halten, liebst",
+        143: "Weil du mein persönlicher Motivator bist",
+        144: "Weil du so süß beim schlafen bist",
+        145: "Weil du meine Macken charmant findest",
+        146: "Weil du meine innere Ruhe bist",
+        147: "Weil du meine Feuerwerksmomente schaffst",
+        148: "Weil du meine Art, dir Komplimente zu machen, liebst",
+        149: "Weil du meine Geduld auf die Probe stellst und ich dich trotzdem liebe",
+        150: "Weil du meine Welt bunter machst",
+        151: "Weil du meine Definition von Liebe verändert hast",
+        152: "Weil du der Grund für jedes Lächeln in den letzten 5 Monaten warst, alle 152 Tage lang",
+
 
     };
     let reasons = {...defaultReasons};
@@ -1175,7 +1228,7 @@
         grid.innerHTML = '';
         availableReasons = [];
         let idx = 0;
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 152; i++) {
             const card = document.createElement('div');
             const isEmpty = !reasons[i];
             card.className = `reason-card${isEmpty ? ' empty-reason' : ''}`;
