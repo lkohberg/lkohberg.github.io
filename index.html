@@ -1410,11 +1410,15 @@
     generateReasonsGrid();
 
     // === VALENTINSTAGS-POPUP ===
+    let valentineTimeout = null;
+
     function showValentinePopup() {
-        // Prüfe ob bereits angezeigt
-        if (localStorage.getItem('valentineAsked')) return;
+        // Entferne alte Popups
+        const oldOverlay = document.querySelector('[data-valentine-popup]');
+        if (oldOverlay) oldOverlay.remove();
 
         const overlay = document.createElement('div');
+        overlay.setAttribute('data-valentine-popup', 'true');
         overlay.style.cssText = `
             position: fixed;
             top: 0;
@@ -1465,6 +1469,7 @@
                     cursor: pointer;
                     transition: all 0.3s;
                     box-shadow: 0 4px 15px rgba(127, 83, 172, 0.3);
+                    flex-shrink: 0;
                 " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                     Ja! 💕
                 </button>
@@ -1478,6 +1483,8 @@
                     font-weight: bold;
                     cursor: pointer;
                     transition: all 0.3s;
+                    flex-shrink: 0;
+                    position: relative;
                 " onmouseover="this.style.background='#ffcdd2'" onmouseout="this.style.background='#ffebee'">
                     Nein
                 </button>
@@ -1494,7 +1501,7 @@
                 transition: all 0.3s;
                 width: 100%;
             " onmouseover="this.style.background='#f8f3ff'" onmouseout="this.style.background='white'">
-                Später
+                Vielleicht Später
             </button>
         `;
 
@@ -1524,20 +1531,18 @@
 
         document.getElementById('valentineYes').onclick = function() {
             localStorage.setItem('valentineAsked', 'true');
-            alert('LesssGO💘💘');
+            alert('LesssGO!💘💘💘💘');
+            clearTimeout(valentineTimeout);
             overlay.remove();
         };
 
         document.getElementById('valentineNein').onclick = function() {
             const neinBtn = document.getElementById('valentineNein');
             neinBtn.style.animation = 'flyOut 0.8s cubic-bezier(.25,.46,.45,.94) forwards';
+            neinBtn.style.pointerEvents = 'none';
             setTimeout(() => {
-                neinBtn.style.display = 'none';
-                setTimeout(() => {
-                    setTimeout(() => {
-                        showValentinePopup();
-                    }, 10000);
-                }, 100);
+                clearTimeout(valentineTimeout);
+                valentineTimeout = setTimeout(showValentinePopup, 10000);
             }, 800);
         };
 
@@ -1545,16 +1550,16 @@
             overlay.style.animation = 'fadeOut 0.4s ease-out forwards';
             setTimeout(() => {
                 overlay.remove();
-                setTimeout(() => {
-                    showValentinePopup();
-                }, 3000);
+                clearTimeout(valentineTimeout);
+                valentineTimeout = setTimeout(showValentinePopup, 1000);
             }, 400);
         };
     }
 
     // Popup beim Laden anzeigen (nach kurzer Verzögerung)
     window.addEventListener('load', function() {
-        setTimeout(showValentinePopup, 800);
+        clearTimeout(valentineTimeout);
+        valentineTimeout = setTimeout(showValentinePopup, 800);
     });
 
     /* Jubiläums-/Kalenderfunktion */
