@@ -1413,6 +1413,9 @@
     let valentineTimeout = null;
 
     function showValentinePopup() {
+        // Prüfe ob bereits beantwortet (nur bei "Ja" wird gespeichert!)
+        if (localStorage.getItem('valentineAnswered')) return;
+
         // Entferne alte Popups
         const oldOverlay = document.querySelector('[data-valentine-popup]');
         if (oldOverlay) oldOverlay.remove();
@@ -1530,8 +1533,8 @@
         document.head.appendChild(style);
 
         document.getElementById('valentineYes').onclick = function() {
-            localStorage.setItem('valentineAsked', 'true');
-            alert('LesssGO!💘💘💘💘');
+            localStorage.setItem('valentineAnswered', 'true');
+            alert('LesssGO!????????');
             clearTimeout(valentineTimeout);
             overlay.remove();
         };
@@ -1540,10 +1543,6 @@
             const neinBtn = document.getElementById('valentineNein');
             neinBtn.style.animation = 'flyOut 0.8s cubic-bezier(.25,.46,.45,.94) forwards';
             neinBtn.style.pointerEvents = 'none';
-            setTimeout(() => {
-                clearTimeout(valentineTimeout);
-                valentineTimeout = setTimeout(showValentinePopup, 10000);
-            }, 800);
         };
 
         document.getElementById('valentineLater').onclick = function() {
@@ -1551,7 +1550,7 @@
             setTimeout(() => {
                 overlay.remove();
                 clearTimeout(valentineTimeout);
-                valentineTimeout = setTimeout(showValentinePopup, 1000);
+                valentineTimeout = setTimeout(showValentinePopup, 1500);
             }, 400);
         };
     }
