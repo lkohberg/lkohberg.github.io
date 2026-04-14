@@ -1570,7 +1570,7 @@
     let cuddleActive = false;
     let sunsetMode = false;
     const MILESTONES = {10: '🌟', 25: '🌟', 50: '🌟', 100: '🌟', 152: '❤️'};
-    let favorites = new Set(JSON.parse(localStorage.getItem('lkfavorites') || '[]'));
+    let favorites = new Set((() => { try { return JSON.parse(localStorage.getItem('lkfavorites') || '[]'); } catch { return []; } })());
     let currentFilter = 'all';
     let searchQuery = '';
     const THEMES = ['default', 'rose', 'ocean', 'night'];
@@ -1582,6 +1582,10 @@
         night: 'Standard-Modus ✨'
     };
     let currentTheme = localStorage.getItem('lktheme') || 'default';
+    const ANNIVERSARY_MONTH = 5; // 0-based: June
+    const ANNIVERSARY_DAY = 21;
+    const TOAST_DISPLAY_MS = 2400;
+    const TOAST_HIDE_MS = 280;
 
     function generateReasonsGrid() {
         const grid = document.getElementById('reasonsGrid');
@@ -2116,8 +2120,8 @@
         container.appendChild(toast);
         setTimeout(() => {
             toast.classList.add('hiding');
-            setTimeout(() => toast.remove(), 280);
-        }, 2400);
+            setTimeout(() => toast.remove(), TOAST_HIDE_MS);
+        }, TOAST_DISPLAY_MS);
     }
 
     // ===== FAVOURITES =====
@@ -2246,8 +2250,8 @@
         const pill = document.getElementById('nextAnniversaryPill');
         if (!pill) return;
         const now = new Date();
-        let nextAnn = new Date(now.getFullYear(), 5, 21); // 21. Juni
-        if (nextAnn <= now) nextAnn = new Date(now.getFullYear() + 1, 5, 21);
+        let nextAnn = new Date(now.getFullYear(), ANNIVERSARY_MONTH, ANNIVERSARY_DAY);
+        if (nextAnn <= now) nextAnn = new Date(now.getFullYear() + 1, ANNIVERSARY_MONTH, ANNIVERSARY_DAY);
         const diffDays = Math.ceil((nextAnn - now) / (1000 * 60 * 60 * 24));
         if (diffDays === 0) {
             pill.textContent = '🎉 Heute ist unser Jahrestag! ♥';
