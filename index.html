@@ -1285,27 +1285,15 @@
 <div class="container" id="mainContainer">
     <div class="header">
         <h1>#152 Gründe warum ich dich liebe</h1>
-        <div id="nextAnniversaryPill" class="next-anniversary-pill"></div>
-        <div id="favCountBadge" class="fav-count-badge hidden">❤️ 0</div>
     </div>
     <div class="intro">
         Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben (Alle 152)<span class="heart">♥</span>
     </div>
     <hr class="divider">
-    <div class="search-filter-bar">
-        <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Gründe durchsuchen…" autocomplete="off">
-            <button class="search-clear" id="searchClear" aria-label="Suche leeren" title="Suche leeren">✕</button>
-        </div>
-        <div class="filter-chips">
+    <div class="filter-chips">
             <button class="filter-chip active" data-filter="all">Alle</button>
             <button class="filter-chip" data-filter="favorites">❤️ Favoriten</button>
-            <button class="filter-chip" data-filter="1-50">#1–50</button>
-            <button class="filter-chip" data-filter="51-100">#51–100</button>
-            <button class="filter-chip" data-filter="101-152">#101–152</button>
         </div>
-    </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
 <!-- Kalender Container -->
@@ -1382,23 +1370,35 @@
         <button class="modal-nav next" id="modalNext" aria-label="Nächster Grund">›</button>
     </div>
 </div>
+<div id="toastContainer"></div>
+<button id="scrollTopBtn" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
 <script>
-    tsParticles.load("tsparticles", {
-        fullScreen: {enable: false},
-        background: {color: "transparent"},
-        particles: {
-            number: {value: 70, density: {enable: true, area: 900}},
-            color: {value: ["#e0c3fc", "#8ec5fc", "#a1c4fd"]},
-            shape: {type: "circle"},
-            opacity: {value: 0.19, anim: {enable: true, speed: 0.8, opacity_min: 0.06, sync: false}},
-            size: {value: {min: 2, max: 7}, anim: {enable: true, speed: 5, size_min: 1, sync: false}},
-            move: {enable: true, speed: 1.3, direction: "none", outModes: "out", random: true}
-        },
-        interactivity: {
-            events: {onHover: {enable: true, mode: "bubble"}, resize: true},
-            modes: {bubble: {distance: 84, duration: 0.6, size: 12, opacity: 0.45}}
-        }
-    });
+    // BUGFIX: The tsParticles.load() call was at the top level of the script without
+    // any error handling. If the tsParticles CDN fails to load (network error, ad
+    // blocker, CDN outage) the call throws a ReferenceError that propagates up and
+    // stops the ENTIRE script from executing – no event listeners (including the 🎲
+    // button handler) were ever registered, making all interactive features broken.
+    // FIX: Wrap in try/catch so the rest of the script always runs regardless.
+    try {
+        tsParticles.load("tsparticles", {
+            fullScreen: {enable: false},
+            background: {color: "transparent"},
+            particles: {
+                number: {value: 70, density: {enable: true, area: 900}},
+                color: {value: ["#e0c3fc", "#8ec5fc", "#a1c4fd"]},
+                shape: {type: "circle"},
+                opacity: {value: 0.19, anim: {enable: true, speed: 0.8, opacity_min: 0.06, sync: false}},
+                size: {value: {min: 2, max: 7}, anim: {enable: true, speed: 5, size_min: 1, sync: false}},
+                move: {enable: true, speed: 1.3, direction: "none", outModes: "out", random: true}
+            },
+            interactivity: {
+                events: {onHover: {enable: true, mode: "bubble"}, resize: true},
+                modes: {bubble: {distance: 84, duration: 0.6, size: 12, opacity: 0.45}}
+            }
+        });
+    } catch (e) {
+        // particles unavailable – page works fine without them
+    }
     document.title = "#152 Gründe warum ich dich liebe";
     const defaultReasons = {
         1: "Wegen deinem wunderschönen Lächeln",
@@ -1572,8 +1572,8 @@
     const MILESTONES = {10: '🌟', 25: '🌟', 50: '🌟', 100: '🌟', 152: '❤️'};
     let favorites = new Set((() => { try { return JSON.parse(localStorage.getItem('lkfavorites') || '[]'); } catch { return []; } })());
     let currentFilter = 'all';
-    let searchQuery = '';
     const THEMES = ['default', 'rose', 'ocean', 'night'];
+    const TOAST_DISPLAY_MS = 2400;
     const THEME_ICONS = {default: '🌅', rose: '🌹', ocean: '🌊', night: '☀️'};
     const THEME_NEXT_LABELS = {
         default: 'Rose-Modus 🌹',
@@ -1582,9 +1582,6 @@
         night: 'Standard-Modus ✨'
     };
     let currentTheme = localStorage.getItem('lktheme') || 'default';
-    const ANNIVERSARY_MONTH = 5; // 0-based: June
-    const ANNIVERSARY_DAY = 21;
-    const TOAST_DISPLAY_MS = 2400;
     const TOAST_HIDE_MS = 280;
 
     function generateReasonsGrid() {
@@ -1639,7 +1636,6 @@
         if (cuddleActive) grid.classList.add('cuddle');
         else grid.classList.remove('cuddle');
         applyFilter();
-        updateFavCount();
     }
 
     function openModal(number) {
@@ -2140,22 +2136,10 @@
         btn.classList.add('popping');
         setTimeout(() => btn.classList.remove('popping'), 350);
         localStorage.setItem('lkfavorites', JSON.stringify([...favorites]));
-        updateFavCount();
         if (currentFilter === 'favorites') applyFilter();
     }
 
-    function updateFavCount() {
-        const badge = document.getElementById('favCountBadge');
-        if (!badge) return;
-        if (favorites.size > 0) {
-            badge.textContent = `❤️ ${favorites.size} Favorit${favorites.size === 1 ? '' : 'en'}`;
-            badge.classList.remove('hidden');
-        } else {
-            badge.classList.add('hidden');
-        }
-    }
-
-    // ===== FILTER & SEARCH =====
+    // ===== FILTER =====
     function applyFilter() {
         const grid = document.getElementById('reasonsGrid');
         if (!grid) return;
@@ -2163,15 +2147,7 @@
         let visibleCount = 0;
         cards.forEach(card => {
             const num = parseInt(card.dataset.num);
-            const text = (reasons[num] || '').toLowerCase();
-            let show = true;
-            if (currentFilter === 'favorites') show = favorites.has(num);
-            else if (currentFilter === '1-50') show = num >= 1 && num <= 50;
-            else if (currentFilter === '51-100') show = num >= 51 && num <= 100;
-            else if (currentFilter === '101-152') show = num >= 101 && num <= 152;
-            if (show && searchQuery) {
-                show = text.includes(searchQuery) || String(num).includes(searchQuery);
-            }
+            const show = currentFilter !== 'favorites' || favorites.has(num);
             card.style.display = show ? '' : 'none';
             if (show) visibleCount++;
         });
@@ -2180,7 +2156,7 @@
             noMsg = document.createElement('div');
             noMsg.id = 'noResultsMsg';
             noMsg.className = 'no-results-msg';
-            noMsg.textContent = 'Keine Gründe gefunden 💜';
+            noMsg.textContent = 'Keine Favoriten gespeichert 💜';
             grid.appendChild(noMsg);
         }
         noMsg.style.display = visibleCount === 0 ? 'block' : 'none';
@@ -2193,21 +2169,6 @@
             currentFilter = chip.dataset.filter;
             applyFilter();
         });
-    });
-
-    const searchInput = document.getElementById('searchInput');
-    const searchClear = document.getElementById('searchClear');
-    searchInput.addEventListener('input', () => {
-        searchQuery = searchInput.value.toLowerCase().trim();
-        searchClear.style.display = searchQuery ? 'block' : 'none';
-        applyFilter();
-    });
-    searchClear.addEventListener('click', () => {
-        searchInput.value = '';
-        searchQuery = '';
-        searchClear.style.display = 'none';
-        searchInput.focus();
-        applyFilter();
     });
 
     // ===== SCROLL TO TOP =====
@@ -2244,24 +2205,6 @@
         btn.setAttribute('title', THEME_NEXT_LABELS[theme]);
     }
     applyTheme(currentTheme);
-
-    // ===== NEXT ANNIVERSARY PILL =====
-    function updateNextAnniversaryPill() {
-        const pill = document.getElementById('nextAnniversaryPill');
-        if (!pill) return;
-        const now = new Date();
-        let nextAnn = new Date(now.getFullYear(), ANNIVERSARY_MONTH, ANNIVERSARY_DAY);
-        if (nextAnn <= now) nextAnn = new Date(now.getFullYear() + 1, ANNIVERSARY_MONTH, ANNIVERSARY_DAY);
-        const diffDays = Math.ceil((nextAnn - now) / (1000 * 60 * 60 * 24));
-        if (diffDays === 0) {
-            pill.textContent = '🎉 Heute ist unser Jahrestag! ♥';
-        } else {
-            pill.textContent = `🎉 Nächster Jahrestag: in ${diffDays} Tag${diffDays === 1 ? '' : 'en'}`;
-        }
-    }
-    updateNextAnniversaryPill();
 </script>
-<div id="toastContainer"></div>
-<button id="scrollTopBtn" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
 </body>
 </html>
