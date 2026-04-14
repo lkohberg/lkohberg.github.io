@@ -68,6 +68,16 @@ Click the theme button (top-right) to cycle through four themes — choice is re
 
 ---
 
+## Dateistruktur / File Structure
+
+| Datei | Beschreibung |
+|---|---|
+| `index.html` | Haupt-HTML-Struktur der Seite |
+| `style.css` | Alle Styles (CSS-Variablen, Layouts, Animationen, Themes) |
+| `script.js` | Gesamte JavaScript-Logik (Modal, Filter, Favoriten, Themes, Kalender, etc.) |
+
+---
+
 ## Usage
 
 Open `index.html` in any modern browser.  
@@ -81,9 +91,9 @@ No build step, no dependencies to install.
 
 | Layer | Technology |
 |---|---|
-| Markup | HTML5 |
-| Styling | CSS3 (custom properties, grid, keyframe animations, backdrop-filter) |
-| Logic | Vanilla JavaScript (ES2020) |
+| Markup | HTML5 (`index.html`) |
+| Styling | CSS3 (`style.css`) – custom properties, grid, keyframe animations, backdrop-filter |
+| Logic | Vanilla JavaScript (`script.js`) – ES2020 |
 | Particles | [tsParticles](https://github.com/tsparticles/tsparticles) v3 (CDN) |
 | Fonts | Google Fonts – Montserrat & Georgia |
 | Music | Spotify Embed |
