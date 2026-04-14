@@ -899,6 +899,379 @@
         .bday-section .kalender-subinfo {
             font-weight: bold;
         }
+
+        /* ===== THEMES: Rose & Ocean ===== */
+        body.rose-mode #tsparticles {
+            background: linear-gradient(135deg, #fbc2eb 0%, #f9a8d4 100%) !important;
+        }
+        body.rose-mode .header {
+            background: rgba(255, 240, 248, 0.95) !important;
+            border-color: rgba(249, 168, 212, 0.4) !important;
+        }
+        body.rose-mode .header h1 { color: #c2185b !important; }
+        body.rose-mode .intro {
+            background: rgba(255, 228, 245, 0.8) !important;
+            color: #7c2950 !important;
+        }
+        body.rose-mode .reason-card {
+            background: rgba(255, 228, 245, 0.75) !important;
+            border-color: rgba(249, 168, 212, 0.5) !important;
+        }
+        body.rose-mode .reason-card:hover, body.rose-mode .reason-card:focus-visible {
+            background: rgba(255, 240, 248, 0.98) !important;
+        }
+        body.rose-mode .reason-number {
+            background: linear-gradient(90deg, #d63384, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.rose-mode .reason-text { color: #7c2950 !important; }
+        body.rose-mode .footer {
+            background: linear-gradient(90deg, #c2185b 0%, #f48fb1 100%) !important;
+        }
+        body.rose-mode .modal-overlay {
+            background: linear-gradient(120deg, #fbc2eb 40%, #f9a8d4 100%) !important;
+        }
+        body.rose-mode .modal-content {
+            background: linear-gradient(135deg, rgba(255, 240, 248, 0.98) 0%, rgba(255, 228, 245, 0.91) 100%) !important;
+        }
+        body.rose-mode .kalender-section { background: rgba(255, 240, 248, 0.92) !important; }
+        body.rose-mode .search-input {
+            background: rgba(255, 240, 248, 0.85) !important;
+            border-color: rgba(249, 168, 212, 0.45) !important;
+        }
+        body.rose-mode .filter-chip { color: #c2185b !important; border-color: rgba(249, 168, 212, 0.5) !important; }
+        body.rose-mode .filter-chip.active {
+            background: linear-gradient(90deg, #c2185b, #f472b6) !important;
+            color: #fff !important;
+        }
+
+        body.ocean-mode #tsparticles {
+            background: linear-gradient(135deg, #0f4c75 0%, #1b9aaa 100%) !important;
+        }
+        body.ocean-mode .header {
+            background: rgba(210, 245, 252, 0.95) !important;
+            border-color: rgba(27, 154, 170, 0.4) !important;
+        }
+        body.ocean-mode .header h1 { color: #0369a1 !important; }
+        body.ocean-mode .intro {
+            background: rgba(200, 240, 250, 0.8) !important;
+            color: #0a3d52 !important;
+        }
+        body.ocean-mode .reason-card {
+            background: rgba(200, 240, 250, 0.75) !important;
+            border-color: rgba(27, 154, 170, 0.4) !important;
+        }
+        body.ocean-mode .reason-card:hover, body.ocean-mode .reason-card:focus-visible {
+            background: rgba(210, 245, 252, 0.98) !important;
+        }
+        body.ocean-mode .reason-number {
+            background: linear-gradient(90deg, #0369a1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.ocean-mode .reason-text { color: #0a2a3a !important; }
+        body.ocean-mode .footer {
+            background: linear-gradient(90deg, #0f4c75 0%, #1b9aaa 100%) !important;
+        }
+        body.ocean-mode .modal-overlay {
+            background: linear-gradient(120deg, #0f4c75 40%, #1b9aaa 100%) !important;
+        }
+        body.ocean-mode .modal-content {
+            background: linear-gradient(135deg, rgba(210, 245, 252, 0.98) 0%, rgba(200, 240, 250, 0.91) 100%) !important;
+            color: #0a2a3a !important;
+        }
+        body.ocean-mode .modal-text { color: #0a2a3a !important; }
+        body.ocean-mode .modal-number { color: #0369a1 !important; }
+        body.ocean-mode .modal-counter { color: #0369a1 !important; }
+        body.ocean-mode .kalender-section { background: rgba(210, 245, 252, 0.92) !important; }
+        body.ocean-mode .search-input {
+            background: rgba(210, 245, 252, 0.85) !important;
+            border-color: rgba(27, 154, 170, 0.4) !important;
+        }
+        body.ocean-mode .filter-chip { color: #0369a1 !important; border-color: rgba(27, 154, 170, 0.4) !important; }
+        body.ocean-mode .filter-chip.active {
+            background: linear-gradient(90deg, #0f4c75, #06b6d4) !important;
+            color: #fff !important;
+        }
+
+        /* ===== MILESTONE BADGES ===== */
+        .reason-card.milestone {
+            border: 2px solid #f6c90e !important;
+            box-shadow: 0 8px 32px rgba(246, 201, 14, 0.22), 0 2px 8px rgba(0, 0, 0, 0.07) !important;
+        }
+        .reason-card.milestone-152 {
+            border: 2.5px solid #e74c3c !important;
+            box-shadow: 0 8px 40px rgba(231, 76, 60, 0.28), 0 2px 8px rgba(0, 0, 0, 0.07) !important;
+        }
+        .milestone-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.9rem;
+            background: linear-gradient(135deg, #f6c90e, #f9a825);
+            color: #3d2c00;
+            border-radius: 50%;
+            width: 1.8rem;
+            height: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(246, 201, 14, 0.35);
+            z-index: 3;
+            animation: milestonePulse 2.4s ease-in-out infinite;
+        }
+        .milestone-badge.last {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.4);
+        }
+        @keyframes milestonePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.14); }
+        }
+
+        /* ===== FAVORITES ===== */
+        .fav-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            border-radius: 50%;
+            transition: transform 0.22s cubic-bezier(.36, 1.65, .73, 1.01), background 0.2s, color 0.2s;
+            z-index: 4;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.18);
+            outline: none;
+        }
+        .fav-btn:hover, .fav-btn:focus {
+            transform: scale(1.22);
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+        .fav-btn.active { color: #e74c3c; }
+        .fav-btn.active:hover { color: #c0392b; }
+        @keyframes favPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.55); }
+            100% { transform: scale(1); }
+        }
+        .fav-btn.popping { animation: favPop 0.3s cubic-bezier(.36, 1.65, .73, 1.01); }
+
+        .fav-count-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.86rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+            border: 1.5px solid rgba(231, 76, 60, 0.2);
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .fav-count-badge.hidden { display: none; }
+
+        /* ===== SEARCH & FILTER BAR ===== */
+        .search-filter-bar {
+            margin: 0 2rem 1.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            position: relative;
+            z-index: 2;
+        }
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input-wrap .search-icon {
+            position: absolute;
+            left: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.45;
+            pointer-events: none;
+            user-select: none;
+        }
+        .search-input {
+            width: 100%;
+            padding: 0.7rem 2.6rem 0.7rem 2.7rem;
+            border-radius: 20px;
+            border: 1.5px solid rgba(180, 160, 255, 0.3);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(12px);
+            font-size: 0.98rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #2d2940;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(126, 125, 255, 0.07);
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .search-input:focus {
+            border-color: #b08cff;
+            box-shadow: 0 0 0 2px #e0c3fc55, 0 2px 8px rgba(127, 83, 172, 0.1);
+        }
+        .search-input::placeholder { color: #b0a0cc; }
+        .search-clear {
+            position: absolute;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: #b0a0cc;
+            cursor: pointer;
+            padding: 0.2rem 0.3rem;
+            border-radius: 50%;
+            display: none;
+            transition: color 0.2s;
+            outline: none;
+            line-height: 1;
+        }
+        .search-clear:hover { color: #7F53AC; }
+        .filter-chips {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .filter-chip {
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            border: 1.5px solid rgba(180, 160, 255, 0.35);
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(8px);
+            color: #7F53AC;
+            font-size: 0.84rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+        }
+        .filter-chip:hover, .filter-chip:focus {
+            border-color: #b08cff;
+            background: rgba(240, 232, 255, 0.9);
+        }
+        .filter-chip.active {
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 2px 8px rgba(127, 83, 172, 0.22);
+        }
+        @media (max-width: 768px) {
+            .search-filter-bar { margin: 0 0.5rem 1rem 0.5rem; }
+        }
+
+        /* ===== TOAST NOTIFICATIONS ===== */
+        #toastContainer {
+            position: fixed;
+            bottom: 5rem;
+            right: 1.1rem;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 0.4rem;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .toast {
+            background: rgba(35, 30, 55, 0.94);
+            color: #fff;
+            padding: 0.58rem 0.95rem;
+            border-radius: 13px;
+            font-size: 0.91rem;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(14px);
+            pointer-events: none;
+            animation: toastIn 0.3s cubic-bezier(.36, 1.65, .73, 1.01) both;
+            max-width: 230px;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+        }
+        .toast.hiding { animation: toastOut 0.26s ease-in forwards; }
+        @keyframes toastIn {
+            from { transform: translateX(110%); opacity: 0; }
+            to   { transform: translateX(0);    opacity: 1; }
+        }
+        @keyframes toastOut {
+            from { transform: translateX(0);    opacity: 1; }
+            to   { transform: translateX(110%); opacity: 0; }
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 1.4rem;
+            left: 1.4rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1.5px solid rgba(180, 160, 255, 0.4);
+            color: #7F53AC;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(127, 83, 172, 0.16);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(14px);
+            transition: opacity 0.28s, transform 0.28s, background 0.2s, box-shadow 0.2s;
+            outline: none;
+            backdrop-filter: blur(10px);
+        }
+        #scrollTopBtn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #scrollTopBtn:hover, #scrollTopBtn:focus {
+            background: #f3eeff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 22px rgba(127, 83, 172, 0.28);
+        }
+
+        /* ===== NEXT ANNIVERSARY PILL ===== */
+        .next-anniversary-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: rgba(127, 83, 172, 0.09);
+            color: var(--accent);
+            border: 1.5px solid rgba(180, 160, 255, 0.3);
+            border-radius: 20px;
+            padding: 0.26rem 0.82rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 0.55rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ===== CUDDLE / BIG CARD FIX ===== */
+        .reasons-grid.cuddle { gap: 0.9rem; }
+        .reason-card.big .reason-number { font-size: 2.7rem; }
+
+        /* ===== NO RESULTS ===== */
+        .no-results-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #b0a0cc;
+            font-size: 1.08rem;
+            font-style: italic;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -907,15 +1280,32 @@
     <button id="calendarBtn" class="mini-btn" title="Kalender anzeigen 📅">📅</button>
     <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
     <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
+    <button id="surpriseBtn" class="mini-btn" title="Überrasch mich! 🎲">🎲</button>
 </div>
 <div class="container" id="mainContainer">
     <div class="header">
         <h1>#152 Gründe warum ich dich liebe</h1>
+        <div id="nextAnniversaryPill" class="next-anniversary-pill"></div>
+        <div id="favCountBadge" class="fav-count-badge hidden">❤️ 0</div>
     </div>
     <div class="intro">
         Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben (Alle 152)<span class="heart">♥</span>
     </div>
     <hr class="divider">
+    <div class="search-filter-bar">
+        <div class="search-input-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Gründe durchsuchen…" autocomplete="off">
+            <button class="search-clear" id="searchClear" aria-label="Suche leeren" title="Suche leeren">✕</button>
+        </div>
+        <div class="filter-chips">
+            <button class="filter-chip active" data-filter="all">Alle</button>
+            <button class="filter-chip" data-filter="favorites">❤️ Favoriten</button>
+            <button class="filter-chip" data-filter="1-50">#1–50</button>
+            <button class="filter-chip" data-filter="51-100">#51–100</button>
+            <button class="filter-chip" data-filter="101-152">#101–152</button>
+        </div>
+    </div>
     <div class="reasons-grid" id="reasonsGrid"></div>
 </div>
 <!-- Kalender Container -->
@@ -958,7 +1348,7 @@
         </div>
     </div>
 </div>
-<div class="footer">
+<div class="footer" id="mainFooter">
     <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
     <div id="loveAnniversary">
         <div style="margin:0.2rem 0;">
@@ -1179,6 +1569,19 @@
     let startX = 0, currentX = 0, isDragging = false, hasTouch = 'ontouchstart' in window;
     let cuddleActive = false;
     let sunsetMode = false;
+    const MILESTONES = {10: '🌟', 25: '🌟', 50: '🌟', 100: '🌟', 152: '❤️'};
+    let favorites = new Set(JSON.parse(localStorage.getItem('lkfavorites') || '[]'));
+    let currentFilter = 'all';
+    let searchQuery = '';
+    const THEMES = ['default', 'rose', 'ocean', 'night'];
+    const THEME_ICONS = {default: '🌅', rose: '🌹', ocean: '🌊', night: '☀️'};
+    const THEME_NEXT_LABELS = {
+        default: 'Rose-Modus 🌹',
+        rose: 'Ozean-Modus 🌊',
+        ocean: 'Nacht-Modus 🌙',
+        night: 'Standard-Modus ✨'
+    };
+    let currentTheme = localStorage.getItem('lktheme') || 'default';
 
     function generateReasonsGrid() {
         const grid = document.getElementById('reasonsGrid');
@@ -1190,6 +1593,7 @@
             const isEmpty = !reasons[i];
             card.className = `reason-card${isEmpty ? ' empty-reason' : ''}`;
             card.tabIndex = 0;
+            card.dataset.num = i;
             card.innerHTML = `
             <div class="reason-number">#${i}</div>
             <div class="reason-text" data-reason="${i}">
@@ -1197,7 +1601,27 @@
             </div>
         `;
             card.style.setProperty('--i', idx);
-            if (cuddleActive) card.classList.add("big");
+            // Milestone badge
+            if (MILESTONES[i]) {
+                const badge = document.createElement('div');
+                badge.className = `milestone-badge${i === 152 ? ' last' : ''}`;
+                badge.textContent = MILESTONES[i];
+                badge.title = `Meilenstein #${i}`;
+                card.appendChild(badge);
+                card.classList.add(i === 152 ? 'milestone-152' : 'milestone');
+            }
+            // Favourite button
+            const favBtn = document.createElement('button');
+            favBtn.className = `fav-btn${favorites.has(i) ? ' active' : ''}`;
+            favBtn.textContent = '♥';
+            favBtn.title = favorites.has(i) ? 'Aus Favoriten entfernen' : 'Zu Favoriten hinzufügen';
+            favBtn.setAttribute('aria-label', 'Favorit');
+            favBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFavorite(i, favBtn);
+            });
+            card.appendChild(favBtn);
+            if (cuddleActive) card.classList.add('big');
             if (reasons[i]) {
                 availableReasons.push(i);
                 card.addEventListener('click', () => openModal(i));
@@ -1208,9 +1632,10 @@
                 idx++;
             }
         }
-        // Bleibt gekuschelt, wenn cuddleActive true
         if (cuddleActive) grid.classList.add('cuddle');
         else grid.classList.remove('cuddle');
+        applyFilter();
+        updateFavCount();
     }
 
     function openModal(number) {
@@ -1380,31 +1805,26 @@
         }
     });
 
-    // Shuffle-Button: 50. Grund bleibt immer an letzter Stelle
+    // Shuffle-Button: #152 bleibt immer an letzter Stelle
     document.getElementById('shuffleBtn').onclick = function () {
         availableReasons = [];
-        let keys = Object.keys(defaultReasons).filter(k => k != "50");
+        let keys = Object.keys(defaultReasons).filter(k => k != "152");
         keys = keys.sort(() => Math.random() - 0.5);
         reasons = {};
         keys.forEach((k, i) => reasons[i + 1] = defaultReasons[k]);
-        reasons[50] = defaultReasons[50];
+        reasons[152] = defaultReasons[152];
         cuddleActive = false;
         document.getElementById('reasonsGrid').classList.remove('cuddle');
         generateReasonsGrid();
+        showToast('🔀 Reihenfolge gemischt!');
     };
 
-    // Nachtmodus mit warmem, augenschonendem Farbdesign
+    // Theme-Modus: Default → Rose → Ozean → Nacht → Default
     document.getElementById('sunsetModeBtn').onclick = function () {
-        sunsetMode = !sunsetMode;
-        document.body.classList.toggle('sunset-mode', sunsetMode);
-        document.getElementById('sunsetModeBtn').textContent = sunsetMode ? "☀️" : "🌅";
-        document.getElementById('sunsetModeBtn').setAttribute('title', sunsetMode ? "Tagmodus ☀️" : "Nachtmodus 🌅");
-        // Entfernt "Kuscheln" falls aktiviert, weil der Modus wichtiger ist
-        if (sunsetMode && cuddleActive) {
-            cuddleActive = false;
-            document.getElementById('reasonsGrid').classList.remove('cuddle');
-            generateReasonsGrid();
-        }
+        const nextIdx = (THEMES.indexOf(currentTheme) + 1) % THEMES.length;
+        applyTheme(THEMES[nextIdx]);
+        const labels = {default: '✨ Standard', rose: '🌹 Rose', ocean: '🌊 Ozean', night: '🌙 Nacht'};
+        showToast(`${labels[currentTheme]} aktiviert`);
     };
 
     generateReasonsGrid();
@@ -1599,37 +2019,45 @@
     }
 
     updateAnniversary();
-    setInterval(updateAnniversary, 8 * 60 * 60 * 1000); // alle 8h aktualisieren
+    // Update anniversary counter at midnight each day
+    (function scheduleMidnightUpdate() {
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        setTimeout(() => {
+            updateAnniversary();
+            scheduleMidnightUpdate();
+        }, tomorrow - now);
+    })();
 
     // --- KALENDER BUTTON & KALENDER-ANSICHT ---
     const mainContainer = document.getElementById('mainContainer');
     const calendarContainer = document.getElementById('calendarContainer');
     const calendarBtn = document.getElementById('calendarBtn');
 
+    let calendarVisible = false;
+
     function showCalendarView() {
+        calendarVisible = true;
         mainContainer.style.display = 'none';
         calendarContainer.style.display = '';
         updateCalendarInfo();
-        calendarBtn.textContent = "🏠";
+        calendarBtn.textContent = '🏠';
         calendarBtn.setAttribute('title', 'Zurück zur Hauptseite');
-        document.getElementById('mainFooter').style.display = 'none'; // Footer ausblenden
+        document.getElementById('mainFooter').style.display = 'none';
     }
 
     function showMainView() {
+        calendarVisible = false;
         mainContainer.style.display = '';
         calendarContainer.style.display = 'none';
-        calendarBtn.textContent = "📅";
+        calendarBtn.textContent = '📅';
         calendarBtn.setAttribute('title', 'Kalender anzeigen 📅');
-        document.getElementById('mainFooter').style.display = ''; // Footer wieder anzeigen
-        // ...
+        document.getElementById('mainFooter').style.display = '';
     }
 
     calendarBtn.onclick = function () {
-        if (calendarContainer.style.display === '' || calendarContainer.style.display === 'block') {
-            showMainView();
-        } else {
-            showCalendarView();
-        }
+        if (calendarVisible) showMainView();
+        else showCalendarView();
     };
 
     // Geburtstags-Countdown modernisiert
@@ -1678,6 +2106,158 @@
     }
 
     updateCalendarInfo();
+
+    // ===== TOAST SYSTEM =====
+    function showToast(msg) {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('hiding');
+            setTimeout(() => toast.remove(), 280);
+        }, 2400);
+    }
+
+    // ===== FAVOURITES =====
+    function toggleFavorite(num, btn) {
+        if (favorites.has(num)) {
+            favorites.delete(num);
+            btn.classList.remove('active');
+            btn.title = 'Zu Favoriten hinzufügen';
+            showToast('🗑️ Favorit entfernt');
+        } else {
+            favorites.add(num);
+            btn.classList.add('active');
+            btn.title = 'Aus Favoriten entfernen';
+            showToast('❤️ Zu Favoriten hinzugefügt!');
+        }
+        btn.classList.add('popping');
+        setTimeout(() => btn.classList.remove('popping'), 350);
+        localStorage.setItem('lkfavorites', JSON.stringify([...favorites]));
+        updateFavCount();
+        if (currentFilter === 'favorites') applyFilter();
+    }
+
+    function updateFavCount() {
+        const badge = document.getElementById('favCountBadge');
+        if (!badge) return;
+        if (favorites.size > 0) {
+            badge.textContent = `❤️ ${favorites.size} Favorit${favorites.size === 1 ? '' : 'en'}`;
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+    }
+
+    // ===== FILTER & SEARCH =====
+    function applyFilter() {
+        const grid = document.getElementById('reasonsGrid');
+        if (!grid) return;
+        const cards = grid.querySelectorAll('.reason-card');
+        let visibleCount = 0;
+        cards.forEach(card => {
+            const num = parseInt(card.dataset.num);
+            const text = (reasons[num] || '').toLowerCase();
+            let show = true;
+            if (currentFilter === 'favorites') show = favorites.has(num);
+            else if (currentFilter === '1-50') show = num >= 1 && num <= 50;
+            else if (currentFilter === '51-100') show = num >= 51 && num <= 100;
+            else if (currentFilter === '101-152') show = num >= 101 && num <= 152;
+            if (show && searchQuery) {
+                show = text.includes(searchQuery) || String(num).includes(searchQuery);
+            }
+            card.style.display = show ? '' : 'none';
+            if (show) visibleCount++;
+        });
+        let noMsg = document.getElementById('noResultsMsg');
+        if (!noMsg) {
+            noMsg = document.createElement('div');
+            noMsg.id = 'noResultsMsg';
+            noMsg.className = 'no-results-msg';
+            noMsg.textContent = 'Keine Gründe gefunden 💜';
+            grid.appendChild(noMsg);
+        }
+        noMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            currentFilter = chip.dataset.filter;
+            applyFilter();
+        });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value.toLowerCase().trim();
+        searchClear.style.display = searchQuery ? 'block' : 'none';
+        applyFilter();
+    });
+    searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        searchInput.focus();
+        applyFilter();
+    });
+
+    // ===== SCROLL TO TOP =====
+    window.addEventListener('scroll', () => {
+        document.getElementById('scrollTopBtn').classList.toggle('visible', window.scrollY > 300);
+    });
+    document.getElementById('scrollTopBtn').addEventListener('click', () => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // ===== SURPRISE ME =====
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+        if (availableReasons.length === 0) return;
+        const visibleNums = availableReasons.filter(n => {
+            const card = document.querySelector(`.reason-card[data-num="${n}"]`);
+            return card && card.style.display !== 'none';
+        });
+        if (visibleNums.length === 0) return;
+        const pick = visibleNums[Math.floor(Math.random() * visibleNums.length)];
+        openModal(pick);
+        showToast('🎲 Überraschung!');
+    });
+
+    // ===== THEME SYSTEM =====
+    function applyTheme(theme) {
+        document.body.classList.remove('sunset-mode', 'rose-mode', 'ocean-mode');
+        if (theme === 'night') document.body.classList.add('sunset-mode');
+        else if (theme === 'rose') document.body.classList.add('rose-mode');
+        else if (theme === 'ocean') document.body.classList.add('ocean-mode');
+        currentTheme = theme;
+        localStorage.setItem('lktheme', theme);
+        const btn = document.getElementById('sunsetModeBtn');
+        btn.textContent = THEME_ICONS[theme];
+        btn.setAttribute('title', THEME_NEXT_LABELS[theme]);
+    }
+    applyTheme(currentTheme);
+
+    // ===== NEXT ANNIVERSARY PILL =====
+    function updateNextAnniversaryPill() {
+        const pill = document.getElementById('nextAnniversaryPill');
+        if (!pill) return;
+        const now = new Date();
+        let nextAnn = new Date(now.getFullYear(), 5, 21); // 21. Juni
+        if (nextAnn <= now) nextAnn = new Date(now.getFullYear() + 1, 5, 21);
+        const diffDays = Math.ceil((nextAnn - now) / (1000 * 60 * 60 * 24));
+        if (diffDays === 0) {
+            pill.textContent = '🎉 Heute ist unser Jahrestag! ♥';
+        } else {
+            pill.textContent = `🎉 Nächster Jahrestag: in ${diffDays} Tag${diffDays === 1 ? '' : 'en'}`;
+        }
+    }
+    updateNextAnniversaryPill();
 </script>
+<div id="toastContainer"></div>
+<button id="scrollTopBtn" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
 </body>
 </html>
