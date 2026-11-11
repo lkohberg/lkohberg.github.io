@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>152 Gründe warum ich dich liebe</title>
+    <link rel="icon" href="https://fonts.gstatic.com/s/e/notoemoji/latest/2764_fe0f/512.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Georgia&display=swap"
+          rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="tsparticles"></div>
+<div class="floating-buttons">
+    <button id="calendarBtn" class="mini-btn" title="Kalender anzeigen 📅">📅</button>
+    <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
+    <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
+    <button id="surpriseBtn" class="mini-btn" title="Überrasch mich! 🎲">🎲</button>
+</div>
+<div class="container" id="mainContainer">
+    <div class="header">
+        <h1>#152 Gründe warum ich dich liebe</h1>
+    </div>
+    <div class="intro">
+        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben (Alle 152)<span class="heart">♥</span>
+    </div>
+    <hr class="divider">
+    <div class="filter-chips">
+            <button class="filter-chip active" data-filter="all">Alle</button>
+            <button class="filter-chip" data-filter="favorites">❤️ Favoriten</button>
+        </div>
+    <div class="reasons-grid" id="reasonsGrid"></div>
+</div>
+<!-- Kalender Container -->
+<div class="container" id="calendarContainer" style="display:none">
+    <div class="header">
+        <h1>📅 Kalender & Jubiläen</h1>
+    </div>
+    <div class="intro" style="margin-bottom:2rem;">
+        Hier findest du besondere Daten von uns beiden!
+        <span class="heart">♥</span>
+    </div>
+    <div id="kalenderInfos">
+        <div class="kalender-section">
+            <div class="kalender-label"><b>Unser Jahrestag</b></div>
+            <div class="kalender-date">21.06.2025</div>
+            <div class="kalender-subinfo">
+                <span id="kalenderAnniversaryCounter"></span>
+            </div>
+        </div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Luca's Geburtstag</b></div>
+            <div class="kalender-date bday-me">25.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="myBdayCountdown"></span>
+            </div>
+        </div>
+        <div class="kalender-section bday-section">
+            <div class="kalender-label"><b>Olivia's Geburtstag</b></div>
+            <div class="kalender-date bday-her">03.11.2008</div>
+            <div class="kalender-subinfo">
+                <span id="herBdayCountdown"></span>
+            </div>
+        </div>
+        <div class="kalender-section">
+            <div class="kalender-label"><b>Valentinstag</b></div>
+            <div class="kalender-date">14.02</div>
+            <div class="kalender-subinfo">
+                <span id="valentineCountdown"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer" id="mainFooter">
+    <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
+    <div id="loveAnniversary">
+        <div style="margin:0.2rem 0;">
+        </div>
+        <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/4PyesxGogGK3ArJB37D9Af?utm_source=generator" width="100%"
+                height="352" frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+        <div id="anniversaryCounter" style="margin-top:0.5rem;font-size:1.14rem;"></div>
+    </div>
+</div>
+<div class="modal-overlay" id="modalOverlay" tabindex="-1">
+    <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
+        <div class="modal-counter" id="modalCounter">1 / 50</div>
+        <div class="modal-content-wrapper">
+            <div class="modal-content-inner" id="modalContentInner">
+                <div class="modal-number" id="modalNumber">#1</div>
+                <div class="modal-text" id="modalText">Grund Text</div>
+                <div class="modal-hearts">
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                    <span class="modal-heart">♥</span>
+                </div>
+            </div>
+        </div>
+        <button class="modal-nav prev" id="modalPrev" aria-label="Vorheriger Grund">‹</button>
+        <button class="modal-nav next" id="modalNext" aria-label="Nächster Grund">›</button>
+    </div>
+</div>
+<div id="toastContainer"></div>
+<button id="scrollTopBtn" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
+<script src="script.js"></script>
+</body>
+</html>

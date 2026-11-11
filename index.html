@@ -1,113 +1,88 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>152 Gründe warum ich dich liebe</title>
-    <link rel="icon" href="https://fonts.gstatic.com/s/e/notoemoji/latest/2764_fe0f/512.png">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Georgia&display=swap"
-          rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Nicht mehr zusammen</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-1: #0b1020;
+      --bg-2: #1b1f3a;
+      --txt: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #f87171;
+      --line: #374151;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--txt);
+      background: radial-gradient(circle at 20% 10%, #243b77 0%, transparent 40%),
+                  radial-gradient(circle at 80% 90%, #44214f 0%, transparent 35%),
+                  linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      padding: 2rem;
+    }
+
+    .card {
+      width: min(680px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(6px);
+      background: rgba(17, 24, 39, 0.75);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .code {
+      font-size: clamp(3rem, 12vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      margin: 0;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 1rem 0 0.8rem;
+      font-size: clamp(1.2rem, 3vw, 1.9rem);
+    }
+
+    p {
+      margin: 0.5rem 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .status {
+      margin-top: 1.5rem;
+      display: inline-block;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .status strong { color: #fca5a5; }
+  </style>
 </head>
 <body>
-<div id="tsparticles"></div>
-<div class="floating-buttons">
-    <button id="calendarBtn" class="mini-btn" title="Kalender anzeigen 📅">📅</button>
-    <button id="sunsetModeBtn" class="mini-btn" title="Nachtmodus 🌅">🌅</button>
-    <button id="shuffleBtn" class="mini-btn" title="Zufällige Reihenfolge">🔀</button>
-    <button id="surpriseBtn" class="mini-btn" title="Überrasch mich! 🎲">🎲</button>
-</div>
-<div class="container" id="mainContainer">
-    <div class="header">
-        <h1>#152 Gründe warum ich dich liebe</h1>
-    </div>
-    <div class="intro">
-        Jeden Tag entdecke ich neue Gründe, mich in dich zu verlieben (Alle 152)<span class="heart">♥</span>
-    </div>
-    <hr class="divider">
-    <div class="filter-chips">
-            <button class="filter-chip active" data-filter="all">Alle</button>
-            <button class="filter-chip" data-filter="favorites">❤️ Favoriten</button>
-        </div>
-    <div class="reasons-grid" id="reasonsGrid"></div>
-</div>
-<!-- Kalender Container -->
-<div class="container" id="calendarContainer" style="display:none">
-    <div class="header">
-        <h1>📅 Kalender & Jubiläen</h1>
-    </div>
-    <div class="intro" style="margin-bottom:2rem;">
-        Hier findest du besondere Daten von uns beiden!
-        <span class="heart">♥</span>
-    </div>
-    <div id="kalenderInfos">
-        <div class="kalender-section">
-            <div class="kalender-label"><b>Unser Jahrestag</b></div>
-            <div class="kalender-date">21.06.2025</div>
-            <div class="kalender-subinfo">
-                <span id="kalenderAnniversaryCounter"></span>
-            </div>
-        </div>
-        <div class="kalender-section bday-section">
-            <div class="kalender-label"><b>Luca's Geburtstag</b></div>
-            <div class="kalender-date bday-me">25.11.2008</div>
-            <div class="kalender-subinfo">
-                <span id="myBdayCountdown"></span>
-            </div>
-        </div>
-        <div class="kalender-section bday-section">
-            <div class="kalender-label"><b>Olivia's Geburtstag</b></div>
-            <div class="kalender-date bday-her">03.11.2008</div>
-            <div class="kalender-subinfo">
-                <span id="herBdayCountdown"></span>
-            </div>
-        </div>
-        <div class="kalender-section">
-            <div class="kalender-label"><b>Valentinstag</b></div>
-            <div class="kalender-date">14.02</div>
-            <div class="kalender-subinfo">
-                <span id="valentineCountdown"></span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="footer" id="mainFooter">
-    <p>Mit <span class="white-heart">♥</span> gemacht für den wunderbarsten Menschen der Welt</p>
-    <div id="loveAnniversary">
-        <div style="margin:0.2rem 0;">
-        </div>
-        <iframe data-testid="embed-iframe" style="border-radius:12px"
-                src="https://open.spotify.com/embed/playlist/4PyesxGogGK3ArJB37D9Af?utm_source=generator" width="100%"
-                height="352" frameBorder="0" allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
-        <div id="anniversaryCounter" style="margin-top:0.5rem;font-size:1.14rem;"></div>
-    </div>
-</div>
-<div class="modal-overlay" id="modalOverlay" tabindex="-1">
-    <div class="modal-content" role="dialog" aria-modal="true">
-        <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
-        <div class="modal-counter" id="modalCounter">1 / 50</div>
-        <div class="modal-content-wrapper">
-            <div class="modal-content-inner" id="modalContentInner">
-                <div class="modal-number" id="modalNumber">#1</div>
-                <div class="modal-text" id="modalText">Grund Text</div>
-                <div class="modal-hearts">
-                    <span class="modal-heart">♥</span>
-                    <span class="modal-heart">♥</span>
-                    <span class="modal-heart">♥</span>
-                    <span class="modal-heart">♥</span>
-                    <span class="modal-heart">♥</span>
-                </div>
-            </div>
-        </div>
-        <button class="modal-nav prev" id="modalPrev" aria-label="Vorheriger Grund">‹</button>
-        <button class="modal-nav next" id="modalNext" aria-label="Nächster Grund">›</button>
-    </div>
-</div>
-<div id="toastContainer"></div>
-<button id="scrollTopBtn" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
-<script src="script.js"></script>
+  <main class="card" role="main" aria-labelledby="headline">
+    <p class="code">404</p>
+    <h1 id="headline">Seite nicht gefunden — wir sind nicht mehr zusammen.</h1>
+    <p>Diese Version gehört jetzt ins Archiv.</p>
+    <p>Manche Kapitel enden, auch wenn sie mal alles waren.</p>
+    <p class="status">Status: <strong>Relationship route removed</strong></p>
+  </main>
 </body>
 </html>
