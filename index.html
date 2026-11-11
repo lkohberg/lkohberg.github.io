@@ -11,7 +11,7 @@
       --bg-2: #1b1f3a;
       --txt: #f3f4f6;
       --muted: #9ca3af;
-      --accent: #f87171;
+      --accent: #fb7185;
       --line: #374151;
     }
 
@@ -74,15 +74,35 @@
     }
 
     .status strong { color: #fca5a5; }
+
+    .legacy-link {
+      margin-top: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--txt);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .legacy-link:hover {
+      border-color: #6b7280;
+      background: rgba(0, 0, 0, 0.45);
+    }
   </style>
 </head>
 <body>
   <main class="card" role="main" aria-labelledby="headline">
     <p class="code">404</p>
-    <h1 id="headline">Seite nicht gefunden — wir sind nicht mehr zusammen.</h1>
-    <p>Diese Version gehört jetzt ins Archiv.</p>
-    <p>Manche Kapitel enden, auch wenn sie mal alles waren.</p>
-    <p class="status">Status: <strong>Relationship route removed</strong></p>
+    <h1 id="headline">Wir sind nicht mehr zusammen.</h1>
+    <p>Diese Seite gibt es hier nicht mehr.</p>
+    <p class="status">Status: <strong>Legacy only</strong></p>
+    <a class="legacy-link" href="/old/" aria-label="Zur alten Seite wechseln">Zur alten Seite (Legacy)</a>
   </main>
 </body>
 </html>
